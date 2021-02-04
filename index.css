@@ -8,12 +8,13 @@ body {
     color: white;
     font-size: 8em;
     font-weight: 400;
+    letter-spacing: 0.05em;
 }
 
 #homeDescription {
     text-align: center;
     font-family: 'Montserrat', sans-serif;
-    color: white;
+    color: #E5E5E5;
     font-size: 1.75em;
     font-weight: 700;
     margin-top: -2em;
@@ -24,12 +25,14 @@ body {
 }
 
 .homeButtons {
-    background-color: #8D8D8D;
+    background-color: #BABABA;
     border-style: none;
-    width: 12em;
+    width: 14em;
     border-radius: 2em;
-    padding-top: 0.8em;
-    padding-bottom: 0.8em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
     font-size: 1.5em;
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
@@ -38,8 +41,8 @@ body {
 #homeInBetweenButtons {
     display: inline-block;
     color: white;
-    font-family: 'Montserrat', sans-serif;
-    padding-left: 5em;
-    padding-right: 5em;
-    font-size: 1.5em;
+    font-family: 'Philosopher';
+    padding-left: 3em;
+    padding-right: 3em;
+    font-size: 3em;
 }
