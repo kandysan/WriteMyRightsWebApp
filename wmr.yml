@@ -17,7 +17,7 @@ paths:
       tags:
         - surveys
       summary: sends answers to backend
-      operationId: process_employment_answers
+      operationId: app.process_employment_answers
       description: Sends the answers from the survey to the backend python app.
       responses:
         '201':
@@ -28,11 +28,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/answers'
+              $ref: '#/components/schemas/employment_answers'
         description: answers to send
 components:
   schemas:
-    answers:
+    employment_answers:
       type: object
       required:
         - name
@@ -44,25 +44,27 @@ components:
         - severance
         - email
         - feeling
-        
       properties:
         name:
           type: string
           example: "name"
         company_name:
           type: string
-          example: "comapany_name"
+          example: "company_name"
         job_details:
-          type: list
+          type: array
           example: ["I was hired for a short term contract", "This was my only job"]
+        boss_name:
+          type: string
+          example: "boss"
         time_worked:
           type: string
           example: "5 years"
         reason_of_termination:
           type: string
           example: "late"
-        time_worked:
-          type: severance
+        severance:
+          type: string
           example: "5 dollars"
         email:
           type: string
