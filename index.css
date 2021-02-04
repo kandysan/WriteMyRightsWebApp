@@ -1,0 +1,18 @@
+#title {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#description {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#buttons {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#inBetweenButtons {
+    display: inline-block;
+}
