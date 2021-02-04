@@ -1,0 +1,72 @@
+openapi: 3.0.0
+info:
+  description: This is a simple API
+  version: "1.0.0"
+  title: Simple Inventory API
+  contact:
+    email: you@your-company.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: surveys
+    description: surveys for different letters
+paths:
+  /employment_answers:
+    post:
+      tags:
+        - surveys
+      summary: sends answers to backend
+      operationId: process_employment_answers
+      description: Sends the answers from the survey to the backend python app.
+      responses:
+        '201':
+          description: item created
+        '400':
+          description: 'invalid input, object invalid'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/answers'
+        description: answers to send
+components:
+  schemas:
+    answers:
+      type: object
+      required:
+        - name
+        - company_name
+        - job_details
+        - boss_name
+        - time_worked
+        - reason_of_termination
+        - severance
+        - email
+        - feeling
+        
+      properties:
+        name:
+          type: string
+          example: "name"
+        company_name:
+          type: string
+          example: "comapany_name"
+        job_details:
+          type: list
+          example: ["I was hired for a short term contract", "This was my only job"]
+        time_worked:
+          type: string
+          example: "5 years"
+        reason_of_termination:
+          type: string
+          example: "late"
+        time_worked:
+          type: severance
+          example: "5 dollars"
+        email:
+          type: string
+          example: "someone@somewhere.com"
+        feeling:
+          type: string
+          example: "Annoyed. I want to assert my rights."
