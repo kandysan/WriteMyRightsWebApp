@@ -1,18 +1,45 @@
-#title {
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
+body {
+    background-color: black;
 }
 
-#description {
+#homeTitle {
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Philosopher';
+    color: white;
+    font-size: 8em;
+    font-weight: 400;
 }
 
-#buttons {
+#homeDescription {
     text-align: center;
     font-family: 'Montserrat', sans-serif;
+    color: white;
+    font-size: 1.75em;
+    font-weight: 700;
+    margin-top: -2em;
 }
 
-#inBetweenButtons {
+#homeButtonsDiv {
+    text-align: center;
+}
+
+.homeButtons {
+    background-color: #8D8D8D;
+    border-style: none;
+    width: 12em;
+    border-radius: 2em;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 1.5em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+#homeInBetweenButtons {
     display: inline-block;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    padding-left: 5em;
+    padding-right: 5em;
+    font-size: 1.5em;
 }
