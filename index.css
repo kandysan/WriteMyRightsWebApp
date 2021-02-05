@@ -8,6 +8,7 @@ body {
     height: 5em;
     padding-top: 0.5em;
     padding-left: 5em;
+    cursor: pointer;
 }
 
 #homeNavbarAlign {
@@ -29,7 +30,7 @@ li {
     color: white;
 }
 
-a {
+.homeNavbarAllText {
     display: block;
     padding-top: 0.5em;
     padding-right: 1em;
@@ -77,6 +78,8 @@ a {
     font-size: 1.5em;
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
+    outline:none;
+    cursor: pointer;
 }
 
 #homeInBetweenButtons {
