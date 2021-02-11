@@ -1,0 +1,82 @@
+body {
+    background-color: black;
+}
+
+#wrmNavbarPicture {
+    position: absolute;
+    width: 5em;
+    height: 5em;
+    padding-top: 0.5em;
+    padding-left: 5em;
+    cursor: pointer;
+}
+
+#wrmNavbarAlign {
+    text-align: center;
+    margin:auto;
+}
+
+#wrmNavbar {
+    display: inline-block;
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: inline-block;
+}
+
+#wrmNavbarWrmText {
+    color: white;
+}
+
+.wrmNavbarAllText {
+    display: block;
+    padding-top: 0.5em;
+    padding-right: 1em;
+    padding-left: 1em;
+    color: #8D8D8D;
+    font-family: 'Philosopher';
+    text-decoration: none;
+    text-align: center;
+    font-size: 2.25em;
+  }
+
+
+#wrmDescriptionAlgin {
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+#wrmDescription {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: #E5E5E5;
+    font-size: 2.5em;
+    font-weight: 400;
+    margin-top: 2em;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#wrmButtonsDiv {
+    text-align: center;
+}
+
+.wrmButtons {
+    background-color: #BABABA;
+    border-style: none;
+    width: 16em;
+    border-radius: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 1.5em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    outline:none;
+    cursor: pointer;
+}
