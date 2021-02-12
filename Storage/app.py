@@ -3,7 +3,7 @@ from connexion import NoContent
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from Storage.base import Base
-from Storage.employment_answers import Employment_Answers
+from Storage.users import Users
 import yaml
 
 with open('app_conf.yml', 'r') as f:
@@ -20,16 +20,9 @@ DB_SESSION = sessionmaker(bind=DB_ENGINE)
 
 def process_employment_answers(body):
     session = DB_SESSION()
-
-    ea = Employment_Answers(body['name'],
-                            body['address'],
-                            body['company_name'],
-                            body['company_address'],
-                            body['boss_name'],
-                            body['time_worked'],
-                            body['severance'],
-                            body['email'])
-
+    ea = Users(body['name'],
+               body['address'],  # this must be changed when we find out how to grab geo location
+               body['email'])
     session.add(ea)
     session.commit()
     session.close()
@@ -40,4 +33,4 @@ app = connexion.FlaskApp(__name__, specification_dir='')
 app.add_api("wmr.yml", strict_validation=True, validate_responses=True)
 
 if __name__ == "__main__":
-    app.run(port=8090)
+    app.run(port=8080)
