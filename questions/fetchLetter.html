@@ -7,29 +7,26 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
 </head>
 <body>
 
     <a href="./index.html"><img class="greylogo" src="../images/grey logo.png"/></a>
     
-    <div class="progressDiv">
-    <svg class="progressBarOne" width="1100 px" height="20 px">
+    <div id="fetchLetterProgressBarDiv">
+    <svg id="progressBarFetch" width="1100 px" height="20 px">
         <rect width="1000px" height="10px" style="fill: #666;" rx="8" ry="8" />
-        <rect width="100px" height="10px" style="fill: #fff;" rx="8" ry="8" />
-    </svg>
+        <rect width="750px" height="10px" style="fill: #fff;" rx="8" ry="8" />
+    </svg><br>
+    <p id="writingLetterText" onclick="location.href='letterPreview.html'">Writing your letter...</p>
     </div>
 
-    <div class="questionDiv">
-        <p class="questionText">What is your full name?*</p>
-        <input type="text" class="questionInput" value="ex. John Smith">
-    </div>
+    <!-- <div class="w3-grey w3-round-xlarge w3-tiny">
+        <div class="w3-container w3-white w3-round-xlarge" style="width: 1000px;"></div>
+    </div> -->
 
-    <br>
 
-    <div class="buttonDiv">
-        <img src="../images/white back arrow.png" alt="Back" class="backArrow">
-        <img src="../images/white front arrow.png" alt="Next" class="frontArrow" onclick="location.href='questionTwo.html'">
-    </div>
+    <!-- <script src="questions.js"></script> -->
 
     
 </body>
