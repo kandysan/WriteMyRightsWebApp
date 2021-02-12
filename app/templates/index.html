@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles/index.css') }}">
+        <!-- Montserrat Font -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+        <!-- Philosopher Font -->
+        <style>
+            @font-face {
+            font-family: Philosopher;
+            src: url('./static/fonts/Philosopher-Regular.ttf');
+          }
+        </style>
+        <title></title>
+        <meta charset = 'UTF8'>
+        <script></script>
+    </head>
+
+    <body>
+        <a href="./index.html"><img id="homeNavbarPicture" src="{{url_for('static', filename='images/Write my Rights.PNG')}}"/></a>
+
+        <!--
+            Index Section
+        -->
+        <h1 id="homeTitle">WRITE MY RIGHTS</h1> </br></br>
+        <h2 id="homeDescription">Do you have a simple legal problem, but don’t want to hire a lawyer?
+            Write My Rights helps you prepare a professionally written letter that you can send to the other side
+            to help you get waht you deserve. </br></br>
+
+            It’s fast, free, easy. Let’s get started
+            </h2>
+    </br>
+        <div id="homeButtonsDiv">
+            <a href="./writemyrights"><button class="homeButtons">WRITE MY RIGHTS</button></a>
+            <p id="homeInBetweenButtons">or</p>
+            <button class="homeButtons" onclick="faqScrollFunction()">TELL ME MORE</button>
+        </div>
+
+        <!--
+             FAQ Section
+        -->
+        <div class="faqDiv" id="faqScroll">
+            <h1 class="faqHeader">Get a demand letter.</br> Quickly.</h1>
+            <h2 class="faqDescription"><b>Have you been laid off? Write my rights will help you get the severance payment you deserve.</b>
+                Get a customized letter — written by us, but sent by you — to notify your ex-employer about the compensation they
+                owe you. It’s fast and easy. </br></br>
+
+                Just fill out the form below and you’ll be on your way to a professionally written letter in your inbox. </h2>
+            </br>
+            <a href="./"writemyrights><button class="faqButtons">LET'S GET WRITING</button></a>
+        </div>
+
+        <div class="faqSecondDiv">
+            <h1 class="faqHeader">Why do I need this?</h1>
+            <h2 class="faqDescription">Everyday legal problems — for workers, neighbours and consumers — often aren’t “worth”
+                enough to hire a lawyer. </br></br>
+                But instead of paying up to $300 per hour for legal advice, you’ll get a letter for a fraction of that cost.
+                That’s because this isn’t specific legal advice tailored to your situation.
+                It’s a way for you to vocalize what you want — professionally, and persuasively.  </h2>
+            </br>
+            <a href="./writemyrights"><button class="faqButtons" id="topRightFaqButton">HAND ME A PEN, PLEASE</button></a>
+        </div>
+        <div class="faqDiv" id="faqBottomDiv1">
+            <h1 class="faqHeader">How does this work?</h1>
+            <h2 class="faqDescription">You complete a short survey. You’ll then get an email from us, letting you know when the
+                letter will be ready. We then “ghostwrite” a letter and email it to you, ready for you to review and send to
+                your (ex-)employer. </br></br>
+
+                <b>Many people in this situation do nothing. We’re helping you to take the first step.</b>  </h2>
+            </br>
+            <a href="./writemyrights"><button class="faqButtons">WRITE MY RIGHTS</button></a>
+        </div>
+
+        <div class="faqSecondDiv" id="faqBottomDiv2">
+            <h1 class="faqHeader">What's this cost?</h1>
+            <h2 class="faqDescription">Think of this as <b>a small investment in your rights as a worker. </b>
+                Once you complete the form below, we’ll be in touch about pricing. You won’t be charged at this time. </br></br>
+
+                Once the letter is ready, payment is processed securely through PayPal.  </h2>
+            </br></br>
+            <a href="./writemyrights"><button class="faqButtons">CAN WE GET STARTED?</button></a>
+        </div>
+
+        <div id="faqThirdDiv">
+            <h1 class="faqHeader2">Who is behind these letters?</h1>
+            <h2 class="faqDescription2">A small team of start-up lawyers. We’ve been helping our clients,
+                friends and families with legal issues for years,
+                 and want to expand this service to the general public.</h2>
+
+            <a href="./writemyrights"><button class="faqButtons">HAND ME A PEN, PLEASE</button></a>
+            <button class="faqButtons" id="faqQuestionsButton">GOT ANY QUESTIONS?</button>
+        </div>
+
+        <!-- Questions Modal -->
+        <div id="questionsModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <h1 id="questionsModalTitle"><u>Questions / Comments</u></h1></br></br>
+
+              <h2 class="questionsModalHeader">First Name*</h2>
+              <input type="text" class="questionsModalTextBox" id="fname" name="fname"><br><br></br>
+
+              <h2 class="questionsModalHeader">Last Name*</h2>
+              <input type="text" class="questionsModalTextBox" id="lname" name="lname"><br><br></br>
+
+              <h2 class="questionsModalHeader">Email*</h2>
+              <input type="text" class="questionsModalTextBox" id="email" name="email"><br><br></br>
+
+              <h2 class="questionsModalHeader">Comments</h2>
+              <textarea id="comments" name="comments" rows="4" cols="50"></textarea><br><br></br>
+              <h2 class="questionsModalHeader"></h2>
+              <button id="questionsModalButton">SEND NOW</button>
+        </div>
+
+    </body>
+
+    <script>
+        function faqScrollFunction() {
+            var faqScroll = document.getElementById("faqScroll");
+
+            faqScroll.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+            inline: "nearest"
+            });
+        }
+
+        var body = document.body;
+
+        // Get the modal
+        var modal = document.getElementById("questionsModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("faqQuestionsButton");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on the button, open the modal
+        btn.onclick = function() {
+            modal.style.display = "block";
+            body.style.overflow = "hidden";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+        modal.style.display = "none";
+        body.style.overflow = "auto";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            body.style.overflow = "auto";
+        }
+        }
+    </script>
+</html>
