@@ -4,10 +4,10 @@ body {
 
 #faqNavbarPicture {
     position: absolute;
-    width: 5em;
+    width: 7em;
     height: 5em;
-    padding-top: 0.5em;
-    padding-left: 5em;
+    padding-top: 1.5em;
+    padding-left: 3em;
     cursor: pointer;
 }
 

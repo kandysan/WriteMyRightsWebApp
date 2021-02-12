@@ -1,0 +1,102 @@
+body {
+    background-color: black;
+}
+
+@font-face {
+    font-family: Philosopher;
+    src: url('./fonts/Philosopher-Regular.ttf');
+}
+
+.greylogo {
+    position: absolute;
+    width: 7em;
+    height: 5em;
+    padding-top: 1.5em;
+    padding-left: 3em;
+    cursor: pointer;
+}
+
+.progressBarOne {
+    position: relative;
+    padding-top: 65px;
+    overflow: visible;
+    padding-left: 350px;
+}
+
+.progressDiv {
+    height: 150px;
+}
+
+.questionText {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: medium;
+    font-size: 40px;
+    color: white;
+    letter-spacing: 0.05em;
+}
+
+.questionDiv {
+    position: absolute;
+    padding-left: 350px;
+    width: 1000px;
+}
+
+.questionInput {
+    width: 1000px;
+    padding: 12px 0px;
+    border: none;
+    border-bottom: 2px solid #a3a3a3;
+    font-size: 38px;
+    background-color: black;
+    color: #a3a3a3;
+    font-family: 'Philosopher', sans-serif;
+}
+
+#confirmEmailInput {
+    width: 1000px;
+    padding: 12px 0px;
+    border: none;
+    border-bottom: 2px solid #a3a3a3;
+    font-size: 38px;
+    background-color: black;
+    color: #a3a3a3;
+    font-family: 'Philosopher', sans-serif;
+    border-top: 20px solid black;
+}
+
+/* .backButton{
+    background-color: none;
+}
+
+.frontButton{
+    background-color: none;
+} */
+
+.backArrow {
+    width: 90px;
+    height: 71.9px;
+    padding-top: 10px;
+    transition: transform .2s;
+}
+
+.backArrow:hover {
+    transform: scale(1.15);
+}
+
+.frontArrow {
+    width: 90px;
+    height: 71.9px;
+    padding-left: 150px;
+    transition: transform .2s;
+}
+
+.frontArrow:hover {
+    transform: scale(1.15);
+}
+
+.buttonDiv {
+    position: absolute;
+    padding-top: 550px;
+    padding-left: 350px;
+    height: 100px;
+}
