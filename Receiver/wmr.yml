@@ -12,7 +12,7 @@ tags:
   - name: surveys
     description: surveys for different letters
 paths:
-  /employment_answers:
+  /answers/employment_answers:
     post:
       tags:
         - surveys
@@ -36,7 +36,9 @@ components:
       type: object
       required:
         - name
+        - address
         - company_name
+        - company_address
         - job_details
         - boss_name
         - time_worked
@@ -48,9 +50,15 @@ components:
         name:
           type: string
           example: "name"
+        address:
+          type: string
+          example: "1234 somewhere street"
         company_name:
           type: string
           example: "company_name"
+        company_address:
+          type: string
+          example: "5678 nowhere ave"
         job_details:
           type: array
           example: ["I was hired for a short term contract", "This was my only job"]

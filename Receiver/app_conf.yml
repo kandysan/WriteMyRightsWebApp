@@ -1,0 +1,3 @@
+version: 1
+eventstore1:
+  url: http://localhost:8090/answers/employment_answers

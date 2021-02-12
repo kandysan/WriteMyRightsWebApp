@@ -1,13 +1,16 @@
 import connexion
 import requests
 from connexion import NoContent
+import yaml
 
 headers = {"Content-Type": "application/json"}
-STORAGE_URL = "http://localhost:8090/"
+
+with open('app_conf.yml', 'r') as f:
+    app_config = yaml.safe_load(f.read())
 
 
 def process_employment_answers(body):
-    r = requests.post(STORAGE_URL + "employment_answers", json=body, headers=headers)
+    r = requests.post(app_config['eventstore1']['url'], json=body, headers=headers)
     return NoContent, r.status_code
 
 
