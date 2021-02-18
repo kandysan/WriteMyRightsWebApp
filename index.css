@@ -1,0 +1,92 @@
+body {
+    background-color: black;
+}
+
+#homeNavbarPicture {
+    position: absolute;
+    width: 7em;
+    height: 5em;
+    padding-top: 1.5em;
+    padding-left: 3em;
+    cursor: pointer;
+}
+
+#homeNavbarAlign {
+    text-align: center;
+    margin:auto;
+}
+
+#homeNavbar {
+    display: inline-block;
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: inline-block;
+}
+
+#homeNavbarHomeText {
+    color: white;
+}
+
+.homeNavbarAllText {
+    display: block;
+    padding-top: 0.5em;
+    padding-right: 1em;
+    padding-left: 1em;
+    color: #8D8D8D;
+    font-family: 'Philosopher';
+    text-decoration: none;
+    text-align: center;
+    font-size: 2.25em;
+  }
+
+
+#homeTitle {
+    text-align: center;
+    font-family: 'Philosopher';
+    color: white;
+    font-size: 8em;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    margin-top: 0.5em;
+}
+
+#homeDescription {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: #E5E5E5;
+    font-size: 1.75em;
+    font-weight: 700;
+    margin-top: -2em;
+}
+
+#homeButtonsDiv {
+    text-align: center;
+}
+
+.homeButtons {
+    background-color: #BABABA;
+    border-style: none;
+    width: 14em;
+    border-radius: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 1.5em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    outline:none;
+    cursor: pointer;
+}
+
+#homeInBetweenButtons {
+    display: inline-block;
+    color: white;
+    font-family: 'Philosopher';
+    padding-left: 3em;
+    padding-right: 3em;
+    font-size: 3em;
+}
