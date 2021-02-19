@@ -3,7 +3,7 @@ html {
   }
 
 body {
-    background-color: black;
+    background-color: white;
 }
 
 ::-webkit-scrollbar {
@@ -11,11 +11,11 @@ body {
   }
 
 ::-webkit-scrollbar-track {
-    background: black;
+    background: #BABABA; 
   }
 
 ::-webkit-scrollbar-thumb {
-    background: white;
+    background: black;
     border-radius: 10px;
   }
 
@@ -43,7 +43,7 @@ body {
 #homeTitle {
     text-align: center;
     font-family: 'Philosopher';
-    color: white;
+    color: #333333;
     font-size: 6em;
     font-weight: 400;
     letter-spacing: 0.05em;
@@ -53,7 +53,7 @@ body {
 #homeDescription {
     text-align: center;
     font-family: 'Montserrat', sans-serif;
-    color: white;
+    color: #979BA8;
     font-size: 1.5em;
     width: 60%;
     font-weight: 700;
@@ -67,7 +67,8 @@ body {
 }
 
 .homeButtons {
-    background-color: #BABABA;
+    background-color: #F7F7F8;
+    color: #303852;
     border-style: none;
     width: 14em;
     border-radius: 2em;
@@ -82,9 +83,16 @@ body {
     cursor: pointer;
 }
 
+.homeButtons:hover,
+.homeButtons:focus {
+    background-color: #BABABA;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
 #homeInBetweenButtons {
     display: inline-block;
-    color: white;
+    color: #979BA8;
     font-family: 'Philosopher';
     padding-left: 3em;
     padding-right: 3em;
@@ -94,7 +102,7 @@ body {
 .faqHeader {
     text-align: left;
     font-family: 'Philosopher';
-    color: white;
+    color: #0041A4;
     font-size: 2.75em;
     font-weight: 400;
     letter-spacing: 0.05em;
@@ -104,37 +112,47 @@ body {
 .faqDescription {
     text-align: left;
     font-family: 'Montserrat', sans-serif;
-    color: #E5E5E5;
+    color: #979BA8;
     font-size: 1.25em;
     font-weight: 400;
     margin-top: -0.5em;
 }
 
+#faqTopDivs {
+    width: 100%;
+    display: inline-block;
+}
+
+#faqBottomDivs {
+    width: 100%;
+    display: inline-block;
+}
+
 .faqDiv {
     width: 35%;
-    padding-left: 8em;
+    padding-left: 5em;
     padding-top: 5em;
     text-align: left;
-    align-self: left;
     float: left;
     padding-bottom: 5em;
 }
 
 .faqSecondDiv {
     width: 35%;
-    padding-right: 11em;
+    padding-right: 5em;
     padding-top: 5em;
     float: right;
     padding-bottom: 5em;
 }
 
-#topRightFaqButton {
+#wrmButton3 {
     margin-top: 1em;
 }
 
 
 .faqButtons {
-    background-color: #BABABA;
+    background-color: #F7F7F8;
+    color: #303852;
     border-style: none;
     width: 16em;
     border-radius: 2em;
@@ -149,6 +167,13 @@ body {
     cursor: pointer;
 }
 
+.faqButtons:hover,
+.faqButtons:focus {
+    background-color: #BABABA;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
 #faqBottomDiv1 {
     margin-top: -3em;
 }
@@ -159,7 +184,7 @@ body {
 
 
 #faqThirdDiv {
-    width: 35%;
+    width: 35em;
     padding-bottom: 5em;
     margin-left: auto;
     margin-right: auto;
@@ -169,7 +194,7 @@ body {
 .faqHeader2 {
     text-align: center;
     font-family: 'Philosopher';
-    color: white;
+    color: #0041A4;
     font-size: 2.75em;
     font-weight: 400;
     letter-spacing: 0.05em;
@@ -180,7 +205,7 @@ body {
 .faqDescription2 {
     text-align: center;
     font-family: 'Montserrat', sans-serif;
-    color: #E5E5E5;
+    color: #979BA8;
     font-size: 1.25em;
     font-weight: 400;
     margin-top: -0.5em;
@@ -203,7 +228,7 @@ body {
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
-
+  
   /* Modal Content/Box */
   .modal-content {
     background-color: #fefefe;
@@ -214,7 +239,7 @@ body {
     width: 80%; /* Could be more or less, depending on screen size */
     border-radius: 2em;
   }
-
+  
   /* The Close Button */
   .close {
     color: #aaa;
@@ -222,7 +247,7 @@ body {
     font-size: 50px;
     font-weight: bold;
   }
-
+  
   .close:hover,
   .close:focus {
     color: black;
@@ -230,54 +255,163 @@ body {
     cursor: pointer;
   }
 
-#questionsModalTitle {
+  .close2 {
+    color: #aaa;
+    float: right;
+    font-size: 50px;
+    font-weight: bold;
+  }
+  
+  .close2:hover,
+  .close2:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .close3 {
+    color: #aaa;
+    float: right;
+    font-size: 50px;
+    font-weight: bold;
+  }
+  
+  .close3:hover,
+  .close3:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .close4 {
+    color: #aaa;
+    float: right;
+    font-size: 50px;
+    font-weight: bold;
+  }
+  
+  .close4:hover,
+  .close4:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #questionsModalImageDiv {
+    text-align: center;
+  }
+
+#questionsModalImage {
+    width: 35em;
+    height: 20em;
+}
+
+
+
+#questionsModalDescription {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: #979BA8;
+    font-size: 1.25em;
+    font-weight: 700;
+    width: 40em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#wrmModalTitle {
     text-align: left;
     font-family: 'Philosopher';
-    color: black;
-    font-size: 2em;
-    font-weight: 400;
-    letter-spacing: 0.05em;
+    color: #0041A4;
+    font-size: 2.5em;
+    font-weight: 700;
     margin-top: 0.5em;
   }
 
-.questionsModalHeader {
+#wrmModalDescription {
     text-align: left;
-    float: left;
-    font-family: 'Montserrat', sans-serif;
-    color: black;
-    font-size: 1.25em;
-    font-weight: 700;
-    margin-top: -0.5em;
-    width: 8em;
+    font-family: 'Philosopher';
+    color: #979BA8;
+    font-size: 2em;
+    font-weight: 400;
+    margin-top: 2em;
+    margin-bottom: 5em;
 }
 
-.questionsModalTextBox {
-    background-color: #C4C4C4;
-    border-style:solid ;
-    padding: 0.5em;
-    margin-top: -1em;
-    font-family: 'Montserrat', sans-serif;
-}
-
-#comments {
-    background-color: #C4C4C4;
-    font-family: 'Montserrat', sans-serif;
-    border: 2px solid grey;
-}
-
-#questionsModalButton {
-    background-color: black;
-    color: white;
+#wrmModalButton {
+    background-color: #F7F7F8;
+    color: #303852;
     border-style: none;
-    width: 8em;
-    border-radius: 1em;
-    padding-top: 0.75em;
-    padding-bottom: 0.75em;
+    width: 14em;
+    border-radius: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
     padding-left: 1em;
     padding-right: 1em;
-    font-size: 1.5em;
-    font-family: 'Philosopher';
-    font-weight: bold;
+    margin-right: 0.5em;
+    margin-top: 3em;
+    font-size: 2em;
+    font-family: 'Montserrat';
+    font-weight: 700;
     outline:none;
+    cursor: pointer;
+}
+
+#wrmModalButton:hover,
+#wrmModalButton:focus {
+    background-color: #BABABA;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+#wrmButtonDiv {
+    text-align: center;
+}
+
+#tosModalTitle {
+    text-align: center;
+    font-family: 'Philosopher';
+    color: #0041A4;
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-top: 0.5em;
+  }
+
+#tosModalDescription {
+    text-align: left;
+    font-family: 'Philosopher';
+    color: #979BA8;
+    font-size: 1.75em;
+    font-weight: 400;
+    margin-top: 2em;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 14em;
+}
+
+#ppModalTitle {
+    text-align: center;
+    font-family: 'Philosopher';
+    color: #0041A4;
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-top: 0.5em;
+  }
+
+#ppModalDescription {
+    text-align: left;
+    font-family: 'Philosopher';
+    color: #979BA8;
+    font-size: 1.75em;
+    font-weight: 400;
+    margin-top: 2em;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 14em;
+}
+
+
+.tosAndPp {
+    color: blue;
     cursor: pointer;
 }
