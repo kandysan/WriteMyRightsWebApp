@@ -3,7 +3,7 @@ body {
 }
 
 #wrmNavbarPicture {
-    position: relative;
+    position: absolute;
     width: 5em;
     height: 5em;
     padding-top: 0.5em;
@@ -80,3 +80,76 @@ li {
     outline:none;
     cursor: pointer;
 }
+
+#payment {
+    border-radius: 15px;
+    border: 2px solid #ffffff;
+    padding: 20px; 
+    width: 100px;
+    height: 75px; 
+    margin: auto;
+  }
+
+
+.next {
+    background-color: #BABABA;
+    border-style: none;
+    width: 10em;
+    border-radius: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 1.5em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    outline:none;
+    cursor: pointer;
+    margin: 2em;
+
+}
+.back {
+    background-color: #BABABA;
+    border-style: none;
+    width: 10em;
+    border-radius: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 1.5em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    outline:none;
+    cursor: pointer;
+
+}
+
+#employee {
+    border-radius: 15px;
+    border: 2px solid #ffffff;
+    padding: 20px; 
+    width: 100px;
+    height: 75px; 
+    margin: auto;
+  }
+
+#consumer {
+border-radius: 15px;
+border: 2px solid #ffffff;
+padding: 20px; 
+width: 100px;
+height: 75px; 
+margin: auto;
+}
+
+#property {
+    border-radius: 15px;
+    border: 2px solid #ffffff;
+    padding: 20px; 
+    width: 100px;
+    height: 75px; 
+    margin: auto;
+
+    }
+
