@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles/index.css') }}">
         <!-- Montserrat Font -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
@@ -9,7 +9,7 @@
         <style>
             @font-face {
             font-family: Philosopher;
-            src: url('./fonts/Philosopher-Regular.ttf');
+            src: url('./static/fonts/Philosopher-Regular.ttf');
           }
         </style>
         <title></title>
@@ -18,7 +18,7 @@
     </head>
 
     <body>
-        <a href="./index.html"><img id="homeNavbarPicture" src="./images/Write my Rights.PNG"/></a>
+        <a href="./index"><img id="homeNavbarPicture" src="{{url_for('static', filename='images/Write my Rights.PNG')}}"/></a>
 
         <!-- 
             Index Section 
@@ -105,7 +105,7 @@
             <div class="modal-content">
               <span class="close">&times;</span>
               <div id="questionsModalImageDiv">
-                <img src="./images/Typewriter.jpg" id="questionsModalImage"/>
+                <img src="./static/images/Typewriter.jpg" id="questionsModalImage"/>
               </div>
               <h2 id="questionsModalDescription">Have comments, questions, or feedback to share? We'd love to hear from you. 
                 Send us an email and we'll get back to you within 24 hours: <p class="tosAndPp">david@practicewrks.com</p></h2>
@@ -124,7 +124,7 @@
                   and consent to the <u class="tosAndPp" id="tos">Terms of Service</u> and the
                   <u class="tosAndPp" id="pp">Privacy Policy</u></h2>
             <div id="wrmButtonDiv">
-              <a href="./writemyrights.html"><button id="wrmModalButton">Agree and Continue</button></a>
+              <a href="./letterType"><button id="wrmModalButton">Agree and Continue</button></a>
             </div>
             </div>  
         </div>

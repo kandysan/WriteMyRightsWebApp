@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="writemyrights.css">
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles/letterType.css') }}">
         <!-- Montserrat Font -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
@@ -18,13 +18,7 @@
     </head>
 
     <body>
-        <a href="./index.html"><img id="wrmNavbarPicture" src="./Write my Rights.PNG"/></a>
-
-        <div id="wrmNavbarAlign">
-            <ul id="wrmNavbar">
-                <progress value="100" max="100"> </progress>
-            </ul>
-        </div>
+        <a href="./index"><img id="wrmNavbarPicture" src="{{url_for('static', filename='images/Write my Rights.PNG')}}"/></a>
 
         <div id="wrmDescriptionAlign">
             <h2 id="wrmDescription">Ready for us to Write Your Rights? Select your type of letter.</b>
@@ -32,15 +26,15 @@
             <div class="float_center">
                 <ul class="child">
                   <li><div id="property">
-                    <a href=""><img src="./consumer.jpg" width="50" height="50"/></a>
+                    <a href=""><img src="{{url_for('static', filename='images/employees.jpg')}}" width="50" height="50"/></a>
                     <p style="font-size:11px">Property</p>
                     </div></li>
                   <li><div id="employee">
-                    <a href=""><img src="./employees.jpg" width="50" height="50"/></a>
+                    <a href="./question1"><img src="{{url_for('static', filename='images/employees.jpg')}}" width="50" height="50"/></a>
                     <p style="font-size:11px">Employment</p>
                     </div></li>
                   <li><div id="consumer">
-                    <a href=""><img src="./consumer.jpg" width="50" height="50"/></a>
+                    <a href=""><img src="{{url_for('static', filename='images/employees.jpg')}}" width="50" height="50"/></a>
                     <p style="font-size:11px">Consumer</p>
                 </div></li>
                 </ul>
@@ -51,7 +45,7 @@
         </div>
     </br></br>
         <div id="wrmButtonsDiv">
-            <a href="./faq.html"><button class="back">Tell Me More</button></a>
+            <a href="./index"><button class="back">Tell Me More</button></a>
 
 
         </div>
