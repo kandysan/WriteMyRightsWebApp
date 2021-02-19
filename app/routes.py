@@ -14,9 +14,9 @@ def write_my_rights_info():
     return render_template("/letterType.html", title="Write My Rights Letter Type")
 
 
-# @app.route('/question1')
-# def question_1():
-#     return render_template("/questions/questionOne.html", title="Question 1")
+@app.route('/question1')
+def question_1():
+    return render_template("/questions/questionOne.html", title="Question 1")
 
 @app.route('/answer', methods=['GET', 'POST'])
 def process_answer():
