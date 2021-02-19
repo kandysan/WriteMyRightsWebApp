@@ -22,10 +22,7 @@ def question1():
 @app.route('/answer', methods=['GET', 'POST'])
 def answer():
     error = ''
-    print('AAHHHHHHHHHHHHHHHHHHHHHH')
     try:
-        print('UGHHHHHHHHHHHHHHHHHH')
-        print(request.method)
         if request.method == 'POST':
 
             key = request.form['key']
