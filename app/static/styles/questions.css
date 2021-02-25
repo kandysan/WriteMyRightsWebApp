@@ -8,11 +8,11 @@ body {
 }
 
 .greylogo {
-    position: absolute;
-    width: 7em;
+    position: relative;
+    width: 5em;
     height: 5em;
-    padding-top: 1.5em;
-    padding-left: 3em;
+    padding-top: 0.5em;
+    padding-left: 5em;
     cursor: pointer;
 }
 

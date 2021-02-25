@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="writemyrights.css">
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles/writemyrights.css') }}">
         <!-- Montserrat Font -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
@@ -18,7 +18,7 @@
     </head>
 
     <body>
-        <a href="./index.html"><img id="wrmNavbarPicture" src="./Write my Rights.PNG"/></a>
+        <a href="/index"><img id="wrmNavbarPicture" src="{{ url_for('static',filename='images/Write my Rights.PNG') }}"/></a>
 
         <div id="wrmNavbarAlign">
             <ul id="wrmNavbar">
@@ -34,8 +34,8 @@
         </div>
     </br></br>
         <div id="wrmButtonsDiv">
-            <a href="./writemyrights.html"><button class="wrmButtons">Home</button></a>
-            <a href="./writemyrights.html"><button class="wrmButtons">Write Another Letter</button></a>
+            <a href="/index"><button class="wrmButtons">Home</button></a>
+            <a href="/letterType"><button class="wrmButtons">Write Another Letter</button></a>
 
         </div>
     </body>
