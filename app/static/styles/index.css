@@ -81,11 +81,14 @@ body {
     font-weight: bold;
     outline:none;
     cursor: pointer;
+    transition-duration: 0.3s;
 }
 
 .homeButtons:hover,
 .homeButtons:focus {
-    background-color: #BABABA;
+    background-color: #303852;
+    color: white;
+    transform: scale(1.02);
     text-decoration: none;
     cursor: pointer;
   }
@@ -165,11 +168,14 @@ body {
     font-weight: bold;
     outline:none;
     cursor: pointer;
+    transition-duration: 0.3s;
 }
 
 .faqButtons:hover,
 .faqButtons:focus {
-    background-color: #BABABA;
+    background-color: #303852;
+    color: white;
+    transform: scale(1.02);
     text-decoration: none;
     cursor: pointer;
   }
@@ -355,11 +361,14 @@ body {
     font-weight: 700;
     outline:none;
     cursor: pointer;
+    transition-duration: 0.3s;
 }
 
 #wrmModalButton:hover,
 #wrmModalButton:focus {
-    background-color: #BABABA;
+    background-color: #303852;
+    color: white;
+    transform: scale(1.02);
     text-decoration: none;
     cursor: pointer;
   }
