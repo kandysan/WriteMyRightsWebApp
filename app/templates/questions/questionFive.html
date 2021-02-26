@@ -22,7 +22,7 @@
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
         <p class="questionText">How long did you work there for?*</p>
-        <input type="text" class="questionInput" value="ex. 1 month" name="answer">
+        <input type="text" class="questionInput" placeholder="ex. 1 month" value="{{request.form.answer}}" name="answer">
         <!-- <select name="Years" class="dropdown">
             <option value="0">0</option>
             <option value="1">1</option>

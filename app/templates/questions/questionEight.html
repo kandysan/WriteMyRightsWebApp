@@ -22,8 +22,8 @@
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
         <p class="questionText">Tell us your email address where we can send you your letter.*</p>
-        <input type="text" class="questionInput" value="ex. email@domain.com" name="answer">
-        <input type="text" id="confirmEmailInput" value="Please type your email again to confirm">
+        <input type="text" class="questionInput" placeholder="ex. email@domain.com" value="{{request.form.answer}}" name="answer">
+        <input type="text" id="confirmEmailInput" placeholder="ex. email@domain.com"> <!-- make this check work -->
         <input type="hidden" value="email" name="key">
         <input type="hidden" value="/questionNine" name="next_page">
     </div>
