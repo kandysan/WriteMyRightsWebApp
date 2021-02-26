@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <a href="./index.html"><img class="greylogo" src="../images/black logo.png"/></a>
+    <a href="/index"><img class="greylogo" src="{{ url_for('static',filename='images/black logo.PNG') }}"/></a>
     
     <div class="progressDiv">
         <svg class="progressBarOne" width="1100 px" height="20 px">
@@ -19,19 +19,22 @@
         </svg>
     </div>
 
+    <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
         <p class="questionText">Tell us your email address where we can send you your letter.*</p>
-        <input type="text" class="questionInput" value="ex. email@domain.com">
+        <input type="text" class="questionInput" value="ex. email@domain.com" name="answer">
         <input type="text" id="confirmEmailInput" value="Please type your email again to confirm">
+        <input type="hidden" value="email" name="key">
+        <input type="hidden" value="/questionNine" name="next_page">
     </div>
 
     <br>
 
     <div class="buttonDiv">
-        <img src="../images/black back arrow.png" alt="Back" class="backArrow" onclick="location.href='questionSeven.html'">
-        <img src="../images/black arrow.png" alt="Next" class="frontArrow" onclick="location.href='questionNine.html'">
+        <a href="/questions/questionSeven"><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"></a>
+        <input type="image" name="submit" src="{{url_for('static', filename='images/black arrow.png')}}" alt="Next" class="frontArrow"/>
     </div>
-
+    </form>
     
 </body>
 </html>

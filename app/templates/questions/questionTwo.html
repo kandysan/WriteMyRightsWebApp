@@ -12,7 +12,7 @@
 
 <body>
 
-    <a href="./index.html"><img class="greylogo" src="../images/black logo.png" /></a>
+    <a href="/index"><img class="greylogo" src="{{ url_for('static',filename='images/black logo.PNG') }}" /></a>
 
     <div class="progressDiv">
         <svg class="progressBarOne" width="1100 px" height="20 px">
@@ -21,19 +21,21 @@
         </svg>
     </div>
 
+    <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
         <p class="questionText">What is the name of the company you worked for?*</p>
-        <input type="text" class="questionInput" value="ex. Write My Rights">
+        <input type="text" class="questionInput" value="ex. Write My Rights" name="answer">
+        <input type="hidden" value="company_name" name="key">
+        <input type="hidden" value="/questionThree" name="next_page">
     </div>
 
     <br>
 
     <div class="buttonDiv">
-        <img src="../images/black back arrow.png" alt="Back" class="backArrow"
-            onclick="location.href='questionOne.html'">
-        <img src="../images/black arrow.png" alt="Next" class="frontArrow" onclick="location.href='questionThree.html'">
+        <a href="/questions/questionOne"><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"></a>
+        <input type="image" name="submit" src="{{url_for('static', filename='images/black arrow.png')}}" alt="Next" class="frontArrow"/>
     </div>
-
+    </form>
 
 </body>
 
