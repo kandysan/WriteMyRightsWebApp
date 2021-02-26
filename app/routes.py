@@ -18,6 +18,14 @@ def write_my_rights_info():
 def question(question):
     return render_template("questions/"+question+".html", title=question)
 
+@app.route('/questions/fetchLetter')
+def fetchLetter():
+    return render_template("/questions/fetchLetter.html", title="fetchLetter")
+
+@app.route('/paymentDone')
+def paymentDone():
+    return render_template("/paymentDone.html", title="Payment Done")
+
 
 @app.route('/answer', methods=['GET', 'POST'])
 def answer():
