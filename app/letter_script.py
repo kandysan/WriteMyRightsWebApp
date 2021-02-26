@@ -20,7 +20,7 @@ def create_annoyed_letter(body):
     d = datetime.timedelta(days=21)
     response_date = u + d
     response_date = response_date.strftime("%m/%d/%Y")
-    return f"""{date}
+    return f"""<pre>{date}
 
 {body['name']}
 {body['address']}
@@ -30,7 +30,7 @@ def create_annoyed_letter(body):
 
 Re: Formal Response to Termination Without Cause
 
-Dear {body['company_name']} Superior,
+Dear {body['company_name']},
 
 I’m shocked and disappointed to be laid off by {body['company_name']}. I have been a key member of the Department team for {body['time_worked']} now. The company’s vision aligns with my values and aspirations, and I anticipated a long and fruitful relationship with {body['company_name']}. I have been a committed and dedicated employee since day 1 - being let go like this is unjustified and wrong.
 
@@ -42,7 +42,7 @@ At this point, I would like to be able to come to an agreement without resorting
 
 I am prepared to accept {body['severance']} months pay plus all unpaid/unused vacation time that is accrued up until that point as severance.  Please respond with your intent by {response_date}.
 
-Sincerely, {body['name']}"""
+Sincerely, {body['name']}</pre>"""
 
 
 def create_calm_letter(body):
@@ -53,7 +53,7 @@ def create_calm_letter(body):
     d = datetime.timedelta(days=21)
     response_date = u + d
     response_date = response_date.strftime("%m/%d/%Y")
-    return f"""{date}
+    return f"""<pre>{date}
 
 {body['name']}
 
@@ -78,11 +78,11 @@ Given the circumstances, and in the interest of putting this behind us, I would 
 
 Please respond by {response_date} and indicate your acceptance of this offer. Otherwise, I may be forced to pursue more formal legal action.
 
-Sincerely, {body['name']}"""
+Sincerely, {body['name']}</pre>"""
 
 
 def create_angry_letter(body):
-    return f"""DATE
+    return f"""<pre>DATE
 
 NAME OF EMPLOYEE
 
@@ -113,4 +113,4 @@ For these reasons, I will accept an offer of YYY weeks of severance pay. This of
 
 Despite the shortcomings, I've really enjoyed the last YYY months and getting to know the XXX family. I was truly excited to build something great  - and I have gotten the sense that XXX cares about its employees. Please don't make me feel misled again. 
 
-Thank you."""
+Thank you. </pre>"""

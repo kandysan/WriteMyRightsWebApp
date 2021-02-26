@@ -22,7 +22,15 @@
         <p id="titleDiv"><i>Here's a preview of your free letter. The greyed out section is part of our premium letter features. 
             Click below to get your letter!</i></p><br><br>
         <p class="letterPreviewText">
-            Dear <b id="boss_name"></b> Superior, <br><br>
+            <b class="name"></b>
+            <br>
+            <b class="address"></b>
+            <br>
+            <b class="boss_name"></b>
+            <br>
+            <b class="company_address"></b>
+            <br>
+            Dear <b class="boss_name"></b>, <br><br>
             
             I appreciated my time spent at <b class="company"></b> Corp. While I respect that fact that my layoff was not personal, I do feel that I am not being 
             treated fairly and have not been offered the compensation that I am entitled to under the circumstances. <br><br>
@@ -45,13 +53,16 @@
 
     <div id="letterPreviewDiv2">
         <a href="/questions/questionNine"><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow letterPreviewBackArrow"></a>
-        <a href="/questions/fetchLetter"><button id="sendMeMyLetter">Send Me My Letter</button></a>
+        <a href="/getAnswers"><button id="sendMeMyLetter">Send Me My Letter</button></a>
     </div>
 
     <script>
         window.onload = (event) => {
             let boss_name = getCookie("bossName")
-            document.getElementById("boss_name").innerHTML = boss_name
+            let boss_names = document.getElementsByClassName("boss_name")
+            for (var i=0; i < boss_names.length; i++) {
+                boss_names[i].innerHTML = boss_name;
+            }
 
             let company = getCookie("company")
             let companies = document.getElementsByClassName("company")

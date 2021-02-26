@@ -1,7 +1,6 @@
 from app import app
 from flask import render_template, request, redirect, make_response
-
-ans_dict = {}
+from app import letter_script
 
 @app.route('/')
 @app.route('/index')
@@ -56,11 +55,11 @@ def answer():
 def getAnswers():
     ans = {}
     ans['name'] = request.cookies.get('name')
-    ans['company'] = request.cookies.get('company')
+    ans['company_name'] = request.cookies.get('company')
     ans['boss_name'] = request.cookies.get('bossName')
-    ans['length'] = request.cookies.get('length')
+    ans['time_worked'] = request.cookies.get('length')
     ans['reason'] = request.cookies.get('reason')
     ans['severance'] = request.cookies.get('severance')
     ans['email'] = request.cookies.get('email')
-    ans['mood'] = request.cookies.get('mood')
-    return ans
+    ans['feeling'] = request.cookies.get('mood')
+    return letter_script.create_employment_letter(ans)
