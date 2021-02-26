@@ -55,7 +55,9 @@ def answer():
 def getAnswers():
     ans = {}
     ans['name'] = request.cookies.get('name')
+    ans['address'] = request.cookies.get('address')
     ans['company_name'] = request.cookies.get('company')
+    ans['company_address'] = request.cookies.get('company_address')
     ans['boss_name'] = request.cookies.get('bossName')
     ans['time_worked'] = request.cookies.get('length')
     ans['reason'] = request.cookies.get('reason')
