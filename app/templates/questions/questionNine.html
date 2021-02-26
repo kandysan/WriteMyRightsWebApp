@@ -22,10 +22,9 @@
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
         <p class="questionText">Right now, I feel:*</p>
-        <button class="questionButton" onclick="buttonOnClick()" name="answer"><b>A</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Annoyed. I want to assert my rights</button><br>            
-        <button class="questionButton"><b>B</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No bad blood. But they still owe me</button><br>
-        <button class="questionButton"><b>C</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Very angry. I deserve more compensation</button><br>
-        <button class="questionButton"><b>D</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Other</button><br>
+        <button class="questionButton" onclick="buttonOnClick()" name="answer" value="A"><b>A</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Annoyed. I want to assert my rights</button><br>
+        <button class="questionButton" onclick="buttonOnClick()" name="answer" value="B"><b>B</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No bad blood. But they still owe me</button><br>
+        <button class="questionButton" onclick="buttonOnClick()" name="answer" value="B"><b>C</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Very angry. I deserve more compensation</button><br>
         <input type="hidden" value="mood" name="key">
         <input type="hidden" value="/letterPreview" name="next_page">
     </div>
