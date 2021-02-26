@@ -22,10 +22,13 @@
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
         <p class="questionText">Right now, I feel:*</p>
-        <button class="questionButton" onclick="buttonOnClick()" name="answer"><b>A</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Annoyed. I want to assert my rights</button><br>            
-        <button class="questionButton"><b>B</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No bad blood. But they still owe me</button><br>
-        <button class="questionButton"><b>C</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Very angry. I deserve more compensation</button><br>
-        <button class="questionButton"><b>D</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Other</button><br>
+        <input type="radio" id="A" class="questionButton" name="answer" value="A" checked>
+        <label for ="A"><b>A</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Annoyed. I want to assert my rights</label><br>
+        <input type="radio" class="questionButton" name="answer" value="B">
+        <label for ="B"><b>B</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No bad blood. But they still owe me<br></label>
+        <input type="radio" class="questionButton" name="answer" value="C">
+        <label for = "C"><b>C</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Very angry. I deserve more compensation<br></label>
+        <input type="hidden" value="mood" name="key">
         <input type="hidden" value="mood" name="key">
         <input type="hidden" value="/letterPreview" name="next_page">
     </div>
