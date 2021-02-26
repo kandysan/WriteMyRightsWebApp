@@ -1,5 +1,5 @@
 body {
-    background-color: black;
+    background-color: white;
 }
 
 #wrmNavbarPicture {
@@ -52,7 +52,7 @@ li {
 #wrmDescription {
     text-align: center;
     font-family: 'Montserrat', sans-serif;
-    color: #E5E5E5;
+    color: black;
     font-size: 2.5em;
     font-weight: 400;
     margin-top: 2em;
@@ -127,7 +127,7 @@ li {
 
 #employee {
     border-radius: 15px;
-    border: 2px solid #ffffff;
+    border: 2px solid #333333;
     padding: 20px; 
     width: 100px;
     height: 75px; 
@@ -136,7 +136,7 @@ li {
 
 #consumer {
 border-radius: 15px;
-border: 2px solid #ffffff;
+border: 2px solid #333333;
 padding: 20px; 
 width: 100px;
 height: 75px; 
@@ -145,7 +145,7 @@ margin: auto;
 
 #property {
     border-radius: 15px;
-    border: 2px solid #ffffff;
+    border: 2px solid #333333;
     padding: 20px; 
     width: 100px;
     height: 75px; 

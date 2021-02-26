@@ -10,12 +10,12 @@
 </head>
 <body>
 
-    <a href="./index.html"><img class="greylogo" src="{{ url_for('static',filename='images/Write my Rights.PNG') }}"/></a>
+    <a href="/index"><img class="greylogo" src="{{ url_for('static',filename='images/black logo.PNG') }}"/></a>
     
     <div class="progressDiv">
-    <svg class="progressBarOne" width="1100 px" height="20 px">
-        <rect width="1000px" height="10px" style="fill: #666;" rx="8" ry="8" />
-        <rect width="100px" height="10px" style="fill: #fff;" rx="8" ry="8" />
+    <svg class="progressBarOne">
+        <rect width="1000px" height="10px" style="fill: #dddddd;" rx="8" ry="8" />
+        <rect width="100px" height="10px" style="fill: #303852;" rx="8" ry="8" />
     </svg>
     </div>
 
@@ -24,14 +24,14 @@
         <p class="questionText">What is your full name?*</p>
         <input type="text" class="questionInput" placeholder="ex. John Smith" value="{{request.form.answer}}" name="answer">
         <input type="hidden" value="name" name="key">
-        <input type="hidden" value="/index" name="next_page">
+        <input type="hidden" value="/questionTwo" name="next_page">
     </div>
 
     <br>
 
     <div class="buttonDiv">
-        <img src="{{url_for('static', filename='images/white back arrow.png')}}" alt="Back" class="backArrow"/>
-        <input type="image" name="submit" src="{{url_for('static', filename='images/white front arrow.png')}}" alt="Next" class="frontArrow"/>
+        <img href="/letterType" src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"/>
+        <input type="image" name="submit" src="{{url_for('static', filename='images/black arrow.png')}}" alt="Next" class="frontArrow"/>
     </div>
     </form>
 
