@@ -20,12 +20,20 @@
     </div>
 
     <form action="{{url_for('answer')}}" method="post">
-    <div class="questionDiv">
+    <div class="questionDiv questionRadioDiv">
         <p class="questionText">Please check all that apply to you:*</p>
-        <button class="questionButton" onclick="buttonOnClick()" name="answer"><b>A</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I was hired for a short term contract</button><br>            
-        <button class="questionButton" name="answer"><b>B</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This was my only job</button><br>
-        <button class="questionButton" name="answer"><b>C</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I work from home</button><br>
-        <button class="questionButton" name="answer"><b>D</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I have to report to my boss most days</button><br>
+        <input type="radio" id="A"  name="answer" value="A" checked>
+        <label for ="A"><b>A</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I was hired for a short term contract</label><br><br><br><br>
+
+        <input type="radio" id="B"  name="answer" value="B">
+        <label for ="B"><b>B</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This was my only job</label><br><br><br><br>
+
+        <input type="radio" id="C"  name="answer" value="C">
+        <label for ="C"><b>C</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I work from home</label><br><br><br><br>
+
+        <input type="radio" id="D"  name="answer" value="D">
+        <label for ="D"><b>D</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I have to report to my boss most days</label><br><br><br><br>
+
         <input type="hidden" value="check" name="key">
         <input type="hidden" value="/questionFour" name="next_page">
     </div>
