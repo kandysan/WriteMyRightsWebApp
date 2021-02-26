@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="questions.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/questions.css') }}">
     <title>Write My Rights</title>
     <!-- Montserrat Font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -10,7 +10,7 @@
 </head>
 <body>
 
-        <a href="./index"><img id="homeNavbarPicture" src="{{url_for('static', filename='images/Write my Rights.PNG')}}"/></a>
+    <a href="/index"><img class="greylogo" src="../images/black logo.png"/></a>
     
     <div class="progressDiv">
         <svg class="progressBarOne" width="1100 px" height="20 px">
@@ -19,18 +19,21 @@
         </svg>
     </div>
 
+    <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
         <p class="questionText">Did they offer you severance? If so, how much?*</p>
-        <input type="text" class="questionInput" value="ex. 1 month pay">
+        <input type="text" class="questionInput" value="ex. 1 month pay" name="answer">
+        <input type="hidden" value="severance" name="key">
+        <input type="hidden" value="/questionEight" name="next_page">
     </div>
 
     <br>
 
     <div class="buttonDiv">
-        <img src="../images/black back arrow.png" alt="Back" class="backArrow" onclick="location.href='questionSix.html'">
-        <img src="../images/black arrow.png" alt="Next" class="frontArrow" onclick="location.href='questionEight.html'">
+        <a href="/questions/questionSix"><img src="../images/black back arrow.png" alt="Back" class="backArrow"></a>
+        <input type="image" name="submit" src="{{url_for('static', filename='images/black arrow.png')}}" alt="Next" class="frontArrow"/>
     </div>
-
+    </form>
     
 </body>
 </html>
