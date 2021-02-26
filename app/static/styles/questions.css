@@ -95,9 +95,12 @@ body {
 
 .frontArrow {
     width: 7em;
-    height: 5em;
-    padding-left: 3em;
+    height: 6.5em;
+    padding-left: 1em;
+    margin-top: 1em;
     transition: transform .2s;
+    cursor: pointer;
+
 }
 
 .frontArrow:hover {
