@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="questions.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/questions.css') }}">
     <title>Write My Rights</title>
     <!-- Montserrat Font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -10,8 +10,7 @@
 </head>
 <body>
 
-    <a href="./index"><img id="homeNavbarPicture" src="{{url_for('static', filename='images/Write my Rights.PNG')}}"/></a>
-
+    <a href="/index"><img class="greylogo" src="{{ url_for('static',filename='images/black logo.PNG') }}"/></a>
     
     <div class="progressDiv">
         <svg class="progressBarOne" width="1100 px" height="20 px">
@@ -20,21 +19,24 @@
         </svg>
     </div>
 
+    <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
         <p class="questionText">Please check all that apply to you:*</p>
-        <button class="questionButton" onclick="buttonOnClick()"><b>A</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I was hired for a short term contract</button><br>            
-        <button class="questionButton"><b>B</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This was my only job</button><br>
-        <button class="questionButton"><b>C</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I work from home</button><br>
-        <button class="questionButton"><b>D</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I have to report to my boss most days</button><br>
+        <button class="questionButton" onclick="buttonOnClick()" name="answer"><b>A</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I was hired for a short term contract</button><br>            
+        <button class="questionButton" name="answer"><b>B</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This was my only job</button><br>
+        <button class="questionButton" name="answer"><b>C</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I work from home</button><br>
+        <button class="questionButton" name="answer"><b>D</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I have to report to my boss most days</button><br>
+        <input type="hidden" value="check" name="key">
+        <input type="hidden" value="/questionFour" name="next_page">
     </div>
 
     <br>
 
     <div class="buttonDiv">
-        <img src="{{url_for('static', filename='images/black back arrow.PNG')}}" alt="Back" class="backArrow" onclick="location.href='questionTwo.html'">
-        <img src="{{url_for('static', filename='images/black arrow.PNG')}}" alt="Next" class="frontArrow" onclick="location.href='questionFour.html'">
+        <a href="/questions/questionTwo"><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"></a>
+        <input type="image" name="submit" src="{{url_for('static', filename='images/black arrow.png')}}" alt="Next" class="frontArrow"/>
     </div>
-
+    </form>
     <script src="questions.js"></script>
 
     
