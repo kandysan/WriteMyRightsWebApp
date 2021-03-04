@@ -35,14 +35,13 @@ def answer():
 
             key = request.form['key']
             attempted_value = request.form['answer']
+            attempted_value = str(attempted_value)
+            print(attempted_value)
             next_page = request.form['next_page']
             res = make_response(redirect('/questions' + next_page))
 
-            if type(attempted_value) == str:
-                res.set_cookie(key, attempted_value)
-                return res
-            else:
-                error = "Invalid answer provided for name. Try Again"
+            res.set_cookie(key, attempted_value)
+            return res
 
         #return render_template("this_question", error = error)
         return error, 401

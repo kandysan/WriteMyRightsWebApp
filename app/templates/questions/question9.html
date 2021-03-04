@@ -22,8 +22,8 @@
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
         <p class="questionText">How long did you work there for?*</p>
-        <input type="text" class="questionInput" placeholder="ex. 1 month" name="answer">
-        <!-- <select name="Years" class="dropdown">
+        <p>months</p>
+        <select name="answer" class="dropdown">
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -35,12 +35,13 @@
             <option value="8">8</option>
             <option value="9">9</option>
             <option value="10">10</option>
-            <option value="11">11</option>
         </select> &nbsp;&nbsp;
+
+        
 
         <p>years</p>
 
-        <select name="Months" class="dropdown">
+        <select name="answer" class="dropdown">
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -52,10 +53,9 @@
             <option value="8">8</option>
             <option value="9">9</option>
             <option value="10">10</option>
-            <option value="11">11</option>
-          </select>
+        </select> &nbsp;&nbsp;
+        
 
-          <p>months</p> -->
         <input type="hidden" value="length" name="key">
         <input type="hidden" value="/question10" name="next_page">
     </div>
