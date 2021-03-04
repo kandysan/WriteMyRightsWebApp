@@ -56,11 +56,21 @@ def answer():
 def getAnswers():
     ans = {}
     ans['name'] = request.cookies.get('name')
+    ans['personal_address'] = request.cookies.get('personalAddress')
     ans['company'] = request.cookies.get('company')
+    ans['employer_address'] = request.cookies.get('employerAddress')
     ans['boss_name'] = request.cookies.get('bossName')
-    ans['length'] = request.cookies.get('length')
-    ans['reason'] = request.cookies.get('reason')
-    ans['severance'] = request.cookies.get('severance')
     ans['email'] = request.cookies.get('email')
     ans['mood'] = request.cookies.get('mood')
+    ans['job_title'] = request.cookies.get('jobTitle')
+    ans['length'] = request.cookies.get('length')
+    ans['experience'] = request.cookies.get('experience')
+    ans['find_job_length'] = request.cookies.get('findJobLength')
+    ans['fire_date'] = request.cookies.get('fire_date')
+    ans['severance'] = request.cookies.get('severance')
+    ans['severance_demand'] = request.cookies.get('severanceDemand')
+    ans['vacation'] = request.cookies.get('vacation')
+    ans['deadline'] = request.cookies.get('deadline')
+    
+    
     return ans

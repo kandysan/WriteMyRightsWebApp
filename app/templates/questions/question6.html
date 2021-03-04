@@ -15,22 +15,23 @@
     <div class="progressDiv">
         <svg class="progressBarOne" width="1100 px" height="20 px">
             <rect width="1000px" height="10px" style="fill: #dddddd;" rx="8" ry="8" />
-            <rect width="700px" height="10px" style="fill: #303852;" rx="8" ry="8" />
+            <rect width="1000px" height="10px" style="fill: #303852;" rx="8" ry="8" />
         </svg>
     </div>
 
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
-        <p class="questionText">Did they offer you severance? If so, how much?*</p>
-        <input type="text" class="questionInput" value="ex. 1 month pay" name="answer">
-        <input type="hidden" value="severance" name="key">
-        <input type="hidden" value="/questionEight" name="next_page">
+        <p class="questionText">Tell us your email address where we can send you your letter.*</p>
+        <input type="text" class="questionInput" placeholder="ex. email@domain.com" name="answer">
+        <input type="text" id="confirmEmailInput" placeholder="Please type your email again to confirm">
+        <input type="hidden" value="email" name="key">
+        <input type="hidden" value="/question7" name="next_page">
     </div>
 
     <br>
 
     <div class="buttonDiv">
-        <a href="/questions/questionSix"><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"></a>
+        <a href="/questions/question5"><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"></a>
         <input type="image" name="submit" src="{{url_for('static', filename='images/black arrow.png')}}" alt="Next" class="frontArrow"/>
     </div>
     </form>

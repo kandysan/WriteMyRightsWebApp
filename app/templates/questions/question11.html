@@ -15,33 +15,33 @@
     <div class="progressDiv">
         <svg class="progressBarOne" width="1100 px" height="20 px">
             <rect width="1000px" height="10px" style="fill: #dddddd;" rx="8" ry="8" />
-            <rect width="300px" height="10px" style="fill: #303852;" rx="8" ry="8" />
+            <rect width="900px" height="10px" style="fill: #303852;" rx="8" ry="8" />
         </svg>
     </div>
 
     <form action="{{url_for('answer')}}" method="post">
-    <div class="questionDiv questionRadioDiv">
-        <p class="questionText">Please check all that apply to you:*</p>
+    <div class="questionDiv questionRadioDiv" >
+        <p class="questionText">How long do you think it will take you to find a new job?*</p>
         <input type="radio" id="A"  name="answer" value="A" checked>
-        <label for ="A"><b>A</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I was hired for a short term contract</label>
+        <label for ="A"><b>A</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Up to one month</label>
 
-        <input type="radio" id="B"  name="answer" value="B">
-        <label for ="B"><b>B</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This was my only job</label>
+        <input type="radio" id="B" name="answer" value="B">
+        <label for ="B"><b>B</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Between 1 and 3 months</label>
 
-        <input type="radio" id="C"  name="answer" value="C">
-        <label for ="C"><b>C</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I work from home</label>
+        <input type="radio" id="C" name="answer" value="C">
+        <label for = "C"><b>C</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Between 3 to 6 months</label>
 
-        <input type="radio" id="D"  name="answer" value="D">
-        <label for ="D"><b>D</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I have to report to my boss most days</label>
+        <input type="radio" id="D" name="answer" value="D">
+        <label for = "C"><b>C</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Between 3 to 6 months</label>
 
-        <input type="hidden" value="check" name="key">
-        <input type="hidden" value="/questionFour" name="next_page">
+        <input type="hidden" value="findJobLength" name="key">
+        <input type="hidden" value="/question12" name="next_page">
     </div>
 
     <br>
 
     <div class="buttonDiv">
-        <a href="/questions/questionTwo"><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"></a>
+        <a href="/questions/question10"><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"></a>
         <input type="image" name="submit" src="{{url_for('static', filename='images/black arrow.png')}}" alt="Next" class="frontArrow"/>
     </div>
     </form>
