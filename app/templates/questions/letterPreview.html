@@ -50,16 +50,16 @@
 
     <script>
         window.onload = (event) => {
-            let boss_name = decode_flask_cookie(getCookie("bossName"))
+            let boss_name = getCookie("bossName")
             document.getElementById("boss_name").innerHTML = boss_name
 
-            let company = decode_flask_cookie(getCookie("company"))
+            let company = getCookie("company")
             let companies = document.getElementsByClassName("company")
             for (var i=0; i < companies.length; i++) {
                 companies[i].innerHTML = company;
             }
 
-            let length = decode_flask_cookie(getCookie("length"))
+            let length = getCookie("length")
             let dates = document.getElementsByClassName("length")
             for (var i=0; i < dates.length; i++) {
                 dates[i].innerHTML = length;
@@ -82,16 +82,6 @@
             return "";
             }
         
-        function decode_flask_cookie(val) {
-            if (val.indexOf('\\') === -1) {
-                return val;  // not encoded
-            }
-            val = val.slice(1, -1).replace(/\\"/g, '"');
-            val = val.replace(/\\(\d{3})/g, function(match, octal) { 
-                return String.fromCharCode(parseInt(octal, 8));
-            });
-            return val.replace(/\\\\/g, '\\');
-        }
     </script>
     
 </body>
