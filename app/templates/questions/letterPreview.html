@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset = "UTF-8">
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/questions.css') }}">
     <title>Write My Rights</title>
     <!-- Montserrat Font -->
@@ -22,29 +23,6 @@
         <p id="titleDiv"><i>Here's a preview of your free letter. The greyed out section is part of our premium letter features. 
             Click below to get your letter!</i></p><br><br>
         <p class="letterPreviewText">
-            <b class="name"></b>
-            <br>
-            <b class="address"></b>
-            <br>
-            <b class="boss_name"></b>
-            <br>
-            <b class="company_address"></b>
-            <br>
-            Dear <b class="boss_name"></b>, <br><br>
-            
-            I appreciated my time spent at <b class="company"></b> Corp. While I respect that fact that my layoff was not personal, I do feel that I am not being 
-            treated fairly and have not been offered the compensation that I am entitled to under the circumstances. <br><br>
-
-            There was nothing to indicate, leading up to my dismissal, that there were any issues with my performance. My layoff was an abrupt 
-            shock to an otherwise excellent working relationship. <br><br>
-            Given the circumstances, and in the interest of putting this behind us, I would be willing to accept <br>
-        </p>
-        <p class="letterPreviewText" id="blurText">
-            When I joined the company <b class="length"></b> years/months ago as a a XYZ Title, I looked forward to being an impactful team member. Since <b class="length"></b> Date, 
-            I was a reliable and diligent employee at <b class="company"></b> Corp. I truly embodied our company`s inclusive and professional culture. With <b class="length"></b> years of 
-            experience in my field, I brought a wealth of knowledge and skill to <b class="company"></b> Corp. <br><br>
-            Please respond by <b class="length"></b> date and indicate your acceptance of this offer. Otherwise, I may be forced to pursue more formal legal action. <br><br> 
-            Sincerely, <br><br> John Doe 
         </p>
 
     </div>
@@ -58,22 +36,10 @@
 
     <script>
         window.onload = (event) => {
-            let boss_name = getCookie("bossName")
-            let boss_names = document.getElementsByClassName("boss_name")
-            for (var i=0; i < boss_names.length; i++) {
-                boss_names[i].innerHTML = boss_name;
-            }
-
-            let company = getCookie("company")
-            let companies = document.getElementsByClassName("company")
-            for (var i=0; i < companies.length; i++) {
-                companies[i].innerHTML = company;
-            }
-
-            let length = getCookie("length")
-            let dates = document.getElementsByClassName("length")
-            for (var i=0; i < dates.length; i++) {
-                dates[i].innerHTML = length;
+            let letter = getCookie("written_letter")
+            let letters = document.getElementsByClassName("letterPreviewText")
+            for (var i=0; i < letters.length; i++) {
+                letters[i].innerHTML = window.atob(letter);
             }
         }
 

@@ -1,6 +1,10 @@
+import base64
 from app import app
 from flask import render_template, request, redirect, make_response
 from app import letter_script
+
+
+ans_dict = {}
 
 @app.route('/')
 @app.route('/index')
@@ -51,17 +55,23 @@ def answer():
         return 402
 
 
-@app.route('/getAnswers')
+@app.route('/questions/getAnswers')
 def getAnswers():
     ans = {}
     ans['name'] = request.cookies.get('name')
-    ans['address'] = request.cookies.get('address')
     ans['company_name'] = request.cookies.get('company')
-    ans['company_address'] = request.cookies.get('company_address')
     ans['boss_name'] = request.cookies.get('bossName')
-    ans['time_worked'] = request.cookies.get('length')
+    ans['length'] = request.cookies.get('length')
     ans['reason'] = request.cookies.get('reason')
     ans['severance'] = request.cookies.get('severance')
     ans['email'] = request.cookies.get('email')
-    ans['feeling'] = request.cookies.get('mood')
-    return letter_script.create_employment_letter(ans)
+    ans['mood'] = request.cookies.get('mood')
+    ans['address'] = '5555 somewhere street'
+    ans['company_address'] = '1111 nowhere rd'
+    ans['time_worked'] = '5 years'
+    letter = letter_script.create_employment_letter(ans)
+    res = make_response(redirect('/questions/letterPreview'))
+    letter = base64.b64encode(letter)
+    print(letter)
+    res.set_cookie('written_letter', letter)
+    return res
