@@ -22,10 +22,9 @@
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
         <p class="questionText">What was the date that you were fired?*</p>
-        <input type="text" class="questionInput" placeholder="ex. March 6th, 2021" value="{{request.form.answer}}" name="answer">
+        <input type="date" class="questionInput" value="{{request.form.answer}}" name="answer">
         <input type="hidden" value="fireDate" name="key">
         <input type="hidden" value="/question13" name="next_page">
-<!--        <input type="hidden" value="/questionTwo" name="next_page">-->
     </div>
 
     <br>
