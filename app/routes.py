@@ -34,13 +34,14 @@ def answer():
         if request.method == 'POST':
 
             key = request.form['key']
-            attempted_value = request.form['answer']
-            attempted_value = str(attempted_value)
+            attempted_value = request.form.getlist('answer')
+            attempted_value = ','.join(attempted_value)
             print(attempted_value)
             next_page = request.form['next_page']
             res = make_response(redirect('/questions' + next_page))
 
             res.set_cookie(key, attempted_value)
+
             return res
 
         #return render_template("this_question", error = error)
@@ -70,6 +71,6 @@ def getAnswers():
     ans['severance_demand'] = request.cookies.get('severanceDemand')
     ans['vacation'] = request.cookies.get('vacation')
     ans['deadline'] = request.cookies.get('deadline')
-    
+    print(ans['length'])
     
     return ans
