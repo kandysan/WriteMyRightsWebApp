@@ -66,6 +66,6 @@ def getAnswers():
     ans['email'] = request.cookies.get('email')
     ans['mood'] = request.cookies.get('mood')
     WordDoc(ans).create()
-    Email("nathancbroyles+test3@gmail.com", "email1.docx").send()
+    Email("nathancbroyles+test3@gmail.com", ans['name'] + ".docx").send()
     return ans
 
