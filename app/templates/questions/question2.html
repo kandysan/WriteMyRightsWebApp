@@ -22,7 +22,7 @@
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
         <p class="questionText">What is your address?*</p>
-        <input type="text" class="questionInput" placeholder="ex. 12345 Burrad St. Vancouver BC V13 3B4" value="{{request.form.answer}}" name="answer">
+        <input type="text" class="questionInput" placeholder="ex. 12345 Burrad St. Vancouver BC V13 3B4" value="{{request.form.answer}}" name="answer" required maxlength="50">
         <input type="hidden" value="personalAddress" name="key">
         <input type="hidden" value="/question3" name="next_page">
 <!--        <input type="hidden" value="/questionTwo" name="next_page">-->

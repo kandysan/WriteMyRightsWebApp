@@ -22,7 +22,7 @@
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
         <p class="questionText">Tell us your email address where we can send you your letter.*</p>
-        <input type="text" class="questionInput" placeholder="ex. email@domain.com" name="answer">
+        <input type="text" class="questionInput" placeholder="ex. email@domain.com" name="answer" required maxlength="50">
         <input type="text" id="confirmEmailInput" placeholder="Please type your email again to confirm">
         <input type="hidden" value="email" name="key">
         <input type="hidden" value="/question7" name="next_page">

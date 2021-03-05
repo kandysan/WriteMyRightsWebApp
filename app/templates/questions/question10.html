@@ -22,7 +22,7 @@
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
         <p class="questionText">How many years of experience do you have in your field?*</p>
-        <select name="answer" class="dropdown">
+        <select name="answer" class="dropdown" required>
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>

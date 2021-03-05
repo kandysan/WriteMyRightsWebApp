@@ -22,7 +22,7 @@
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
         <p class="questionText">How much unpaid vacation are you owned?*</p>
-        <input type="text" class="questionInput" placeholder="ex. 10 weeks" value="{{request.form.answer}}" name="answer">
+        <input type="text" class="questionInput" placeholder="ex. 10 weeks" value="{{request.form.answer}}" name="answer" required maxlength="50">
         <input type="hidden" value="vacation" name="key">
         <input type="hidden" value="/question16" name="next_page">
 <!--        <input type="hidden" value="/questionTwo" name="next_page">-->

@@ -22,7 +22,7 @@
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
         <p class="questionText">What was your job title?*</p>
-        <input type="text" class="questionInput" placeholder="ex. Software Engineer" value="{{request.form.answer}}" name="answer">
+        <input type="text" class="questionInput" placeholder="ex. Software Engineer" value="{{request.form.answer}}" name="answer" required maxlength="50">
         <input type="hidden" value="jobTitle" name="key">
         <input type="hidden" value="/question9" name="next_page">
 <!--        <input type="hidden" value="/questionTwo" name="next_page">-->

@@ -22,7 +22,7 @@
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
         <p class="questionText">What deadline do you want to give to them to respond?*</p>
-        <input type="date" class="questionInput" value="{{request.form.answer}}" name="answer">
+        <input type="date" class="questionInput" value="{{request.form.answer}}" name="answer" required maxlength="50">
         <input type="hidden" value="deadline" name="key">
         <input type="hidden" value="/letterPreview" name="next_page">
 <!--        <input type="hidden" value="/questionTwo" name="next_page">-->
