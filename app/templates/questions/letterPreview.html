@@ -39,7 +39,7 @@
             let letter = getCookie("written_letter")
             let letters = document.getElementsByClassName("letterPreviewText")
             for (var i=0; i < letters.length; i++) {
-                letters[i].innerHTML = window.atob(letter);
+                letters[i].innerHTML = letter;
             }
         }
 

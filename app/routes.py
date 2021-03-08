@@ -1,4 +1,4 @@
-import base64
+import urllib.parse
 from app import app
 from flask import render_template, request, redirect, make_response
 from app import letter_script
@@ -71,7 +71,7 @@ def getAnswers():
     ans['time_worked'] = '5 years'
     letter = letter_script.create_employment_letter(ans)
     res = make_response(redirect('/questions/letterPreview'))
-    letter = base64.b64encode(letter)
+    letter = urllib.parse.quote(letter)
     print(letter)
     res.set_cookie('written_letter', letter)
     return res

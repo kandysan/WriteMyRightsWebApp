@@ -1,6 +1,5 @@
 import datetime
 
-
 def create_employment_letter(body):
     if body['mood'] == 'A':
         letter = create_annoyed_letter(body)
@@ -20,15 +19,15 @@ def create_annoyed_letter(body):
     d = datetime.timedelta(days=21)
     response_date = u + d
     response_date = response_date.strftime("%m/%d/%Y")
-    b = f"""<pre>{date}
+    b = f"""{date}
 {body['name']}
 {body['address']}
 {body['boss_name']}
 {body['company_address']}
 Re: Formal Response to Termination Without Cause
 Dear {body['company_name']} Superior,
-I&apos;m shocked and disappointed to be laid off by {body['company_name']}. I have been a key member of the Department team for {body['time_worked']} now.
-The company&apos;s vision aligns with my values and aspirations, and I anticipated a long and fruitful relationship with {body['company_name']}. 
+I'm shocked and disappointed to be laid off by {body['company_name']}. I have been a key member of the Department team for {body['time_worked']} now.
+The company's vision aligns with my values and aspirations, and I anticipated a long and fruitful relationship with {body['company_name']}. 
 I have been a committed and dedicated employee since day 1 - being let go like this is unjustified and wrong.
 There was nothing to indicate, leading up to my dismissal, that there were any issues with my performance. 
 My layoff was an abrupt shock to an otherwise excellent working relationship - it is not only causing me distress but is also doing harm to my reputation and career.
@@ -41,8 +40,9 @@ and what you are trying to do. But given a number of factors mentioned above (in
 I am prepared to accept {body['severance']} months pay plus all unpaid/unused 
 vacation time that is accrued up until that point as severance.  Please respond with your intent by {response_date} .
 
-Sincerely, {body['name']} </pre>"""
-    return b.encode('utf-8')
+Sincerely, {body['name']}"""
+    return b
+
 
 
 def create_calm_letter(body):
