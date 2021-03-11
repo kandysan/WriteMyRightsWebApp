@@ -21,13 +21,7 @@ def create_employment_letter_preview(body):
 
 
 def create_annoyed_letter(body):
-    date = datetime.date.today()
-    date = date.strftime("%m/%d/%Y")
-    u = datetime.datetime.strptime(date, "%m/%d/%Y")
-    d = datetime.timedelta(days=21)
-    response_date = u + d
-    response_date = response_date.strftime("%m/%d/%Y")
-    letter = f"""<pre>{date}
+    letter = f"""{date}
 
 {body['name']}
 {body['address']}
@@ -39,8 +33,8 @@ Re: Formal Response to Termination Without Cause
 
 Dear {body['company_name']} Superior,
 
-I&apos;m shocked and disappointed to be laid off by {body['company_name']}. I have been a key member of the 
-Department team for {body['time_worked']} now. The company&apos;s vision aligns with my values 
+Im shocked and disappointed to be laid off by {body['company_name']}. I have been a key member of the 
+Department team for {body['time_worked']} now. The company's vision aligns with my values 
 and aspirations, and I anticipated a long and fruitful relationship with {body['company_name']}. I have been 
 a committed and dedicated employee since day 1 - being let go like this is unjustified and 
 wrong.
@@ -63,18 +57,11 @@ I am prepared to accept {body['severance']} months pay plus all unpaid/unused va
 up until that point as severance. Please respond with your intent by {response_date}.
 
 Sincerely,
-{body['name']}</pre>"""
+{body['name']}"""
     return letter.encode('utf-8')
 
 
 def create_calm_letter(body):
-    date = datetime.date.today()
-    date = date.strftime("%m/%d/%Y")
-
-    u = datetime.datetime.strptime(date, "%m/%d/%Y")
-    d = datetime.timedelta(days=21)
-    response_date = u + d
-    response_date = response_date.strftime("%m/%d/%Y")
     letter = f"""<pre>{date}
 
 {body['name']}
@@ -118,13 +105,6 @@ Sincerely,
 
 
 def create_angry_letter(body):
-    date = datetime.date.today()
-    date = date.strftime("%m/%d/%Y")
-
-    u = datetime.datetime.strptime(date, "%m/%d/%Y")
-    d = datetime.timedelta(days=21)
-    response_date = u + d
-    response_date = response_date.strftime("%m/%d/%Y")
     letter = f"""<pre>{date}
 
 {body['name']}
@@ -178,12 +158,6 @@ Thank you.</pre>"""
 
 
 def create_annoyed_letter_preview(body):
-    date = datetime.date.today()
-    date = date.strftime("%m/%d/%Y")
-    u = datetime.datetime.strptime(date, "%m/%d/%Y")
-    d = datetime.timedelta(days=21)
-    response_date = u + d
-    response_date = response_date.strftime("%m/%d/%Y")
     letter = f"""<pre>{date}
 
 {body['name']}
@@ -210,13 +184,6 @@ career. At my level, a new opportunity can take up to X months/year to source.</
 
 
 def create_calm_letter_preview(body):
-    date = datetime.date.today()
-    date = date.strftime("%m/%d/%Y")
-
-    u = datetime.datetime.strptime(date, "%m/%d/%Y")
-    d = datetime.timedelta(days=21)
-    response_date = u + d
-    response_date = response_date.strftime("%m/%d/%Y")
     letter = f"""<pre>{date}
 
 {body['name']}
@@ -244,13 +211,6 @@ my performance. My layoff was an abrupt shock to an otherwise excellent working 
 
 
 def create_angry_letter_preview(body):
-    date = datetime.date.today()
-    date = date.strftime("%m/%d/%Y")
-
-    u = datetime.datetime.strptime(date, "%m/%d/%Y")
-    d = datetime.timedelta(days=21)
-    response_date = u + d
-    response_date = response_date.strftime("%m/%d/%Y")
     letter = f"""<pre>{date}
 
 {body['name']}
