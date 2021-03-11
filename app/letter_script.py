@@ -21,7 +21,7 @@ def create_employment_letter_preview(body):
 
 
 def create_annoyed_letter(body):
-    letter = f"""{date}
+    letter = f"""
 
 {body['name']}
 {body['address']}
@@ -54,15 +54,15 @@ given a number of factors mentioned above (including my level of seniority, repu
 career prospects), I need to look out for my interests given the situation.
 
 I am prepared to accept {body['severance']} months pay plus all unpaid/unused vacation time that is accrued 
-up until that point as severance. Please respond with your intent by {response_date}.
+up until that point as severance. Please respond with your intent by .
 
 Sincerely,
 {body['name']}"""
-    return letter.encode('utf-8')
+    return letter
 
 
 def create_calm_letter(body):
-    letter = f"""<pre>{date}
+    letter = f"""<pre>
 
 {body['name']}
 {body['address']}
@@ -95,17 +95,17 @@ Given the circumstances, and in the interest of putting this behind us, I would 
 accept {body['severance']} of pay plus all unpaid/unused vacation time that is accrued up until 
 that point as severance, which is ???Y days/$$$???. This offer is fair and reasonable to both of us.
 
-Please respond by {response_date} and indicate your acceptance of this offer. Otherwise, I may be 
+Please respond by  and indicate your acceptance of this offer. Otherwise, I may be 
 forced to pursue more formal legal action.
 
 Sincerely, 
 {body['name']}</pre>"""
-    return letter.encode('utf-8')
+    return letter
 
 
 
 def create_angry_letter(body):
-    letter = f"""<pre>{date}
+    letter = f"""<pre>
 
 {body['name']}
 {body['address']}
@@ -154,11 +154,11 @@ XXX cares about its employees. Please don't make me feel misled again.
 
 Thank you.</pre>"""
 
-    return letter.encode('utf-8')
+    return letter
 
 
 def create_annoyed_letter_preview(body):
-    letter = f"""<pre>{date}
+    letter = f"""<pre>
 
 {body['name']}
 {body['address']}
@@ -180,11 +180,11 @@ There was nothing to indicate, leading up to my dismissal, that there were any i
 my performance. My layoff was an abrupt shock to an otherwise excellent working 
 relationship - it is not only causing me distress but is also doing harm to my reputation and 
 career. At my level, a new opportunity can take up to X months/year to source.</pre>"""
-    return letter.encode('utf-8')
+    return letter
 
 
 def create_calm_letter_preview(body):
-    letter = f"""<pre>{date}
+    letter = f"""<pre>
 
 {body['name']}
 {body['address']}
@@ -207,11 +207,11 @@ experience in my field, I brought a wealth of knowledge and skill to {body['comp
 
 There was nothing to indicate, leading up to my dismissal, that there were any issues with 
 my performance. My layoff was an abrupt shock to an otherwise excellent working relationship.</pre>"""
-    return letter.encode('utf-8')
+    return letter
 
 
 def create_angry_letter_preview(body):
-    letter = f"""<pre>{date}
+    letter = f"""<pre>
 
 {body['name']}
 {body['address']}
@@ -239,5 +239,5 @@ this gave me no opportunity to ask questions or get clarity.
 The layoff is not only causing me distress but is also doing harm to my reputation and 
 career. At my level, a new opportunity can take up to a year to source.</pre>"""
 
-    return letter.encode('utf-8')
+    return letter
 

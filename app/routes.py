@@ -89,13 +89,11 @@ def getAnswers():
     ans['time_worked']['years'] = json.loads(request.cookies.get('time_worked'))['a1']
     ans['time_worked']['months'] = json.loads(request.cookies.get('time_worked'))['a2']
     letter = letter_script.create_employment_letter(ans)
-    print(letter + 'aaaaaaaaaaaaaaaaa')
+    print(letter)
+    WordDoc(letter, ans).create()
+    Email(ans['email'], ans['name'] + ".docx").send()
     res = make_response(redirect('/questions/letterPreview'))
     letter = urllib.parse.quote(letter)
     res.set_cookie('written_letter', letter)
     return res
-    # letter = letter_script.create_employment_letter(ans)
-    # print(letter)
-    # WordDoc(ans).create()
-    # Email("nathancbroyles+test3@gmail.com", ans['name'] + ".docx").send()
-    # return ans
+
