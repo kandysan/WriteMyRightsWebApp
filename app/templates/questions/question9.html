@@ -21,14 +21,15 @@
 
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
-        <p class="questionText">How long did you work there for?*</p>
-        <p>months</p>
+        <p class="questionText">How long did you work there for?</p>
+        <p class="dropdownHeader">Months:</p>
         <select name="answer1" class="dropdown" required>
+            <option value=""></option>
         </select> &nbsp;&nbsp;
 
-        <p>years</p>
-
+        <p class="dropdownHeader">Years:</p>
         <select name="answer2" class="dropdown" required>
+            <option value=""></option>
         </select> &nbsp;&nbsp;
         
 
@@ -52,7 +53,7 @@
                     let number = document.createElement("option")
                     number.text = i
                     number.value = i
-                    dropdown[item].options[i] = number;
+                    dropdown[item].options[i + 1] = number;
                 }
             }
         }

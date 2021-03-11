@@ -23,7 +23,7 @@
 
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
-        <p class="questionText">What is the name of the company you worked for?*</p>
+        <p class="questionText">What is the name of the company you worked for?</p>
         <input type="text" class="questionInput" placeholder="ex. Write My Rights" name="answer" value="{{request.form.answer}}" required maxlength="50">
         <input type="hidden" value="company" name="key">
         <input type="hidden" value="/question4" name="next_page">
