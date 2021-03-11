@@ -2,6 +2,7 @@ from app import app
 from flask import render_template, request, redirect, make_response
 from app.emailer import Email
 from app.worder import WordDoc
+from app import letter_script
 
 ans_dict = {}
 
@@ -65,6 +66,8 @@ def getAnswers():
     ans['severance'] = request.cookies.get('severance')
     ans['email'] = request.cookies.get('email')
     ans['mood'] = request.cookies.get('mood')
+    letter = letter_script.create_employment_letter(ans)
+    print(letter)
     WordDoc(ans).create()
     Email("nathancbroyles+test3@gmail.com", ans['name'] + ".docx").send()
     return ans
