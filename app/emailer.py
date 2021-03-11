@@ -73,3 +73,7 @@ class Email:
 
         # terminating the session
         s.quit()
+
+        #delete temporary email
+        attachment.close()
+        os.remove(abs_file_path)
