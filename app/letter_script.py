@@ -19,28 +19,45 @@ def create_annoyed_letter(body):
     d = datetime.timedelta(days=21)
     response_date = u + d
     response_date = response_date.strftime("%m/%d/%Y")
-    b = f"""{date}
-{body['name']}
-{body['address']}
-{body['boss_name']}
-{body['company_address']}
-Re: Formal Response to Termination Without Cause
-Dear {body['company_name']} Superior,
-I'm shocked and disappointed to be laid off by {body['company_name']}. I have been a key member of the Department team for {body['time_worked']} now.
-The company's vision aligns with my values and aspirations, and I anticipated a long and fruitful relationship with {body['company_name']}. 
-I have been a committed and dedicated employee since day 1 - being let go like this is unjustified and wrong.
-There was nothing to indicate, leading up to my dismissal, that there were any issues with my performance. 
-My layoff was an abrupt shock to an otherwise excellent working relationship - it is not only causing me distress but is also doing harm to my reputation and career.
-At my level, a new opportunity can take up to X months/year to source.
-Although the severance offering reflects what is written in my contract, a number of other factors justify a larger severance payment. 
-Given the situation, the industry, and the position I held, I am entitled to a minimum  of {body['severance']} months of severance.
-At this point, I would like to be able to come to an agreement without resorting to my legal options or the press. I highly respect you, {body['company_name']}, 
-and what you are trying to do. But given a number of factors mentioned above (including my level of seniority, reputation, and career prospects),
- I need to look out for my interests given the situation.
-I am prepared to accept {body['severance']} months pay plus all unpaid/unused 
-vacation time that is accrued up until that point as severance.  Please respond with your intent by {response_date} .
+    b = f"""
+{date}<br><br>
 
-Sincerely, {body['name']}"""
+{body['name']}<br>
+{body['address']}<br><br>
+
+{body['boss_name']}<br>
+{body['company_address']}<br><br>
+
+Re: Formal Response to Termination Without Cause<br><br>
+
+Dear {body['company_name']} Superior,<br><br>
+
+I appreciated my time spent at {body['company_name']}. While I respect that fact that my layoff was not personal, 
+I do feel that I am not being treated fairly and have not been offered the compensation that I am entitled to under 
+the circumstances.<br><br>
+
+When I joined the company {body['time_worked']['years']} years and {body['time_worked']['months']} months ago as a {body['job_title']}, 
+I looked forward to being an impactful team member. Since XYZ Date, 
+I was a reliable and diligent employee at {body['company_name']}. I truly embodied our company’s 
+inclusive and professional culture. With {body['experience']} years of experience in my field, 
+I brought a wealth of knowledge and skill to {body['company_name']}. My layoff was an abrupt 
+shock to an otherwise excellent working relationship.<br><br>
+
+[A]Thank you for the offer of {body['severance']} weeks of severance. Unfortunately, 
+it falls well below what I am entitled to under prevailing employment legislation. 
+Most notably, it will be difficult for me to find suitable work to match my experience and skills. 
+I am therefore entitled to additional compensation.<br><br>
+
+Given the circumstances, and in the interest of putting this behind us, I would be willing to accept
+[ALL OPTIONS HERE]<br><br>
+
+Please respond within X (days/weeks) to indicate your acceptance of the offer. Otherwise, 
+I may be forced to pursue more formal legal action.<br><br>
+
+Sincerely,<br><br>
+
+{body['name']}
+"""
     return b
 
 
@@ -68,7 +85,9 @@ Dear {body['company_name']} Superior,
 
 I appreciated my time spent at {body['company_name']} . While I respect that fact that my layoff was not personal, I do feel that I am not being treated fairly and have not been offered the compensation that I am entitled to under the circumstances.
 
-When I joined the company {body['time_worked']} ago as a ???XYZ Title???, I looked forward to being an impactful team member. Since ???XYZ Date???, I was a reliable and diligent employee at {body['company_name']} . I truly embodied our company’s inclusive and professional culture. With {body['time_worked']} of experience in my field, I brought a wealth of knowledge and skill to {body['company_name']} .
+When I joined the company {body['time_worked']} ago as a ???XYZ Title???, I looked forward to being an impactful team member. Since ???XYZ Date???, I was a reliable and diligent employee at {body['company_name']} . I truly embodied our company’s inclusive and professional culture.
+ 
+ With {body['time_worked']} of experience in my field, I brought a wealth of knowledge and skill to {body['company_name']} .
 
 There was nothing to indicate, leading up to my dismissal, that there were any issues with my performance. My layoff was an abrupt shock to an otherwise excellent working relationship.
 
