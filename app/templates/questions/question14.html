@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/questions.css') }}">
+    <title>Write My Rights</title>
+    <!-- Montserrat Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <a href="/index"><img class="greylogo" src="{{ url_for('static',filename='images/black logo.PNG') }}"/></a>
+
+    <div class="progressDiv">
+    <svg class="progressBarOne" width="1100 px" height="20 px">
+        <rect width="1000px" height="10px" style="fill: #dddddd;" rx="8" ry="8" />
+        <rect width="750px" height="10px" style="fill: #303852;" rx="8" ry="8" />
+    </svg>
+    </div>
+
+    <form action="{{url_for('answer')}}" method="post">
+    <div class="questionDiv">
+        <p class="questionText">How much severance do you want to demand?*</p>
+        <input type="number" class="questionInput" placeholder="ex. 1000" value="{{request.form.answer}}" name="answer" required maxlength="50"> 
+        <input type="hidden" value="severanceDemand" name="key">
+        <input type="hidden" value="/question15" name="next_page">
+<!--        <input type="hidden" value="/questionTwo" name="next_page">-->
+    </div>
+
+    <br>
+
+    <div class="buttonDiv">
+        <a href='/questions/question13'><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"/></a>
+        <input type="image" name="submit" src="{{url_for('static', filename='images/black arrow.png')}}" alt="Next" class="frontArrow"/>
+    </div>
+    </form>
+
+
+</body>
+</html>
