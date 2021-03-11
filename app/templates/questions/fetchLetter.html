@@ -11,23 +11,21 @@
 </head>
 <body>
 
-    <a href="./index.html"><img class="greylogo" src="{{ url_for('static',filename='images/black logo.PNG') }}"/></a>
+    <a href="/index"><img class="greylogo" src="{{ url_for('static',filename='images/Write my Rights.PNG') }}"/></a>
     
     <div id="fetchLetterProgressBarDiv">
-        <svg class="progressBarOne" width="1100 px" height="20 px">
-            <rect width="1000px" height="10px" style="fill: #dddddd;" rx="8" ry="8" />
-            <rect width="750px" height="10px" style="fill: #303852;" rx="8" ry="8" />
-        </svg><br>
-        <p id="writingLetterText" onclick="location.href='letterPreview.html'">Writing your letter...</p>
+    <svg id="progressBarFetch" width="100%" height="20 px">
+        <rect width="100%" height="1em" style="fill: #dddddd;" rx="8" ry="8" />
+        <rect width="0%" height="1em" style="fill: #303852;" rx="8" ry="8" id="myBar" />
+    </svg><br>
+    <p id="writingLetterText" onclick="location.href='letterPreview.html'">Writing your letter...</p>
     </div>
 
     <!-- <div class="w3-grey w3-round-xlarge w3-tiny">
         <div class="w3-container w3-white w3-round-xlarge" style="width: 1000px;"></div>
     </div> -->
 
-
-    <!-- <script src="questions.js"></script> -->
-
-    
+    <script src= "{{ url_for('static',filename='questions.js') }}">
+    </script>
 </body>
 </html>

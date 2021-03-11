@@ -1,5 +1,5 @@
 body {
-    background-color: black;
+    background-color: white;
 }
 
 #wrmNavbarPicture {
@@ -52,7 +52,7 @@ li {
 #wrmDescription {
     text-align: center;
     font-family: 'Montserrat', sans-serif;
-    color: #E5E5E5;
+    color: #979BA8;
     font-size: 2.5em;
     font-weight: 400;
     margin-top: 2em;
@@ -66,7 +66,8 @@ li {
 }
 
 .wrmButtons {
-    background-color: #BABABA;
+    background-color: #F7F7F8;
+    color: #303852;
     border-style: none;
     width: 16em;
     border-radius: 2em;
@@ -79,4 +80,14 @@ li {
     font-weight: bold;
     outline:none;
     cursor: pointer;
+    transition-duration: 0.3s;
 }
+
+.wrmButtons:hover,
+.wrmButtons:focus {
+    background-color: #303852;
+    color: white;
+    transform: scale(1.02);
+    text-decoration: none;
+    cursor: pointer;
+  }
