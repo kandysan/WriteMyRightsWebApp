@@ -96,11 +96,13 @@ body {
 .frontArrow {
     width: 7em;
     height: 5em;
+
     padding-left: 1em;
     margin-top: 1em;
-    transition: transform .2s;
-    cursor: pointer;
 
+    padding-left: 3em;
+
+    transition: transform .2s;
 }
 
 .frontArrow:hover {
@@ -138,7 +140,6 @@ body {
     opacity: 0;
     position: fixed;
     width: 0;
-    margin-bottom: 8em;
   }
 
 .questionRadioDiv label {
@@ -150,8 +151,9 @@ body {
     padding: 20px 35px;
     text-align: left;
     width: 620px;
-    margin-bottom: 8em;
     transition-duration: 0.3s;
+    margin-bottom: 1em;
+    display: block;
 }
 
 .questionRadioDiv input[type="radio"]:checked + label {
