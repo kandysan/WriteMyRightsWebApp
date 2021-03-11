@@ -3,6 +3,7 @@ from app import app
 from flask import render_template, request, redirect, make_response
 from app import letter_script
 import json
+import datetime
 
 ans_dict = {}
 
@@ -71,23 +72,47 @@ def answer():
 
 @app.route('/questions/getAnswers')
 def getAnswers():
+    date = datetime.date.today()
+    date = date.strftime("%m/%d/%Y")
+    d = datetime.timedelta()
     ans = {}
-    ans['time_worked'] = {}
+    # todays date
+    ans['date'] = date
+    # job start date
+    ans['job_start_date'] = '2021-01-01'
+    # response date
+    ans['response_date'] = request.cookies.get('deadline')
+    # client name
     ans['name'] = request.cookies.get('name')
-    ans['company_name'] = request.cookies.get('company')
-    ans['job_title'] = request.cookies.get('jobTitle')
-    ans['experience'] = request.cookies.get('experience')
-    ans['boss_name'] = request.cookies.get('bossName')
-    ans['reason'] = request.cookies.get('reason')
-    ans['severance'] = request.cookies.get('severance')
+    # client home address
+    ans['personal_address'] = request.cookies.get('personalAddress')
+    # client email
     ans['email'] = request.cookies.get('email')
-    ans['mood'] = request.cookies.get('mood')
-    ans['address'] = request.cookies.get('personalAddress')
+    # company name
+    ans['company_name'] = request.cookies.get('company')
+    # company's address
     ans['company_address'] = request.cookies.get('employerAddress')
+    # client job title
+    ans['job_title'] = request.cookies.get('jobTitle')
+    # length of time to find a job
+    ans['findJobLength'] = request.cookies.get('findJobLength')
+    # Amount of job experience
+    ans['experience'] = request.cookies.get('experience')
+    # company boss' name
+    ans['boss_name'] = request.cookies.get('bossName')
+    # reason for layoff
+    ans['reason'] = request.cookies.get('reason')
+    # severance paid (in weeks/months)
+    ans['severance_paid'] = request.cookies.get('severance')
+    # severance Demand
+    ans['severance_demand'] = request.cookies.get('severanceDemand')
+    # client's mood (determines the letter template)
+    ans['mood'] = request.cookies.get('mood')
+    # time worked at the company
     ans['time_worked']['years'] = json.loads(request.cookies.get('time_worked'))['a1']
     ans['time_worked']['months'] = json.loads(request.cookies.get('time_worked'))['a2']
+
     letter = letter_script.create_employment_letter(ans)
-    print(letter + 'aaaaaaaaaaaaaaaaa')
     res = make_response(redirect('/questions/letterPreview'))
     letter = urllib.parse.quote(letter)
     res.set_cookie('written_letter', letter)
