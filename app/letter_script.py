@@ -36,7 +36,7 @@ I appreciated my time spent at {body['company_name']}. While I respect that fact
 I do feel that I am not being treated fairly and have not been offered the compensation that I am entitled to under 
 the circumstances.<br><br>
 
-When I joined the company {body['time_worked']['years']} years and {body['time_worked']['months']} months ago as a {body['job_title']}, 
+When I joined the company {body['hire_date']} as a {body['job_title']}, 
 I looked forward to being an impactful team member. Since XYZ Date, 
 I was a reliable and diligent employee at {body['company_name']}. I truly embodied our company’s 
 inclusive and professional culture. With {body['experience']} years of experience in my field, 
@@ -85,9 +85,9 @@ Dear {body['company_name']} Superior,
 
 I appreciated my time spent at {body['company_name']} . While I respect that fact that my layoff was not personal, I do feel that I am not being treated fairly and have not been offered the compensation that I am entitled to under the circumstances.
 
-When I joined the company {body['time_worked']} ago as a ???XYZ Title???, I looked forward to being an impactful team member. Since ???XYZ Date???, I was a reliable and diligent employee at {body['company_name']} . I truly embodied our company’s inclusive and professional culture.
+When I joined the company {body['hire_date']} ago as a ???XYZ Title???, I looked forward to being an impactful team member. Since ???XYZ Date???, I was a reliable and diligent employee at {body['company_name']} . I truly embodied our company’s inclusive and professional culture.
  
- With {body['time_worked']} of experience in my field, I brought a wealth of knowledge and skill to {body['company_name']} .
+ With {body['hire_date']} of experience in my field, I brought a wealth of knowledge and skill to {body['company_name']} .
 
 There was nothing to indicate, leading up to my dismissal, that there were any issues with my performance. My layoff was an abrupt shock to an otherwise excellent working relationship.
 

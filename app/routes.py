@@ -72,7 +72,6 @@ def answer():
 @app.route('/questions/getAnswers')
 def getAnswers():
     ans = {}
-    ans['time_worked'] = {}
     ans['name'] = request.cookies.get('name')
     ans['company_name'] = request.cookies.get('company')
     ans['job_title'] = request.cookies.get('jobTitle')
@@ -84,8 +83,7 @@ def getAnswers():
     ans['mood'] = request.cookies.get('mood')
     ans['address'] = request.cookies.get('personalAddress')
     ans['company_address'] = request.cookies.get('employerAddress')
-    ans['time_worked']['years'] = json.loads(request.cookies.get('time_worked'))['a1']
-    ans['time_worked']['months'] = json.loads(request.cookies.get('time_worked'))['a2']
+    ans['hire_date'] = request.cookies.get('hire_date')
     letter = letter_script.create_employment_letter(ans)
     print(letter + 'aaaaaaaaaaaaaaaaa')
     res = make_response(redirect('/questions/letterPreview'))
