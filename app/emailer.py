@@ -28,10 +28,13 @@ class Email:
         msg['To'] = self.to_addr
 
         # storing the subject
-        msg['Subject'] = "Subject test"
+        msg['Subject'] = "Here's your letter"
 
         # string to store the body of the mail
-        body = "This is a test :)"
+        body = "Thanks for using Write my Rights. Our mission is to help you to " \
+               "communicate so you can start solving an everyday legal problem. Your " \
+               "(free)(premium) letter is attached. Keep fighting the good fight. " \
+               "Like what you see? Get 10% off your next premium letter by using the promo code 10OFF."
 
         # attach the body with the msg instance
         msg.attach(MIMEText(body, 'plain'))
