@@ -1,10 +1,26 @@
 import urllib.parse
+import stripe
+import os
+from os import path, environ
 from app import app
-from flask import render_template, request, redirect, make_response
+from flask import render_template, request, redirect, make_response, jsonify
+from app.emailer import Email
+from app.worder import WordDoc
 from app import letter_script
+from dotenv import load_dotenv
 import json
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+
+basedir = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(basedir, '.flaskenv'))
+
+stripe_keys = {
+    "secret_key": environ.get("STRIPE_SECRET_KEY"),
+    "publishable_key": environ.get("STRIPE_PUBLISHABLE_KEY"),
+}
+
+stripe.api_key = stripe_keys["secret_key"]
 
 
 @app.route('/')
@@ -29,6 +45,76 @@ def fetchLetter():
 @app.route('/paymentDone')
 def paymentDone():
     return render_template("/paymentDone.html", title="Payment Done")
+
+@app.route('/paymentOption')
+def paymentOption():
+    return render_template("/paymentOption2.html", title="Payment Option")
+
+
+@app.route("/config")
+def get_publishable_key():
+    stripe_config = {"publicKey": stripe_keys["publishable_key"]}
+    return jsonify(stripe_config)
+
+
+@app.route("/create-checkout-session")
+def create_checkout_session():
+    domain_url = "http://localhost:5000/"
+    stripe.api_key = stripe_keys["secret_key"]
+
+    try:
+        # Create new Checkout Session for the order
+        # Other optional params include:
+        # [billing_address_collection] - to display billing address details on the page
+        # [customer] - if you have an existing Stripe Customer ID
+        # [payment_intent_data] - capture the payment later
+        # [customer_email] - prefill the email input in the form
+        # For full details see https://stripe.com/docs/api/checkout/sessions/create
+
+        # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
+        checkout_session = stripe.checkout.Session.create(
+            success_url=domain_url + "paymentDone",
+            cancel_url=domain_url + "paymentOption",
+            payment_method_types=["card"],
+            mode="payment",
+            line_items=[
+                {
+                    "name": "EmploymentLetter",
+                    "quantity": 1,
+                    "currency": "cad",
+                    "amount": "5000",
+                }
+            ]
+        )
+        return jsonify({"sessionId": checkout_session["id"]})
+    except Exception as e:
+        return jsonify(error=str(e)), 403
+
+
+
+@app.route("/webhook", methods=["POST"])
+def stripe_webhook():
+    payload = request.get_data(as_text=True)
+    sig_header = request.headers.get("Stripe-Signature")
+
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, stripe_keys["endpoint_secret"]
+        )
+
+    except ValueError as e:
+        # Invalid payload
+        return "Invalid payload", 400
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        return "Invalid signature", 400
+
+    # Handle the checkout.session.completed event
+    if event["type"] == "checkout.session.completed":
+        print("Payment was successful.")
+        # TODO: run some custom code here
+
+    return "Success", 200
 
 
 @app.route('/answer', methods=['GET', 'POST'])
