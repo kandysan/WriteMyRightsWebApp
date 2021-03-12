@@ -110,14 +110,11 @@ body {
     height: 6em;
     padding-left: 3em;
     transition: transform .2s;
+    outline: none;
 }
 
 .frontArrow:hover {
     transform: scale(1.15);
-}
-
-.frontArrow:active {
-    outline: none;
 }
 
 .buttonDiv {
