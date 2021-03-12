@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles/letterType.css') }}">
+        <!-- Montserrat Font -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+        <script src="https://js.stripe.com/v3/"></script>
+        <script src="{{ url_for('static', filename='main.js') }}"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+        <!-- Philosopher Font -->
+        <style>
+            @font-face {
+            font-family: Philosopher;
+            src: url('./fonts/Philosopher-Regular.ttf');
+          }
+        </style>
+        <title></title>
+        <meta charset = 'UTF8'>
+        <script></script>
+    </head>
+
+    <body>
+        <a href="./index"><img id="wrmNavbarPicture" src="{{url_for('static', filename='images/Write my Rights.PNG')}}"/></a>
+         <div id="wrmNavbarAlign">
+            <ul id="wrmNavbar">
+
+            </ul>
+        </div>
+
+        <div id="wrmDescriptionAlign">
+            <h2 id="wrmDescription">Payment Option.</b>
+            </br></br>
+            <div class="float_center">
+                <ul class="child">
+                  <li><div id="property">
+                    <a href="#"><input type="image" src="{{url_for('static', filename='images/card.png')}}" name="payButton"
+                                      id="payBtn" class="button is-primary" width="50" height="50"/></a>
+                    <p style="font-size:11px; color:black">Payment</p>
+                    </div></li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+
+            </h2>
+        </div>
+    </br></br>
+        <div id="wrmButtonsDiv">
+            <a href="/questions/fetchLetter"><button class="back">Back</button></a>
+            <a href="/questions/getAnswers"><button class="next">Next</button></a>
+        </div>
+    </body>
+</html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="writemyrights.css">
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles/index.css') }}">
         <!-- Montserrat Font -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
@@ -31,7 +31,7 @@
             <h2 id="wrmDescription">Payment Options</b>
             </br></br>
             <div id="payment">
-                <a href=""><img src="./credit.jpg" width="50" height="50"/></a>
+                <a href=""><img src="{{ url_for('static',filename='images/credit.JPG') }}" width="50" height="50"/></a>
                 <p style="font-size:11px">Credit Card</p>
             </div>
 
