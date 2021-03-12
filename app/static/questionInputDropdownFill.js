@@ -9,7 +9,7 @@ window.onload = function() {
             number.text = i;
             number.value = i;
             dropdown[k].options[i + 1] = number;
-            if (i == value) {
+            if (i == value && value != "") {
                 dropdown[k].options[i + 1].selected = true
             }
         }
