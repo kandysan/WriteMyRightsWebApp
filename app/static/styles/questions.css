@@ -83,7 +83,7 @@ body {
 
 .backArrow {
     width: 7em;
-    height: 5em;
+    height: 6em;
     margin-top: 1em;
     transition: transform .2s;
     cursor: pointer;
@@ -96,7 +96,10 @@ body {
 .frontArrow {
     width: 7em;
     height: 5em;
+    padding-left: 1em;
+    margin-top: 1em;
     padding-left: 3em;
+
     transition: transform .2s;
 }
 
