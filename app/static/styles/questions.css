@@ -85,23 +85,6 @@ body {
     border-bottom: 6px solid #303852;
 }
 
-#confirmEmailInput {
-    width: 1000px;
-    padding: 12px 0px;
-    border: none;
-    border-bottom: 2px solid #8493A0;
-    font-size: 38px;
-    background-color: None;
-    color: #8493A0;
-    font-family: 'Philosopher', sans-serif;
-    border-top: 20px solid None;
-    transition: border-bottom 0.1s;
-}
-
-#confirmEmailInput:focus {
-    outline: none;
-    border-bottom: 6px solid #303852;
-}
 
 /* .backButton{
     background-color: none;
