@@ -43,8 +43,9 @@ def answer():
             if 'answer' in request.form:
                 attempted_value = request.form['answer']
             # multi answers up to 10
-            elif 'answer1' in request.form:
+            else:
                 attempted_value = dict()
+                # if name for input = answer(1 - 10) this will store it all within a json object string before setting as a cookie
                 for i in range(9):
                     if 'answer' + str(1 + i) not in request.form:
                         break
@@ -60,13 +61,11 @@ def answer():
                 res.set_cookie(key, attempted_value)
                 return res
             else:
-                error = "Invalid answer provided for name. Try Again"
+                error = "Invalid Answer"
 
-        #return render_template("this_question", error = error)
         return error, 401
     except Exception as e:
         print(e)
-        #return render_template("this_question", error = error)
         return error, 402
 
 
@@ -115,7 +114,7 @@ def getAnswers():
     ans['months_worked'] = int((total_months_worked/12 % 1) * 12)
 
     # today's date
-    ans['date'] = datetime.today().strftime("%m/%d/%Y")
+    ans['date'] = datetime.today().strftime("%B %d, %Y")
     # job start date
     ans['job_start_date'] = date_hired.strftime("%B %d, %Y")
     # Date of layoff

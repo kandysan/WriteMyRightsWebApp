@@ -1,6 +1,5 @@
 
 
-
 def create_employment_letter(ans):
     if ans['mood'] == 'a' or ans['mood'] == 'A':
         letter = create_annoyed_letter(ans)
@@ -36,18 +35,15 @@ Dear {ans['company_name']} Superior,
 
 I appreciated my time spent at {ans['company_name']}. While I respect that fact that my layoff was not personal, I do feel that I 
 am not being treated fairly and have not been offered the compensation that I am entitled to under the circumstances.
-
 When I joined the company {ans['years_worked']} years and {ans['months_worked']} months ago as a  {ans['job_title']}, I looked forward to being an impactful team member. Since 
 {ans['job_start_date']}, I was a reliable and diligent employee at {ans['company_name']}. I truly embodied our company’s inclusive and professional 
 culture. With {ans['experience']} years of experience in my field, I brought a wealth of knowledge and skill to {ans['company_name']}. My layoff was an abrupt 
 shock to an otherwise excellent working relationship. 
-
 [A] Thank you for the offer of {ans['severance_paid']} weeks of severance. Unfortunately, it falls well below what I am entitled to under prevailing 
 employment legislation. Most notably, it will be difficult for me to find suitable work to match my experience and skills. I am 
 therefore entitled to additional compensation. 
 
 Given the circumstances, and in the interest of putting this behind us, I would be willing to accept 
-
 JUST [B]:
 {ans['severance_demand']} weeks of pay, being $$$$_____. This offer is fair and reasonable to both of us. 
 
@@ -181,7 +177,29 @@ Dear {ans['company_name']} Superior,<br>
 I appreciated my time spent at {ans['company_name']}. While I respect that fact that my layoff was not personal, I do feel that I 
 am not being treated fairly and have not been offered the compensation that I am entitled to under the circumstances.<br>
 <br>
-When I joined the company {ans['years_worked']} years and {ans['months_worked']} months ago as a {ans['job_title']}, I looked forward to being an impactful team member. Since 
+When I joined the company 
+"""
+    if ans['months_worked'] != 0 and ans['years_worked'] != 0:
+        if ans['years_worked'] != 1:
+            letter += f""" {ans['years_worked']} years """
+        else:
+            letter += ' 1 year '
+        if ans['months_worked'] != 1:
+            letter += f"""and {ans['months_worked']} months """
+        else:
+            letter += 'and 1 month '
+    else:
+        if ans['months_worked'] != 0:
+            if ans['months_worked'] != 1:
+                letter += f""" {ans['months_worked']} months """
+            else:
+                letter += ' 1 month '
+        else:
+            if ans['years_worked'] != 1:
+                letter += f""" {ans['years_worked']} years """
+            else:
+                letter += ' 1 year '
+    letter +=f"""ago as a {ans['job_title']}, I looked forward to being an impactful team member. Since 
 {ans['job_start_date']}, I was a reliable and diligent employee at {ans['company_name']}. I truly embodied our company’s inclusive and professional 
 culture. With {ans['experience']} years of experience in my field, I brought a wealth of knowledge and skill to {ans['company_name']}. My layoff was an abrupt 
 shock to an otherwise excellent working relationship."""
