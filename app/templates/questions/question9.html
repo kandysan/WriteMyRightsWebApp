@@ -21,8 +21,10 @@
 
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
-        <p class="questionText">When were you hired?*</p>
+        <p class="questionText">What was the date you were hired?</p>
         <input type="date" class="questionInput" value="{{request.form.answer}}" name="answer" required maxlength="50">
+        
+
         <input type="hidden" value="hire_date" name="key">
         <input type="hidden" value="/question10" name="next_page">
     </div>
@@ -35,6 +37,8 @@
     </div>
     </form>
 
-
+    <script src="{{url_for('static', filename='questionInputTextFill.js')}}">
+    </script>
+    
 </body>
 </html>
