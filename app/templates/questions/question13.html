@@ -21,8 +21,8 @@
 
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
-        <p class="questionText">Did they offer you severance? If so, how much?*</p>
-        <input type="number" class="questionInput" placeholder="ex. 1234567890" name="answer" value="{{request.form.answer}}" required maxlength="50">
+        <p class="questionText">Did they offer you severance? If so, how much? (In weeks)</p>
+        <input type="text" class="questionInput" placeholder="ex. 3 weeks" name="answer" value="{{request.form.answer}}">
         <input type="hidden" value="severance" name="key">
         <input type="hidden" value="/question14" name="next_page">
     </div>

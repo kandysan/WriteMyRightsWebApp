@@ -9,11 +9,11 @@ from app.worder import WordDoc
 from app import letter_script
 from dotenv import load_dotenv
 import json
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 basedir = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(basedir, '.flaskenv'))
-
-ans_dict = {}
 
 stripe_keys = {
     "secret_key": environ.get("STRIPE_SECRET_KEY"),
@@ -129,8 +129,9 @@ def answer():
             if 'answer' in request.form:
                 attempted_value = request.form['answer']
             # multi answers up to 10
-            elif 'answer1' in request.form:
+            else:
                 attempted_value = dict()
+                # if name for input = answer(1 - 10) this will store it all within a json object string before setting as a cookie
                 for i in range(9):
                     if 'answer' + str(1 + i) not in request.form:
                         break
@@ -146,39 +147,70 @@ def answer():
                 res.set_cookie(key, attempted_value)
                 return res
             else:
-                error = "Invalid answer provided for name. Try Again"
+                error = "Invalid Answer"
 
-        #return render_template("this_question", error = error)
         return error, 401
     except Exception as e:
         print(e)
-        #return render_template("this_question", error = error)
         return error, 402
+
+
+def month_delta(start_date, end_date):
+    delta = relativedelta(end_date, start_date)
+    return 12 * delta.years + delta.months
 
 
 @app.route('/questions/getAnswers')
 def getAnswers():
     ans = {}
-    ans['time_worked'] = {}
+    # client name
     ans['name'] = request.cookies.get('name')
-    ans['company_name'] = request.cookies.get('company')
-    ans['job_title'] = request.cookies.get('jobTitle')
-    ans['experience'] = request.cookies.get('experience')
-    ans['boss_name'] = request.cookies.get('bossName')
-    ans['reason'] = request.cookies.get('reason')
-    ans['severance'] = request.cookies.get('severance')
+    # client home address
+    ans['personal_address'] = request.cookies.get('personalAddress')
+    # client email
     ans['email'] = request.cookies.get('email')
-    ans['mood'] = request.cookies.get('mood')
-    ans['address'] = request.cookies.get('personalAddress')
+    # company name
+    ans['company_name'] = request.cookies.get('company')
+    # company's address
     ans['company_address'] = request.cookies.get('employerAddress')
-    ans['time_worked']['years'] = json.loads(request.cookies.get('time_worked'))['a1']
-    ans['time_worked']['months'] = json.loads(request.cookies.get('time_worked'))['a2']
-    letter = letter_script.create_employment_letter(ans)
-    print(letter)
-    WordDoc(letter, ans).create()
-    #Email(ans['email'], ans['name'] + ".docx").send()
+    # client job title
+    ans['job_title'] = request.cookies.get('jobTitle')
+    # length of time to find a job
+    ans['findJobLength'] = request.cookies.get('findJobLength')
+    # Amount of job experience
+    ans['experience'] = request.cookies.get('experience')
+    # company boss' name
+    ans['boss_name'] = request.cookies.get('bossName')
+    # reason for layoff
+    ans['reason'] = request.cookies.get('reason')
+    # severance paid (in weeks/months)
+    ans['severance_paid'] = request.cookies.get('severance')
+    # severance Demand
+    ans['severance_demand'] = request.cookies.get('severanceDemand')
+    # vacation pay
+    ans['vacation'] = request.cookies.get('vacation')
+    # client's mood (determines the letter template)
+    ans['mood'] = request.cookies.get('mood')
+
+    # time worked at the company
+    date_hired = datetime.strptime(request.cookies.get('hire_date'), '%Y-%m-%d')
+    date_fired = datetime.strptime(request.cookies.get('fireDate'), '%Y-%m-%d')
+    total_months_worked = (month_delta(date_hired, date_fired))
+    ans['years_worked'] = int(total_months_worked/12)
+    ans['months_worked'] = int((total_months_worked/12 % 1) * 12)
+
+    # today's date
+    ans['date'] = datetime.today().strftime("%B %d, %Y")
+    # job start date
+    ans['job_start_date'] = date_hired.strftime("%B %d, %Y")
+    # Date of layoff
+    ans['fire_date'] = date_fired.strftime("%B %d, %Y")
+    # response date
+    ans['response_date'] = datetime.strptime(request.cookies.get('deadline'), '%Y-%m-%d').strftime("%B %d, %Y")
+
+    letter = letter_script.create_employment_letter_preview(ans)
     res = make_response(redirect('/questions/letterPreview'))
     letter = urllib.parse.quote(letter)
     res.set_cookie('written_letter', letter)
-    return res
 
+    return res
