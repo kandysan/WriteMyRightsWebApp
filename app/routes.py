@@ -3,9 +3,9 @@ from app import app
 from flask import render_template, request, redirect, make_response
 from app import letter_script
 import json
-import datetime
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
-ans_dict = {}
 
 @app.route('/')
 @app.route('/index')
@@ -70,18 +70,14 @@ def answer():
         return error, 402
 
 
+def month_delta(start_date, end_date):
+    delta = relativedelta(end_date, start_date)
+    return 12 * delta.years + delta.months
+
+
 @app.route('/questions/getAnswers')
 def getAnswers():
-    date = datetime.date.today()
-    date = date.strftime("%m/%d/%Y")
-    d = datetime.timedelta()
     ans = {}
-    # todays date
-    ans['date'] = date
-    # job start date
-    ans['job_start_date'] = '2021-01-01'
-    # response date
-    ans['response_date'] = request.cookies.get('deadline')
     # client name
     ans['name'] = request.cookies.get('name')
     # client home address
@@ -106,13 +102,28 @@ def getAnswers():
     ans['severance_paid'] = request.cookies.get('severance')
     # severance Demand
     ans['severance_demand'] = request.cookies.get('severanceDemand')
+    # vacation pay
+    ans['vacation'] = request.cookies.get('vacation')
     # client's mood (determines the letter template)
     ans['mood'] = request.cookies.get('mood')
-    # time worked at the company
-    ans['time_worked']['years'] = json.loads(request.cookies.get('time_worked'))['a1']
-    ans['time_worked']['months'] = json.loads(request.cookies.get('time_worked'))['a2']
 
-    letter = letter_script.create_employment_letter(ans)
+    # time worked at the company
+    date_hired = datetime.strptime(request.cookies.get('hire_date'), '%Y-%m-%d')
+    date_fired = datetime.strptime(request.cookies.get('fireDate'), '%Y-%m-%d')
+    total_months_worked = (month_delta(date_hired, date_fired))
+    ans['years_worked'] = int(total_months_worked/12)
+    ans['months_worked'] = int((total_months_worked/12 % 1) * 12)
+
+    # today's date
+    ans['date'] = datetime.today().strftime("%m/%d/%Y")
+    # job start date
+    ans['job_start_date'] = date_hired.strftime("%B %d, %Y")
+    # Date of layoff
+    ans['fire_date'] = date_fired.strftime("%B %d, %Y")
+    # response date
+    ans['response_date'] = datetime.strptime(request.cookies.get('deadline'), '%Y-%m-%d').strftime("%B %d, %Y")
+
+    letter = letter_script.create_employment_letter_preview(ans)
     res = make_response(redirect('/questions/letterPreview'))
     letter = urllib.parse.quote(letter)
     res.set_cookie('written_letter', letter)
