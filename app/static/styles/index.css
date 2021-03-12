@@ -1,0 +1,426 @@
+html {
+    scroll-behavior: smooth;
+  }
+
+body {
+    background-color: white;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+
+::-webkit-scrollbar-track {
+    background: #BABABA; 
+  }
+
+::-webkit-scrollbar-thumb {
+    background: black;
+    border-radius: 10px;
+  }
+
+#homeNavbarPicture {
+    position: relative;
+    width: 5em;
+    height: 5em;
+    padding-top: 0.5em;
+    padding-left: 5em;
+    cursor: pointer;
+}
+
+#homeNavbarAlign {
+    text-align: center;
+    margin:auto;
+}
+
+#homeNavbar {
+    display: inline-block;
+    list-style-type: none;
+    padding: 0;
+}
+
+
+#homeTitle {
+    text-align: center;
+    font-family: 'Philosopher';
+    color: #333333;
+    font-size: 6em;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    margin-top: 0.5em;
+}
+
+#homeDescription {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: #979BA8;
+    font-size: 1.5em;
+    width: 60%;
+    font-weight: 700;
+    margin-top: -2em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#homeButtonsDiv {
+    text-align: center;
+}
+
+.homeButtons {
+    background-color: #F7F7F8;
+    color: #303852;
+    border-style: none;
+    width: 14em;
+    border-radius: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 1.5em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    outline:none;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.homeButtons:hover,
+.homeButtons:focus {
+    background-color: #303852;
+    color: white;
+    transform: scale(1.02);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+#homeInBetweenButtons {
+    display: inline-block;
+    color: #979BA8;
+    font-family: 'Philosopher';
+    padding-left: 3em;
+    padding-right: 3em;
+    font-size: 3em;
+}
+
+.faqHeader {
+    text-align: left;
+    font-family: 'Philosopher';
+    color: #0041A4;
+    font-size: 2.75em;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    margin-top: 0.5em;
+}
+
+.faqDescription {
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    color: #979BA8;
+    font-size: 1.25em;
+    font-weight: 400;
+    margin-top: -0.5em;
+}
+
+#faqTopDivs {
+    width: 100%;
+    display: inline-block;
+}
+
+#faqBottomDivs {
+    width: 100%;
+    display: inline-block;
+}
+
+.faqDiv {
+    width: 35%;
+    padding-left: 5em;
+    padding-top: 5em;
+    text-align: left;
+    float: left;
+    padding-bottom: 5em;
+}
+
+.faqSecondDiv {
+    width: 35%;
+    padding-right: 5em;
+    padding-top: 5em;
+    float: right;
+    padding-bottom: 5em;
+}
+
+#wrmButton3 {
+    margin-top: 1em;
+}
+
+
+.faqButtons {
+    background-color: #F7F7F8;
+    color: #303852;
+    border-style: none;
+    width: 16em;
+    border-radius: 2em;
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 1.5em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    outline:none;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.faqButtons:hover,
+.faqButtons:focus {
+    background-color: #303852;
+    color: white;
+    transform: scale(1.02);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+#faqBottomDiv1 {
+    margin-top: -3em;
+}
+
+#faqBottomDiv2 {
+    margin-top: -3em;
+}
+
+
+#faqThirdDiv {
+    width: 35em;
+    padding-bottom: 5em;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.faqHeader2 {
+    text-align: center;
+    font-family: 'Philosopher';
+    color: #0041A4;
+    font-size: 2.75em;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    margin-top: 0.5em;
+    display: inline-block;
+}
+
+.faqDescription2 {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: #979BA8;
+    font-size: 1.25em;
+    font-weight: 400;
+    margin-top: -0.5em;
+}
+
+#faqQuestionsButton {
+    margin-top: 1em;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow:hidden; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 2%;
+    padding-left: 5%;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    border-radius: 2em;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 50px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .close2 {
+    color: #aaa;
+    float: right;
+    font-size: 50px;
+    font-weight: bold;
+  }
+  
+  .close2:hover,
+  .close2:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .close3 {
+    color: #aaa;
+    float: right;
+    font-size: 50px;
+    font-weight: bold;
+  }
+  
+  .close3:hover,
+  .close3:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .close4 {
+    color: #aaa;
+    float: right;
+    font-size: 50px;
+    font-weight: bold;
+  }
+  
+  .close4:hover,
+  .close4:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #questionsModalImageDiv {
+    text-align: center;
+  }
+
+#questionsModalImage {
+    width: 35em;
+    height: 20em;
+}
+
+
+
+#questionsModalDescription {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: #979BA8;
+    font-size: 1.25em;
+    font-weight: 700;
+    width: 40em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#wrmModalTitle {
+    text-align: left;
+    font-family: 'Philosopher';
+    color: #0041A4;
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-top: 0.5em;
+  }
+
+#wrmModalDescription {
+    text-align: left;
+    font-family: 'Philosopher';
+    color: #979BA8;
+    font-size: 2em;
+    font-weight: 400;
+    margin-top: 2em;
+    margin-bottom: 5em;
+}
+
+#wrmModalButton {
+    background-color: #F7F7F8;
+    color: #303852;
+    border-style: none;
+    width: 14em;
+    border-radius: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-right: 0.5em;
+    margin-top: 3em;
+    font-size: 2em;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    outline:none;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+#wrmModalButton:hover,
+#wrmModalButton:focus {
+    background-color: #303852;
+    color: white;
+    transform: scale(1.02);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+#wrmButtonDiv {
+    text-align: center;
+}
+
+#tosModalTitle {
+    text-align: center;
+    font-family: 'Philosopher';
+    color: #0041A4;
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-top: 0.5em;
+  }
+
+#tosModalDescription {
+    text-align: left;
+    font-family: 'Philosopher';
+    color: #979BA8;
+    font-size: 1.75em;
+    font-weight: 400;
+    margin-top: 2em;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 14em;
+}
+
+#ppModalTitle {
+    text-align: center;
+    font-family: 'Philosopher';
+    color: #0041A4;
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-top: 0.5em;
+  }
+
+#ppModalDescription {
+    text-align: left;
+    font-family: 'Philosopher';
+    color: #979BA8;
+    font-size: 1.75em;
+    font-weight: 400;
+    margin-top: 2em;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 14em;
+}
+
+
+.tosAndPp {
+    color: blue;
+    cursor: pointer;
+}

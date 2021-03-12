@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/questions.css') }}">
+    <title>Write My Rights</title>
+    <!-- Montserrat Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <a href="/index"><img class="greylogo" src="{{ url_for('static',filename='images/black logo.PNG') }}"/></a>
+    
+    <div class="progressDiv">
+        <svg class="progressBarOne" width="1100 px" height="20 px">
+            <rect width="1000px" height="10px" style="fill: #dddddd;" rx="8" ry="8" />
+            <rect width="500px" height="10px" style="fill: #303852;" rx="8" ry="8" />
+        </svg>
+    </div>
+
+    <form action="{{url_for('answer')}}" method="post">
+    <div class="questionDiv">
+        <p class="questionText">How long did you work there for?*</p>
+        <p>months</p>
+        <select name="answer1" class="dropdown" required>
+        </select> &nbsp;&nbsp;
+
+        <p>years</p>
+
+        <select name="answer2" class="dropdown" required>
+        </select> &nbsp;&nbsp;
+        
+
+        <input type="hidden" value="time_worked" name="key">
+        <input type="hidden" value="/question10" name="next_page">
+    </div>
+
+    <br>
+
+    <div class="buttonDiv">
+        <a href="/questions/question8"><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"></a>
+        <input type="image" name="submit" src="{{url_for('static', filename='images/black arrow.png')}}" alt="Next" class="frontArrow"/>
+    </div>
+    </form>
+
+    <script>
+        window.onload = function() {
+            let dropdown = document.getElementsByClassName("dropdown"); 
+            for (item in dropdown) {
+                for (i = 0; i < 101; i++) {
+                    let number = document.createElement("option")
+                    number.text = i
+                    number.value = i
+                    dropdown[item].options[i] = number;
+                }
+            }
+        }
+        
+    </script>
+    
+</body>
+</html>

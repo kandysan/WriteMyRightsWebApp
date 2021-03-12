@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/questions.css') }}">
+    <title>Write My Rights</title>
+    <!-- Montserrat Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <a href="/index"><img class="greylogo" src="{{ url_for('static',filename='images/black logo.PNG') }}"/></a>
+    
+    <div class="progressDiv">
+        <svg class="progressBarOne" width="1100 px" height="20 px">
+            <rect width="1000px" height="10px" style="fill: #dddddd;" rx="8" ry="8" />
+            <rect width="500px" height="10px" style="fill: #303852;" rx="8" ry="8" />
+        </svg>
+    </div>
+
+    <form action="{{url_for('answer')}}" method="post">
+    <div class="questionDiv">
+        <p class="questionText">How long did you work there for?*</p>
+        <input type="text" class="questionInput" placeholder="ex. 1 month" value="{{request.form.answer}}" name="answer">
+        <!-- <select name="Years" class="dropdown">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+        </select> &nbsp;&nbsp;
+
+        <p>years</p>
+
+        <select name="Months" class="dropdown">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+          </select>
+
+          <p>months</p> -->
+        <input type="hidden" value="length" name="key">
+        <input type="hidden" value="/questionSix" name="next_page">
+    </div>
+
+    <br>
+
+    <div class="buttonDiv">
+        <a href="/questions/questionFour"><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"></a>
+        <input type="image" name="submit" src="{{url_for('static', filename='images/black arrow.png')}}" alt="Next" class="frontArrow"/>
+    </div>
+    </form>
+    
+</body>
+</html>

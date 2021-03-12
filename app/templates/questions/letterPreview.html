@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset = "UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/questions.css') }}">
+    <title>Write My Rights</title>
+    <!-- Montserrat Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+        <a href="/index"><img class="greylogo" src="{{url_for('static', filename='images/Write my Rights.PNG')}}"/></a>
+    
+    <div class="progressDiv">
+    <svg class="progressBarOne" width="1100 px" height="20 px">
+            <rect width="1000px" height="10px" style="fill: #303852;" rx="8" ry="8" />
+    </svg>
+    </div>
+
+    <div id="letterPreviewDiv">
+        <p id="titleDiv"><i>Here's a preview of your free letter. The greyed out section is part of our premium letter features. 
+            Click below to get your letter!</i></p><br><br>
+        <p class="letterPreviewText">
+        </p>
+
+    </div>
+
+    <br>
+
+    <div id="letterPreviewDiv2">
+        <a href="/questions/question16"><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow letterPreviewBackArrow"></a>
+        <a href="/getAnswers"><button id="sendMeMyLetter">Send Me My Letter</button></a>
+    </div>
+
+    <script>
+        window.onload = (event) => {
+            let letter = getCookie("written_letter")
+            let letters = document.getElementsByClassName("letterPreviewText")
+            for (var i=0; i < letters.length; i++) {
+                letters[i].innerHTML = letter;
+            }
+        }
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for(var i = 0; i <ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+            }
+    </script>
+    
+</body>
+</html>

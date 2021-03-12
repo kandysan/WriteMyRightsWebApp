@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles/writemyrights.css') }}">
+        <!-- Montserrat Font -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+        <!-- Philosopher Font -->
+        <style>
+            @font-face {
+            font-family: Philosopher;
+            src: url('./fonts/Philosopher-Regular.ttf');
+          }
+        </style>
+        <title></title>
+        <meta charset = 'UTF8'>
+        <script></script>
+    </head>
+
+    <body>
+        <a href="/index"><img id="wrmNavbarPicture" src="{{ url_for('static',filename='images/Write my Rights.PNG') }}"/></a>
+
+        <div id="wrmNavbarAlign">
+            <ul id="wrmNavbar">
+          
+            </ul>
+        </div>
+
+        <div id="wrmDescriptionAlign">
+            <h2 id="wrmDescription">
+                </br></br>Your letter is ready!
+            </br>We`ve already emailed them to you
+            </h2>
+        </div>
+    </br></br>
+        <div id="wrmButtonsDiv">
+            <a href="/index"><button class="wrmButtons">Home</button></a>
+            <a href="/letterType"><button class="wrmButtons">Write Another Letter</button></a>
+
+        </div>
+    </body>
+</html>
