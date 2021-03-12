@@ -127,4 +127,5 @@ def getAnswers():
     res = make_response(redirect('/questions/letterPreview'))
     letter = urllib.parse.quote(letter)
     res.set_cookie('written_letter', letter)
+
     return res
