@@ -31,7 +31,12 @@ def create_annoyed_letter(ans):
 
 Re: Response to Layoff
 
-Dear {ans['company_name']} Superior,
+When I joined the company {body['hire_date']} as a {body['job_title']}, 
+I looked forward to being an impactful team member. Since XYZ Date, 
+I was a reliable and diligent employee at {body['company_name']}. I truly embodied our company’s 
+inclusive and professional culture. With {body['experience']} years of experience in my field, 
+I brought a wealth of knowledge and skill to {body['company_name']}. My layoff was an abrupt 
+shock to an otherwise excellent working relationship.<br><br>
 
 I appreciated my time spent at {ans['company_name']}. While I respect that fact that my layoff was not personal, I do feel that I 
 am not being treated fairly and have not been offered the compensation that I am entitled to under the circumstances.
@@ -80,13 +85,9 @@ Dear {ans['company_name']} Superior,
 I’m shocked and disappointed to be laid off by {ans['company_name']}. I have been a key member of the {ans['job_title']} team for {ans['years_worked']} years 
 and {ans['months_worked']} months now. 
 
-The company’s vision aligns with my values and aspirations, and I anticipated a long and fruitful relationship with {ans['company_name']}. 
-I have been a committed and dedicated employee since day 1 - being let go like this is unjustified and wrong. My layoff was an 
-abrupt shock to an otherwise excellent working relationship - it is not only causing me distress but is also doing harm to my 
-reputation and career. At my level, a new opportunity can take up to {ans['findJobLength']} to source.
-
-[A] Your offer of {ans['severance_paid']} weeks of severance is less than what I believe I am entitled to. Given the situation, the industry, and the 
-position I held, I believe I am entitled to a minimum  of {ans['severance_demand']} weeks of severance.
+When I joined the company {body['hire_date']} ago as a ???XYZ Title???, I looked forward to being an impactful team member. Since ???XYZ Date???, I was a reliable and diligent employee at {body['company_name']} . I truly embodied our company’s inclusive and professional culture.
+ 
+ With {body['hire_date']} of experience in my field, I brought a wealth of knowledge and skill to {body['company_name']} .
 
 At this point, I would like to be able to come to an agreement without resorting to more formal options. I highly respect 
 {ans['company_name']} and what it is trying to accomplish. But given a number of factors mentioned above (including my level of seniority, 

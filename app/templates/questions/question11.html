@@ -21,18 +21,18 @@
 
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv questionRadioDiv" >
-        <p class="questionText">How long do you think it will take you to find a new job?*</p>
-        <input type="radio" id="A"  name="answer" value="A" checked>
+        <p class="questionText">How long do you think it will take you to find a new job?</p>
+        <input type="radio" id="A" class="radioButtons"  name="answer" value="A">
         <label for ="A"><b>A</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Up to one month</label>
 
-        <input type="radio" id="B" name="answer" value="B">
+        <input type="radio" id="B" class="radioButtons" name="answer" value="B">
         <label for ="B"><b>B</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Between 1 and 3 months</label>
 
-        <input type="radio" id="C" name="answer" value="C">
+        <input type="radio" id="C" class="radioButtons" name="answer" value="C">
         <label for = "C"><b>C</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Between 3 to 6 months</label>
 
-        <input type="radio" id="D" name="answer" value="D">
-        <label for = "C"><b>C</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Between 3 to 6 months</label>
+        <input type="radio" id="D" class="radioButtons" name="answer" value="D">
+        <label for = "D"><b>D</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; More than 6 months</label>
 
         <input type="hidden" value="findJobLength" name="key">
         <input type="hidden" value="/question12" name="next_page">
@@ -45,7 +45,8 @@
         <input type="image" name="submit" src="{{url_for('static', filename='images/black arrow.png')}}" alt="Next" class="frontArrow"/>
     </div>
     </form>
-    <script src="questions.js"></script>
+    <script src="{{url_for('static', filename='questionInputRadioFill.js')}}">
+    </script>
 
     
 </body>
