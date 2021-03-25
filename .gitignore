@@ -4,3 +4,5 @@
 .idea/
 .get/
 *.docx
+app/__pycache__/letter_script.cpython-37.pyc
+app/__pycache__/letter_script.cpython-37.pyc
