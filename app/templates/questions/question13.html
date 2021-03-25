@@ -11,29 +11,37 @@
 <body>
 
     <a href="/index"><img class="greylogo" src="{{ url_for('static',filename='images/Write my Rights.PNG') }}"/></a>
-    
+
     <div class="progressDiv">
-        <svg class="progressBarOne" width="1100 px" height="20 px">
-            <rect width="1000px" height="10px" style="fill: #dddddd;" rx="8" ry="8" />
-            <rect width="700px" height="10px" style="fill: #303852;" rx="8" ry="8" />
-        </svg>
+    <svg class="progressBarOne" width="1100 px" height="20 px">
+        <rect width="1000px" height="10px" style="fill: #dddddd;" rx="8" ry="8" />
+        <rect width="750px" height="10px" style="fill: #303852;" rx="8" ry="8" />
+    </svg>
     </div>
 
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
-        <p class="questionText">Did they offer you severance? If so, how much? (In weeks)</p>
-        <input type="text" class="questionInput" placeholder="ex. 3 weeks" name="answer" value="{{request.form.answer}}">
-        <input type="hidden" value="severance" name="key">
+        <p class="questionText">How much severance do you want to demand?</p>
+        <p class="dropdownHeader">Weeks:</p>
+        <select name="answer" class="dropdown" required>
+            <option value=""></option>
+        </select> &nbsp;&nbsp; 
+        <input type="hidden" value="severanceDemand" name="key">
         <input type="hidden" value="/question14" name="next_page">
     </div>
 
     <br>
 
     <div class="buttonDiv">
-        <a href="/questions/question12"><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"></a>
+        <a href='/questions/question12'><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"/></a>
         <input type="image" name="submit" src="{{url_for('static', filename='images/black arrow.png')}}" alt="Next" class="frontArrow"/>
     </div>
     </form>
-    
+
+
+    <script src="{{url_for('static', filename='questionInputDropdownFill.js')}}">
+    </script>
+
+
 </body>
 </html>

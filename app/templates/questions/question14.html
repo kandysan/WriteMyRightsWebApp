@@ -21,9 +21,12 @@
 
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
-        <p class="questionText">How much severance do you want to demand? (In weeks?)</p>
-        <input type="text" class="questionInput" placeholder="ex. 5 weeks" value="{{request.form.answer}}" name="answer">
-        <input type="hidden" value="severanceDemand" name="key">
+        <p class="questionText">How much unpaid vacation are you owed?</p>
+        <p class="dropdownHeader">Weeks:</p>
+        <select name="answer" class="dropdown" required>
+            <option value=""></option>
+        </select> &nbsp;&nbsp; 
+        <input type="hidden" value="vacation" name="key">
         <input type="hidden" value="/question15" name="next_page">
     </div>
 
@@ -35,6 +38,8 @@
     </div>
     </form>
 
+    <script src="{{url_for('static', filename='questionInputDropdownFill.js')}}">
+    </script>
 
 </body>
 </html>
