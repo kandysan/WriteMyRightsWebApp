@@ -12,7 +12,7 @@ from email import encoders
 
 class Email:
 
-    def __init__(self, to_addr: str = "nathancbroyles@gmail.com", file_name: str = "email1.docx"):
+    def __init__(self, to_addr: str = "anthonyqraymundo@gmail.com", file_name: str = "email1.docx"):
         self.from_addr = "noreply.writemyrights@gmail.com"
         self.to_addr = to_addr
         self.file_name = file_name
