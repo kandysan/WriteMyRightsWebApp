@@ -21,6 +21,7 @@
 
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
+
         <p class="questionText">How much unpaid vacation are you owed?</p>
         <p class="dropdownHeader">Weeks:</p>
         <select name="answer" class="dropdown" required>
@@ -40,6 +41,6 @@
 
     <script src="{{url_for('static', filename='questionInputDropdownFill.js')}}">
     </script>
-
+  
 </body>
 </html>

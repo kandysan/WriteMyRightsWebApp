@@ -210,6 +210,8 @@ def getAnswers():
     ans['response_date'] = datetime.strptime(request.cookies.get('deadline'), '%Y-%m-%d').strftime("%B %d, %Y")
 
     letter = letter_script.create_employment_letter_preview(ans)
+    WordDoc(letter, ans).create()
+    #Email(ans['email'], ans['name'] + ".docx").send()
     res = make_response(redirect('/questions/letterPreview'))
     letter = urllib.parse.quote(letter)
     res.set_cookie('written_letter', letter)
