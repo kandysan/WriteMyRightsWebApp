@@ -34,7 +34,7 @@
         <div id="homeButtonsDiv">
             <button class="homeButtons" id="wrmButton1">WRITE MY RIGHTS</button>
             <p id="homeInBetweenButtons">or</p>
-            <button class="homeButtons" onclick="faqScrollFunction()">TELL ME MORE</button>
+            <button class="homeButtons" id="scroll" onclick="faqScrollFunction()">TELL ME MORE</button>
         </div>
 
         <!--
@@ -516,6 +516,20 @@
     </body>
 
     <script>
+
+        function unfocusButtons() {
+            buttons = document.getElementsByClassName("homeButtons")
+            for (var i=0; i < buttons.length; i++) {
+                buttons[i].blur()
+            }
+
+            faqButtons = document.getElementsByClassName("faqButtons")
+            for (var i=0; i < faqButtons.length; i++) {
+                console.log(faqButtons[i])
+                faqButtons[i].blur()
+            }
+        }
+
         function faqScrollFunction() {
             var faqScroll = document.getElementById("faqScroll");
 
@@ -524,6 +538,7 @@
             block: "start",
             inline: "nearest"
             });
+            unfocusButtons()
         } 
         // Get body to stop scrolling later
         var body = document.body;
@@ -542,6 +557,7 @@
         questionBtn.onclick= function() {
             questionModal.style.display = "block";
             body.style.overflow = "hidden";
+            unfocusButtons();
         }
 
         // TOS/PP Agreement Modal Section
@@ -563,31 +579,37 @@
         wrmBtn1.onclick = function() {
             wrmModal.style.display = "block";
             body.style.overflow = "hidden";
+            unfocusButtons()
         }
 
         wrmBtn2.onclick = function() {
             wrmModal.style.display = "block";
             body.style.overflow = "hidden";
+            unfocusButtons()
         }
 
         wrmBtn3.onclick = function() {
             wrmModal.style.display = "block";
             body.style.overflow = "hidden";
+            unfocusButtons()
         }
 
         wrmBtn4.onclick = function() {
             wrmModal.style.display = "block";
             body.style.overflow = "hidden";
+            unfocusButtons()
         }
 
         wrmBtn5.onclick = function() {
             wrmModal.style.display = "block";
             body.style.overflow = "hidden";
+            unfocusButtons()
         }
 
         wrmBtn6.onclick = function() {
             wrmModal.style.display = "block";
             body.style.overflow = "hidden";
+            unfocusButtons()
         }
 
         // TOS Modal Section
@@ -605,6 +627,7 @@
             tosModal.style.display = "block";
             body.style.overflow = "hidden";
             wrmModal.style.display = "none";
+            unfocusButtons();
         }
 
         // PP Modal Section
@@ -622,6 +645,7 @@
             ppModal.style.display = "block";
             body.style.overflow = "hidden";
             wrmModal.style.display = "none";
+            unfocusButtons();
         }
 
         // Modals Close Section
