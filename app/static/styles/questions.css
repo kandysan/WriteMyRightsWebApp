@@ -1,7 +1,24 @@
+html {
+    scroll-behavior: smooth;
+  }
+
 body {
     background-color: white;
     overflow-x: hidden;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+
+::-webkit-scrollbar-track {
+    background: #BABABA; 
+  }
+
+::-webkit-scrollbar-thumb {
+    background: black;
+    border-radius: 10px;
+  }
 
 @font-face {
     font-family: Philosopher;
@@ -42,6 +59,7 @@ body {
     position: relative;
     padding-left: 20%;
     width: 60%;
+    margin-bottom: -5%;
 }
 
 .questionDiv5 {
@@ -59,19 +77,14 @@ body {
     background-color: None;
     color: #8493A0;
     font-family: 'Philosopher', sans-serif;
+    transition: border-bottom 0.1s;
 }
 
-#confirmEmailInput {
-    width: 1000px;
-    padding: 12px 0px;
-    border: none;
-    border-bottom: 2px solid #8493A0;
-    font-size: 38px;
-    background-color: None;
-    color: #8493A0;
-    font-family: 'Philosopher', sans-serif;
-    border-top: 20px solid None;
+.questionInput:focus {
+    outline: none;
+    border-bottom: 6px solid #303852;
 }
+
 
 /* .backButton{
     background-color: none;
@@ -83,8 +96,7 @@ body {
 
 .backArrow {
     width: 7em;
-    height: 6em;
-    margin-top: 1em;
+    height: 5em;
     transition: transform .2s;
     cursor: pointer;
 }
@@ -95,12 +107,11 @@ body {
 
 .frontArrow {
     width: 7em;
-    height: 5em;
-    padding-left: 1em;
-    margin-top: 1em;
+    height: 6em;
     padding-left: 3em;
 
     transition: transform .2s;
+    outline: none;
 }
 
 .frontArrow:hover {
@@ -108,11 +119,10 @@ body {
 }
 
 .buttonDiv {
-    position: relative;
-    padding-top: 10%;
-    padding-left: 22em;
+    position:absolute;
+    padding-left: 20%;
     height: 10%;
-    width: auto;
+    bottom: 5%;
 }
 
 .questionButton {
@@ -146,7 +156,7 @@ body {
     font-size: 22px;
     font-family: 'Montserrat', sans-serif;
     border-radius: 6px;
-    padding: 20px 35px;
+    padding: 10px 25px;
     text-align: left;
     width: 620px;
     transition-duration: 0.3s;
@@ -167,8 +177,8 @@ body {
   }
 
 #writingLetterText {
-    font-family: 'Philosopher', sans-serif; 
-    color: black; 
+    font-family: 'Philosopher', sans-serif;
+    color: black;
     font-size: 56px;
     letter-spacing: 0.03em;
     text-align: center;
@@ -245,6 +255,15 @@ body {
 
 #blurText {
     filter: blur(5px);
+    font-family: 'Philosopher', sans-serif;
+    color: black;
+    font-size: 30px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .dropdown {
@@ -256,4 +275,20 @@ body {
     color: #8493A0;
     font-family: 'Philosopher', sans-serif;
     height: 50px;
+    transition: border-bottom 0.1s;
+}
+
+.dropdown:focus {
+    outline: none;
+    border-bottom: 6px solid #303852;
+}
+
+.dropdownHeader {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: medium;
+    font-size: 30px;
+    color: black;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid #303852;
+    width: fit-content;
 }

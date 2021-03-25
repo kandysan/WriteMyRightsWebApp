@@ -21,11 +21,13 @@
 
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
-        <p class="questionText">How much unpaid vacation are you owned?*</p>
-        <input type="text" class="questionInput" placeholder="ex. 10 weeks" value="{{request.form.answer}}" name="answer" required maxlength="50">
+        <p class="questionText">How much unpaid vacation are you owned?</p>
+        <p class="dropdownHeader">Weeks:</p>
+        <select name="answer" class="dropdown" required>
+            <option value=""></option>
+        </select> &nbsp;&nbsp; 
         <input type="hidden" value="vacation" name="key">
         <input type="hidden" value="/question16" name="next_page">
-<!--        <input type="hidden" value="/questionTwo" name="next_page">-->
     </div>
 
     <br>
@@ -36,6 +38,8 @@
     </div>
     </form>
 
+    <script src="{{url_for('static', filename='questionInputDropdownFill.js')}}">
+    </script>
 
 </body>
 </html>
