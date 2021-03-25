@@ -144,7 +144,7 @@ def answer():
             res = make_response(redirect('/questions' + next_page))
 
             if type(attempted_value) == str or type(attempted_value) == dict:
-                res.set_cookie(key, attempted_value)
+                res.set_cookie(key, attempted_value, max_age=3600)
                 return res
             else:
                 error = "Invalid Answer"
