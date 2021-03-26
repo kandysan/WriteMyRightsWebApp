@@ -40,32 +40,6 @@ class Email:
         # attach the body with the msg instance
         msg.attach(MIMEText(body, 'plain'))
 
-        # Remove HTML tags from file to be sent
-        main_dir = os.path.dirname(__file__)
-        doc = docx.Document(main_dir + '\\temporary_emails\\' + self.file_name)
-        
-        for line in doc.paragraphs:
-            str_list = line.text.split("\n")
-            line.text = ""
-
-        iterate = 0
-        index_array = []
-        for i in str_list:
-            if '<br>' in i:
-                index_array.append(iterate)
-            elif '<p id="blurText">' in i:
-                index_array.append(iterate)
-            elif '</p>'in i:
-                index_array.append(iterate)
-            iterate += 1
-
-        index_array.reverse()
-        for k in index_array:
-            del str_list[k]
-        for i in str_list:
-            doc.add_paragraph(i)
-        doc.save(main_dir + '\\temporary_emails\\' + self.file_name)
-
         # open the file to be sent
         main_dir = os.path.dirname(__file__)
         rel_path = "temporary_emails/" + self.file_name
