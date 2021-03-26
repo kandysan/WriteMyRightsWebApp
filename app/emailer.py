@@ -47,22 +47,21 @@ class Email:
         for line in doc.paragraphs:
             str_list = line.text.split("\n")
             line.text = ""
+
         iterate = 0
+        index_array = []
         for i in str_list:
             if '<br>' in i:
-                print(i)
-                str_list.remove(i)
+                index_array.append(iterate)
             elif '<p id="blurText">' in i:
-                print(i)
-                print(str_list.index(i))
-                str_list.remove(i)
+                index_array.append(iterate)
             elif '</p>'in i:
-                print(i)
-                str_list.remove(i)
-            else:
-                iterate += 1
+                index_array.append(iterate)
+            iterate += 1
 
-        print(str_list)
+        index_array.reverse()
+        for k in index_array:
+            del str_list[k]
         for i in str_list:
             doc.add_paragraph(i)
         doc.save(main_dir + '\\temporary_emails\\' + self.file_name)
