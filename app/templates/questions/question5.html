@@ -21,7 +21,7 @@
 
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
-        <p class="questionText">What is your ex-boss(es) name?</p>
+        <p class="questionText">What is your ex-boss(es) name? (Leave blank if you do not know)</p>
         <input type="text" class="questionInput" placeholder="ex. John Smith" name="answer" value="{{request.form.answer}}" maxlength="50">
         <input type="hidden" value="bossName" name="key">
         <input type="hidden" value="/question6" name="next_page">

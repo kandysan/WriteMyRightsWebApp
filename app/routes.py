@@ -145,6 +145,9 @@ def answer():
             res = make_response(redirect('/questions' + next_page))
 
             if type(attempted_value) == str or type(attempted_value) == dict:
+                if key == 'bossName':
+                    if attempted_value == '':
+                        attempted_value = 'Sir or Madam'
                 res.set_cookie(key, attempted_value)
                 return res
             else:
