@@ -4,6 +4,7 @@
 # libraries to be imported 
 import smtplib
 import os
+import docx
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
@@ -38,6 +39,33 @@ class Email:
 
         # attach the body with the msg instance
         msg.attach(MIMEText(body, 'plain'))
+
+        # Remove HTML tags from file to be sent
+        main_dir = os.path.dirname(__file__)
+        doc = docx.Document(main_dir + '\\temporary_emails\\' + self.file_name)
+        
+        for line in doc.paragraphs:
+            str_list = line.text.split("\n")
+            line.text = ""
+        iterate = 0
+        for i in str_list:
+            if '<br>' in i:
+                print(i)
+                str_list.remove(i)
+            elif '<p id="blurText">' in i:
+                print(i)
+                print(str_list.index(i))
+                str_list.remove(i)
+            elif '</p>'in i:
+                print(i)
+                str_list.remove(i)
+            else:
+                iterate += 1
+
+        print(str_list)
+        for i in str_list:
+            doc.add_paragraph(i)
+        doc.save(main_dir + '\\temporary_emails\\' + self.file_name)
 
         # open the file to be sent
         main_dir = os.path.dirname(__file__)
