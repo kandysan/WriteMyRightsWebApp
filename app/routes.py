@@ -44,6 +44,7 @@ def fetchLetter():
 
 @app.route('/paymentDone')
 def paymentDone():
+    Email(request.cookies.get('email'), request.cookies.get('name') + ".docx").send()
     return render_template("/paymentDone.html", title="Payment Done")
 
 @app.route('/paymentOption')
@@ -73,7 +74,7 @@ def create_checkout_session():
 
         # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
         checkout_session = stripe.checkout.Session.create(
-            success_url=domain_url + "paymentDone",
+            success_url=domain_url + "questions/fetchLetter",
             cancel_url=domain_url + "paymentOption",
             payment_method_types=["card"],
             mode="payment",
@@ -211,7 +212,6 @@ def getAnswers():
     letter = letter_script.create_employment_letter_preview(ans)
     sent_letter = letter_script.create_employment_letter(ans)
     WordDoc(sent_letter, ans).create()
-    Email(ans['email'], ans['name'] + ".docx").send()
     res = make_response(redirect('/questions/letterPreview'))
     letter = urllib.parse.quote(letter)
     res.set_cookie('written_letter', letter)
