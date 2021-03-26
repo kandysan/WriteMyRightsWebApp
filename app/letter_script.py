@@ -26,16 +26,18 @@ def create_annoyed_letter(ans):
 
 {ans['date']}
 
-{ans['boss_name']}
+{ans['company_name']}
 {ans['company_address']}
 
 Re: Response to Layoff
 
-When I joined the company {body['hire_date']} as a {body['job_title']}, 
+Dear {ans['boss_name']}
+
+When I joined the company {ans['hire_date']} as a {ans['job_title']}, 
 I looked forward to being an impactful team member. Since XYZ Date, 
-I was a reliable and diligent employee at {body['company_name']}. I truly embodied our company’s 
-inclusive and professional culture. With {body['experience']} years of experience in my field, 
-I brought a wealth of knowledge and skill to {body['company_name']}. My layoff was an abrupt 
+I was a reliable and diligent employee at {ans['company_name']}. I truly embodied our company’s 
+inclusive and professional culture. With {ans['experience']} years of experience in my field, 
+I brought a wealth of knowledge and skill to {ans['company_name']}. My layoff was an abrupt 
 shock to an otherwise excellent working relationship.<br><br>
 
 I appreciated my time spent at {ans['company_name']}. While I respect that fact that my layoff was not personal, I do feel that I 
@@ -85,9 +87,9 @@ Dear {ans['company_name']} Superior,
 I’m shocked and disappointed to be laid off by {ans['company_name']}. I have been a key member of the {ans['job_title']} team for {ans['years_worked']} years 
 and {ans['months_worked']} months now. 
 
-When I joined the company {body['hire_date']} ago as a ???XYZ Title???, I looked forward to being an impactful team member. Since ???XYZ Date???, I was a reliable and diligent employee at {body['company_name']} . I truly embodied our company’s inclusive and professional culture.
+When I joined the company {ans['hire_date']} ago as a ???XYZ Title???, I looked forward to being an impactful team member. Since ???XYZ Date???, I was a reliable and diligent employee at {ans['company_name']} . I truly embodied our company’s inclusive and professional culture.
  
- With {body['hire_date']} of experience in my field, I brought a wealth of knowledge and skill to {body['company_name']} .
+ With {ans['hire_date']} of experience in my field, I brought a wealth of knowledge and skill to {ans['company_name']} .
 
 At this point, I would like to be able to come to an agreement without resorting to more formal options. I highly respect 
 {ans['company_name']} and what it is trying to accomplish. But given a number of factors mentioned above (including my level of seniority, 
@@ -168,12 +170,12 @@ def create_annoyed_letter_preview(ans):
 <br>
 {ans['date']}<br>
 <br>
-{ans['boss_name']}<br>
+{ans['company_name']}<br>
 {ans['company_address']}<br>
 <br>
 Re: Response to Layoff<br>
 <br>
-Dear {ans['company_name']} Superior,<br>
+Dear {ans['boss_name']},<br>
 <br>
 I appreciated my time spent at {ans['company_name']}. While I respect that fact that my layoff was not personal, I do feel that I 
 am not being treated fairly and have not been offered the compensation that I am entitled to under the circumstances.<br>
@@ -213,12 +215,12 @@ def create_angry_letter_preview(ans):
 <br>
 {ans['date']}<br>
 <br>
-{ans['boss_name']}<br>
+{ans['company_name']}<br>
 {ans['company_address']}<br>
 <br>
 Re: Formal Response to Termination Without Cause<br>
 <br>
-Dear {ans['company_name']} Superior,<br>
+Dear {ans['boss_name']} Superior,<br>
 <br>
 I’m shocked and disappointed to be laid off by {ans['company_name']}. I have been a key member of the {ans['job_title']} team for {ans['years_worked']} years
 and {ans['months_worked']} months now. <br>

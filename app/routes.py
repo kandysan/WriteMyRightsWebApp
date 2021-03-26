@@ -48,7 +48,7 @@ def paymentDone():
 
 @app.route('/paymentOption')
 def paymentOption():
-    return render_template("/paymentOption2.html", title="Payment Option")
+    return render_template("/paymentOption.html", title="Payment Option")
 
 
 @app.route("/config")
@@ -128,22 +128,26 @@ def answer():
             # single answers
             if 'answer' in request.form:
                 attempted_value = request.form['answer']
+
             # multi answers up to 10
-            else:
-                attempted_value = dict()
-                # if name for input = answer(1 - 10) this will store it all within a json object string before setting as a cookie
-                for i in range(9):
-                    if 'answer' + str(1 + i) not in request.form:
-                        break
-                    else:
-                        print(request.form['answer' + str(1+i)])
-                        attempted_value['a' + str(1+i)] = request.form['answer' + str(1+i)]
-                attempted_value = json.dumps(attempted_value)
+            # else:
+                # attempted_value = dict()
+                # # if name for input = answer(1 - 10) this will store it all within a json object string before setting as a cookie
+                # for i in range(9):
+                #     if 'answer' + str(1 + i) not in request.form:
+                #         break
+                #     else:
+                #         print(request.form['answer' + str(1+i)])
+                #         attempted_value['a' + str(1+i)] = request.form['answer' + str(1+i)]
+                # attempted_value = json.dumps(attempted_value)
 
             next_page = request.form['next_page']
             res = make_response(redirect('/questions' + next_page))
 
             if type(attempted_value) == str or type(attempted_value) == dict:
+                if key == 'bossName':
+                    if attempted_value == '':
+                        attempted_value = 'Sir or Madam'
                 res.set_cookie(key, attempted_value)
                 return res
             else:
