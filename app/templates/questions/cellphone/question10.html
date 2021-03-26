@@ -21,24 +21,25 @@
 
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv questionRadioDiv" >
-        <p class="questionText">Right now, I feel:</p>
+        <p class="questionText">Are you on a contract or just month-to-month?</p>
         <input type="radio" id="A" class="radioButtons"  name="answer" value="A">
-        <label for ="A"><b>A</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Annoyed. I want to assert my rights</label>
+        <label for ="A"><b>A</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Contract</label>
 
         <input type="radio" id="B" class="radioButtons" name="answer" value="B">
-        <label for ="B"><b>B</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No bad blood. But they still owe me</label>
+        <label for ="B"><b>B</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Month-to-month</label>
 
         <input type="radio" id="C" class="radioButtons" name="answer" value="C">
-        <label for = "C"><b>C</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Very angry. I deserve more compensation</label>
+        <label for = "C"><b>C</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Not sure</label>
 
-        <input type="hidden" value="mood" name="key">
-        <input type="hidden" value="/question8" name="next_page">
+        <input type="hidden" value="contractType" name="key">
+        <input type="hidden" value="/cellphone" name="letter_type">
+        <input type="hidden" value="/question11" name="next_page">
     </div>
 
     <br>
 
     <div class="buttonDiv">
-        <a href="/questions/question6"><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"></a>
+        <a href="/questions/cellphone/question9"><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"></a>
         <input type="image" name="submit" src="{{url_for('static', filename='images/black arrow.png')}}" alt="Next" class="frontArrow"/>
     </div>
     </form>

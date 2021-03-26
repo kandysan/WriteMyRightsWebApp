@@ -34,9 +34,13 @@ def write_my_rights_info():
     return render_template("/letterType.html", title="Write My Rights Letter Type")
 
 
-@app.route('/questions/<question>')
-def question(question):
-    return render_template("questions/"+question+".html", title=question)
+@app.route('/questions/<template>/<question>')
+def question(template, question):
+    return render_template("questions/"+template+"/"+question+".html", title=question)
+
+@app.route('/questions/letterPreview')
+def letterPreview():
+    return render_template("questions/letterPreview.html", title="letterPreview")
 
 @app.route('/questions/fetchLetter')
 def fetchLetter():
@@ -142,7 +146,8 @@ def answer():
                 attempted_value = json.dumps(attempted_value)
 
             next_page = request.form['next_page']
-            res = make_response(redirect('/questions' + next_page))
+            letter_type = request.form['letter_type']
+            res = make_response(redirect('/questions' + letter_type + next_page))
 
             if type(attempted_value) == str or type(attempted_value) == dict:
                 res.set_cookie(key, attempted_value, max_age=3600)
@@ -161,7 +166,7 @@ def month_delta(start_date, end_date):
     return 12 * delta.years + delta.months
 
 
-@app.route('/questions/getAnswers')
+@app.route('/questions/employment/getAnswers')
 def getAnswers():
     ans = {}
     # client name

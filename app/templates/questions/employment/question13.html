@@ -27,13 +27,14 @@
             <option value=""></option>
         </select> &nbsp;&nbsp;
         <input type="hidden" value="severance" name="key">
+        <input type="hidden" value="/employment" name="letter_type">
         <input type="hidden" value="/question14" name="next_page">
     </div>
 
     <br>
 
     <div class="buttonDiv">
-        <a href="/questions/question12"><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"></a>
+        <a href="/questions/employment/question12"><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"></a>
         <input type="image" name="submit" src="{{url_for('static', filename='images/black arrow.png')}}" alt="Next" class="frontArrow"/>
     </div>
     </form>
