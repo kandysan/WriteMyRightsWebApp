@@ -22,8 +22,11 @@
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv questionRadioDiv" >
         <p class="questionText">Have you already tried to deal with this through customer service? If so, tell us who you spoke with and when.</p>
-        <input type="radio" id="A" class="radioButtons"  name="answer" value="Yes">
+        <input type="radio" id="A" class="radioButtons"  name="answer" value="Yes" onclick="displayField()">
         <label for ="A">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Yes</label>
+
+        <input type="text" class="hiddenInputs">
+        <input type="text" class="hiddenInputs">
 
         <input type="radio" id="B" class="radioButtons" name="answer" value="No">
         <label for ="B">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No</label>
@@ -40,7 +43,14 @@
         <input type="image" name="submit" src="{{url_for('static', filename='images/black arrow.png')}}" alt="Next" class="frontArrow"/>
     </div>
     </form>
-    <script src="{{url_for('static', filename='questionInputRadioFill.js')}}">
+    <script>
+        function displayField() {
+            buttons = document.getElementsByClassName("hiddenInputs")
+            for (i = 0; i < buttons.length; i++) {
+                buttons[i].style="display: none"
+                change(buttons[i], 'required')
+            }
+        }
     </script>
 
     

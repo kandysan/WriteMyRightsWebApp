@@ -55,6 +55,9 @@ def paymentDone():
 def paymentOption():
     return render_template("/paymentOption2.html", title="Payment Option")
 
+@app.route('/paymentTable')
+def paymentTable():
+    return render_template("/paymentTable.html", title="Payment Table")
 
 @app.route("/config")
 def get_publishable_key():
