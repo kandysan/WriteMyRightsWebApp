@@ -24,14 +24,15 @@
         <p class="questionText">What deadline do you want to give to them to respond?</p>
         <input type="date" class="questionInput" value="{{request.form.answer}}" name="answer" required maxlength="50">
         <input type="hidden" value="deadline" name="key">
-        <input type="hidden" value="/question16" name="next_page">
+        <input type="hidden" value="/cellphone" name="letter_type">
+        <input type="hidden" value="/question12" name="next_page">
 <!--        <input type="hidden" value="/questionTwo" name="next_page">-->
     </div>
 
     <br>
 
     <div class="buttonDiv">
-        <a href='/questions/question14'><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"/></a>
+        <a href='/questions/cellphone/question10'><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"/></a>
         <input type="image" name="submit" src="{{url_for('static', filename='images/black arrow.png')}}" alt="Next" class="frontArrow"/>
     </div>
     </form>

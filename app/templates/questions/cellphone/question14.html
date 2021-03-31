@@ -11,27 +11,27 @@
 <body>
 
     <a href="/index"><img class="greylogo" src="{{ url_for('static',filename='images/Write my Rights.PNG') }}"/></a>
-
+    
     <div class="progressDiv">
-    <svg class="progressBarOne" width="1100 px" height="20 px">
+    <svg class="progressBarOne">
         <rect width="1000px" height="10px" style="fill: #dddddd;" rx="8" ry="8" />
-        <rect width="750px" height="10px" style="fill: #303852;" rx="8" ry="8" />
+        <rect width="100px" height="10px" style="fill: #303852;" rx="8" ry="8" />
     </svg>
     </div>
 
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
-        <p class="questionText">What is your address?</p>
-        <input type="text" class="questionInput" placeholder="ex. 12345 Burrad St. Vancouver BC V13 3B4" value="{{request.form.answer}}" name="answer" required maxlength="50">
-        <input type="hidden" value="personalAddress" name="key">
-        <input type="hidden" value="/question3" name="next_page">
-<!--        <input type="hidden" value="/questionTwo" name="next_page">-->
+        <p class="questionText">Optional: What is your phone number?</p>
+        <input type="text" class="questionInput" placeholder="123-456-7890" name="answer" maxlength="12">
+        <input type="hidden" value="name" name="key">
+        <input type="hidden" value="/cellphone" name="letter_type">
+        <input type="hidden" value="/getAnswers" name="next_page">
     </div>
 
     <br>
 
     <div class="buttonDiv">
-        <a href='/questions/question1'><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"/></a>
+        <a href="/questions/cellphone/question13"><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"/></a>
         <input type="image" name="submit" src="{{url_for('static', filename='images/black arrow.png')}}" alt="Next" class="frontArrow"/>
     </div>
     </form>

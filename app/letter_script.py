@@ -26,12 +26,10 @@ def create_annoyed_letter(ans):
 
 {ans['date']}
 
-{ans['company_name']}
+{ans['boss_name']}
 {ans['company_address']}
 
 Re: Response to Layoff
-
-Dear {ans['boss_name']}
 
 When I joined the company {ans['hire_date']} as a {ans['job_title']}, 
 I looked forward to being an impactful team member. Since XYZ Date, 
@@ -72,47 +70,38 @@ Sincerely,
 
 
 def create_angry_letter(ans):
-    letter = f"""{ans['name']}
+    letter = (f"""{ans['name']}
 {ans['personal_address']}
-
 {ans['date']}
-
 {ans['boss_name']}
 {ans['company_address']}
-
 Re: Formal Response to Termination Without Cause
 
 Dear {ans['company_name']} Superior,
 
-I’m shocked and disappointed to be laid off by {ans['company_name']}. I have been a key member of the {ans['job_title']} team for {ans['years_worked']} years 
-and {ans['months_worked']} months now. 
+I’m shocked and disappointed to be laid off by {ans['company_name']}. I have been a key member of the {ans['job_title']} team """
+    + f"""for {ans['years_worked']} years  and {ans['months_worked']} months now. 
 
-When I joined the company {ans['hire_date']} ago as a ???XYZ Title???, I looked forward to being an impactful team member. Since ???XYZ Date???, I was a reliable and diligent employee at {ans['company_name']} . I truly embodied our company’s inclusive and professional culture.
+When I joined the company {ans['years_worked']} years and {ans['months_worked']} months ago as a ???XYZ Title???, """
+    + f"""I looked forward to being an impactful team member. Since ???XYZ Date???, I was a reliable and diligent employee at """
+    + f"""{ans['company_name']} . I truly embodied our company’s inclusive and professional culture.
  
- With {ans['hire_date']} of experience in my field, I brought a wealth of knowledge and skill to {ans['company_name']} .
+With {ans['years_worked']} years and {ans['months_worked']} months of experience in my field, I brought a wealth of knowledge """
+    + f"""and skill to {ans['company_name']} .
 
-At this point, I would like to be able to come to an agreement without resorting to more formal options. I highly respect 
-{ans['company_name']} and what it is trying to accomplish. But given a number of factors mentioned above (including my level of seniority, 
-reputation, and career prospects), I need to look out for my interests given the situation. 
+At this point, I would like to be able to come to an agreement without resorting to more formal options. I highly respect """
+    + f"""{ans['company_name']} and what it is trying to accomplish. But given a number of factors mentioned above (including my """
+    + f"""level of seniority, reputation, and career prospects), I need to look out for my interests given the situation. 
 
-Given the circumstances, and in the interest of putting this behind us, I would be willing to accept 
+Given the circumstances, and in the interest of putting this behind us, I would be willing to accept """)
 
-JUST [B]:
-{ans['severance_demand']} weeks of pay, being $$$$_____. This offer is fair and reasonable to both of us. 
+    if ans['findJobLength'] == "B":
+        letter = letter + f""" {ans['severance_demand']} weeks of pay, being $$$$_____. This offer is fair and reasonable to both of us.
+"""
 
-[B] and [C]
-{ans['severance_demand']} weeks of pay plus all unpaid vacation time that has accrued up until my termination which is {ans['vacation']}, for a total of $$$______
-
-[B], [C], and [D]
-{ans['severance_demand']} weeks of pay plus all unpaid vacation time that has accrued up until my termination which is {ans['vacation']}, for a total of $$$______. I also want a written apology for all of the hardship that I suffered.
-
-JUST [D] 
-a written apology for all of the hardship that I suffered.  
-
-Please respond by {ans['response_date']} to indicate your acceptance of the offer. Otherwise, I may be forced to pursue further legal action.
+    letter = letter + f"""Please respond by {ans['response_date']} to indicate your acceptance of the offer. Otherwise, I may be forced to pursue further legal action.
 
 Sincerely,
- 
 {ans['name']}"""
     return letter
 
@@ -138,7 +127,7 @@ may seriously harm to my reputation and career. At my level, a new opportunity c
 
 Thank you for the {ans['severance_paid']} weeks of severance offered. Unfortunately, I can’t accept it. I believe I am legally entitled to a bigger 
 severance payment, owing to the abruptness of the layoff and the potential damage to my reputation, and career prospects. 
-Under the circumstances, and in the interest of putting this behind us, I would be willing to accept 
+Under the circumstances, and in the interest of putting this behind us, I would be willing to accept
 
 JUST [B]:
 {ans['severance_demand']} weeks of pay, being $$$$_____. This offer is fair and reasonable to both of us. 
@@ -170,12 +159,12 @@ def create_annoyed_letter_preview(ans):
 <br>
 {ans['date']}<br>
 <br>
-{ans['company_name']}<br>
+{ans['boss_name']}<br>
 {ans['company_address']}<br>
 <br>
 Re: Response to Layoff<br>
 <br>
-Dear {ans['boss_name']},<br>
+Dear {ans['company_name']} Superior,<br>
 <br>
 I appreciated my time spent at {ans['company_name']}. While I respect that fact that my layoff was not personal, I do feel that I 
 am not being treated fairly and have not been offered the compensation that I am entitled to under the circumstances.<br>
@@ -210,25 +199,30 @@ shock to an otherwise excellent working relationship."""
 
 
 def create_angry_letter_preview(ans):
-    letter = f"""{ans['name']}<br>
-{ans['personal_address']}<br>
-<br>
-{ans['date']}<br>
-<br>
-{ans['company_name']}<br>
-{ans['company_address']}<br>
-<br>
-Re: Formal Response to Termination Without Cause<br>
-<br>
-Dear {ans['boss_name']} Superior,<br>
-<br>
+    letter = f"""{ans['name']}
+<br><br>
+{ans['personal_address']}
+<br><br>
+{ans['date']}
+<br><br>
+{ans['boss_name']}
+<br><br>
+{ans['company_address']}
+<br><br>
+Re: Formal Response to Termination Without Cause
+<br><br>
+Dear {ans['company_name']} Superior,
+<br><br>
 I’m shocked and disappointed to be laid off by {ans['company_name']}. I have been a key member of the {ans['job_title']} team for {ans['years_worked']} years
-and {ans['months_worked']} months now. <br>
-<br>
+and {ans['months_worked']} months now.
+<br><br>
+<p id="blurText">
 The company’s vision aligns with my values and aspirations, and I anticipated a long and fruitful relationship with {ans['company_name']}.
-I have been a committed and dedicated employee since day 1 - being let go like this is unjustified and wrong. My layoff was an 
-abrupt shock to an otherwise excellent working relationship - it is not only causing me distress but is also doing harm to my 
-reputation and career. At my level, a new opportunity can take up to {ans['findJobLength']} to source."""
+I have been a committed and dedicated employee since day 1 - being let go like this is unjustified and wrong. My layoff was an
+abrupt shock to an otherwise excellent working relationship - it is not only causing me distress but is also doing harm to my
+reputation and career. At my level, a new opportunity can take up to {ans['findJobLength']} to source.
+</p>
+"""
     return letter
 
 
