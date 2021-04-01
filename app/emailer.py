@@ -4,6 +4,7 @@
 # libraries to be imported 
 import smtplib
 import os
+import docx
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
@@ -12,7 +13,7 @@ from email import encoders
 
 class Email:
 
-    def __init__(self, to_addr: str = "nathancbroyles@gmail.com", file_name: str = "email1.docx"):
+    def __init__(self, to_addr: str = "anthonyqraymundo@gmail.com", file_name: str = "email1.docx"):
         self.from_addr = "noreply.writemyrights@gmail.com"
         self.to_addr = to_addr
         self.file_name = file_name
@@ -41,8 +42,10 @@ class Email:
 
         # open the file to be sent
         main_dir = os.path.dirname(__file__)
-        rel_path = "temporary_emails/" + self.file_name
+        print(main_dir)
+        rel_path = "temporary_emails\\" + self.file_name
         abs_file_path = os.path.join(main_dir, rel_path)
+        print(abs_file_path)
         attachment = open(abs_file_path, "rb")
 
         # instance of MIMEBase and named as p

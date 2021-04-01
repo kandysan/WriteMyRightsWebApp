@@ -21,23 +21,23 @@
 
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
-        <p class="questionText">What is your address?</p>
+        <p class="questionText">What is the company's address?</p>
         <input type="text" class="questionInput" placeholder="ex. 12345 Burrad St. Vancouver BC V13 3B4" value="{{request.form.answer}}" name="answer" required maxlength="50">
-        <input type="hidden" value="personalAddress" name="key">
-        <input type="hidden" value="/question3" name="next_page">
-<!--        <input type="hidden" value="/questionTwo" name="next_page">-->
+        <input type="hidden" value="companyAddress" name="key">
+        <input type="hidden" value="/cellphone" name="letter_type">
+        <input type="hidden" value="/question5" name="next_page">
     </div>
 
     <br>
 
     <div class="buttonDiv">
-        <a href='/questions/question1'><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"/></a>
+        <a href="/questions/cellphone/question3"><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"></a>
         <input type="image" name="submit" src="{{url_for('static', filename='images/black arrow.png')}}" alt="Next" class="frontArrow"/>
     </div>
     </form>
 
     <script src="{{url_for('static', filename='questionInputTextFill.js')}}">
     </script>
-
+    
 </body>
 </html>

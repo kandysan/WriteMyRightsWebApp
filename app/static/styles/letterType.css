@@ -65,6 +65,11 @@ li {
     text-align: center;
 }
 
+#paymentTableButtonsDiv {
+    text-align: center;
+    margin-top: -5em;
+}
+
 .wrmButtons {
     background-color: #BABABA;
     border-style: none;
@@ -108,10 +113,11 @@ li {
     margin: 2em;
 
 }
-.back {
-    background-color: #BABABA;
+.buttons {
+    background-color: #e1e1e1;
+    color: #303852;
     border-style: none;
-    width: 10em;
+    width: 14em;
     border-radius: 2em;
     padding-top: 1em;
     padding-bottom: 1em;
@@ -122,8 +128,44 @@ li {
     font-weight: bold;
     outline:none;
     cursor: pointer;
-
+    transition-duration: 0.3s;
 }
+
+.buttons:hover,
+.buttons:focus {
+    background-color: #303852;
+    color: white;
+    transform: scale(1.02);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .buttons2 {
+    background-color: #e1e1e1;
+    color: #303852;
+    border-style: none;
+    width: 10em;
+    border-radius: 2em;
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    font-size: 1.5em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    outline:none;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.buttons2:hover,
+.buttons2:focus {
+    background-color: #303852;
+    color: white;
+    transform: scale(1.02);
+    text-decoration: none;
+    cursor: pointer;
+  }
 
 #employee {
     border-radius: 15px;
@@ -152,4 +194,23 @@ margin: auto;
     margin: auto;
 
     }
+.child {
+    padding-inline-start: 0;
+}
 
+#letterBottomMessage {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    font-size: 1.25em;
+    font-weight: 400;
+    margin-top: 2em;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.paymentTableImage {
+    width: auto;
+    height: 10em;
+}

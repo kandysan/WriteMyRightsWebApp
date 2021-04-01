@@ -21,17 +21,18 @@
 
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
-        <p class="questionText">Tell us your email address where we can send you your letter.</p>
-        <input type="email" class="questionInput" placeholder="ex. email@domain.com" value="{{request.form.answer}}" name="answer1"  required>
-        <input type="email"  class="questionInput" placeholder="Please type your email again to confirm" value="{{request.form.answer}}" name="answer2" required>
-        <input type="hidden" value="email" name="key">
-        <input type="hidden" value="/getAnswers" name="next_page">
+        <p class="questionText">What deadline do you want to give to them to respond?</p>
+        <input type="date" class="questionInput" value="{{request.form.answer}}" name="answer" required maxlength="50">
+        <input type="hidden" value="deadline" name="key">
+        <input type="hidden" value="/cellphone" name="letter_type">
+        <input type="hidden" value="/question12" name="next_page">
+<!--        <input type="hidden" value="/questionTwo" name="next_page">-->
     </div>
 
     <br>
 
     <div class="buttonDiv">
-        <a href="/questions/question15"><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"></a>
+        <a href='/questions/cellphone/question10'><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"/></a>
         <input type="image" name="submit" src="{{url_for('static', filename='images/black arrow.png')}}" alt="Next" class="frontArrow"/>
     </div>
     </form>

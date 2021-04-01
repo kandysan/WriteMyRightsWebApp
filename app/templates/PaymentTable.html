@@ -5,6 +5,9 @@
         <!-- Montserrat Font -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+        <script src="https://js.stripe.com/v3/"></script>
+        <script src="{{ url_for('static', filename='main.js') }}"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
         <!-- Philosopher Font -->
         <style>
             @font-face {
@@ -26,26 +29,18 @@
         </div>
 
         <div id="wrmDescriptionAlign">
-            <h2 id="wrmDescription">Ready for us to Write Your Rights? Select your type of letter.</b>
-            </br></br>
+            <h2 id="wrmDescription">Want an upgraded letter?</b>
+            
             <div class="float_center">
-                <ul class="child">
-                  <li><div id="employee">
-                    <a href="./questions/employment/question1"><img src="{{url_for('static', filename='images/employees.jpg')}}" width="50" height="50"/></a>
-                    <p style="font-size:11px; color:black">Employment</p>
-                    </div></li>
-                </ul>
-                <div class="clear"></div>
+                <img class="paymentTableImage"src="{{url_for('static', filename='images/PaymentTable.PNG')}}"/>
             </div>
             </h2>
-            <h3 id="letterBottomMessage">There is currently only 1 letter template, but more is on the way!</h3>
         </div>
     </br></br>
-        <div id="wrmButtonsDiv">
-            <a href="./index"><button class="buttons">Back to Home</button></a>
-
-
+        <div id="paymentTableButtonsDiv">
+            <a href="/questions/getAnswers"><button class="buttons2">Back</button></a>
+            <a href="/questions/fetchLetter"><button class="buttons2">No</button></a>
+            <a href="/paymentOption"><button class="buttons2">Yes</button></a>
         </div>
-        <script src = "{{url_for('static', filename='deleteCookies.js')}}"></script>
     </body>
 </html>

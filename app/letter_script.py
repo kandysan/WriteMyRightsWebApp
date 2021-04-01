@@ -90,14 +90,11 @@ Sincerely,
 
 
 def create_angry_letter(ans):
-    letter = f"""{ans['name']}
+    letter = (f"""{ans['name']}
 {ans['personal_address']}
-
 {ans['date']}
-
 {ans['boss_name']}
 {ans['company_address']}
-
 Re: Formal Response to Termination Without Cause
 
 Dear {ans['company_name']} Superior,
@@ -232,25 +229,30 @@ shock to an otherwise excellent working relationship."""
 
 
 def create_angry_letter_preview(ans):
-    letter = f"""{ans['name']}<br>
-{ans['personal_address']}<br>
-<br>
-{ans['date']}<br>
-<br>
-{ans['boss_name']}<br>
-{ans['company_address']}<br>
-<br>
-Re: Formal Response to Termination Without Cause<br>
-<br>
-Dear {ans['company_name']} Superior,<br>
-<br>
+    letter = f"""{ans['name']}
+<br><br>
+{ans['personal_address']}
+<br><br>
+{ans['date']}
+<br><br>
+{ans['boss_name']}
+<br><br>
+{ans['company_address']}
+<br><br>
+Re: Formal Response to Termination Without Cause
+<br><br>
+Dear {ans['company_name']} Superior,
+<br><br>
 I’m shocked and disappointed to be laid off by {ans['company_name']}. I have been a key member of the {ans['job_title']} team for {ans['years_worked']} years
-and {ans['months_worked']} months now. <br>
-<br>
+and {ans['months_worked']} months now.
+<br><br>
+<p id="blurText">
 The company’s vision aligns with my values and aspirations, and I anticipated a long and fruitful relationship with {ans['company_name']}.
-I have been a committed and dedicated employee since day 1 - being let go like this is unjustified and wrong. My layoff was an 
-abrupt shock to an otherwise excellent working relationship - it is not only causing me distress but is also doing harm to my 
-reputation and career. At my level, a new opportunity can take up to {ans['findJobLength']} to source."""
+I have been a committed and dedicated employee since day 1 - being let go like this is unjustified and wrong. My layoff was an
+abrupt shock to an otherwise excellent working relationship - it is not only causing me distress but is also doing harm to my
+reputation and career. At my level, a new opportunity can take up to {ans['findJobLength']} to source.
+</p>
+"""
     return letter
 
 
