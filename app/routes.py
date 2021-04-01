@@ -9,7 +9,7 @@ from app.worder import WordDoc
 from app import letter_script
 from dotenv import load_dotenv
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 
 basedir = path.abspath(path.dirname(__file__))
@@ -130,15 +130,15 @@ def answer():
                 attempted_value = request.form['answer']
 
             # multi answers up to 10
-            # else:
-                # attempted_value = dict()
-                # # if name for input = answer(1 - 10) this will store it all within a json object string before setting as a cookie
-                # for i in range(9):
-                #     if 'answer' + str(1 + i) not in request.form:
-                #         break
-                #     else:
-                #         print(request.form['answer' + str(1+i)])
-                #         attempted_value['a' + str(1+i)] = request.form['answer' + str(1+i)]
+            else:
+                attempted_value = dict()
+                # if name for input = answer(1 - 10) this will store it all within a json object string before setting as a cookie
+                for i in range(9):
+                    if 'answer' + str(1 + i) not in request.form:
+                        break
+                    else:
+                        print(request.form['answer' + str(1+i)])
+                        attempted_value['a' + str(1+i)] = request.form['answer' + str(1+i)]
                 # attempted_value = json.dumps(attempted_value)
 
             next_page = request.form['next_page']
@@ -148,6 +148,15 @@ def answer():
                 if key == 'bossName':
                     if attempted_value == '':
                         attempted_value = 'Sir or Madam'
+                if key == 'email':
+                    if attempted_value['a1'] == attempted_value['a2']:
+                        attempted_value = attempted_value['a1']
+                    else:
+                        res = make_response(redirect('/questions/question16'))
+                        res.set_cookie(key, 'Emails do not match', max_age=1)
+                        return res
+
+
                 res.set_cookie(key, attempted_value)
                 return res
             else:

@@ -22,8 +22,8 @@
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
         <p class="questionText">Tell us your email address where we can send you your letter.</p>
-        <input type="email" class="questionInput" placeholder="ex. email@domain.com" name="answer" required maxlength="50">
-        <input type="email"  class="questionInput" placeholder="Please type your email again to confirm" value="{{request.form.answer}}" required>
+        <input type="email" class="questionInput" placeholder="ex. email@domain.com" value="{{request.form.answer}}" name="answer1"  required>
+        <input type="email"  class="questionInput" placeholder="Please type your email again to confirm" value="{{request.form.answer}}" name="answer2" required>
         <input type="hidden" value="email" name="key">
         <input type="hidden" value="/getAnswers" name="next_page">
     </div>
@@ -36,7 +36,40 @@
     </div>
     </form>
     
-    <script src="{{url_for('static', filename='questionInputTextFill.js')}}">
+    <script>
+    window.onload = (event) => {
+    let key = document.getElementsByName("key")
+    console.log(key)
+    let value = getCookie(key[0].value)
+    console.log(value)
+    value = value.replace(/['"]+/g, '')
+    let fields = document.getElementsByClassName("questionInput")
+    if (value.length > 0) {
+        if (value == 'Emails do not match') {
+            alert(value);
+        } else {
+            for (var i=0; i < fields.length; i++) {
+                fields[i].value = value;
+            }
+        }
+    }
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+    }
     </script>
 
 </body>
