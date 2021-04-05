@@ -7,11 +7,7 @@ window.onload = function() {
     for (k = 0; k < buttons.length; k++) {
         if (buttons[k].value == value) {
             buttons[k].checked = true
-            checked = true
         }
-    }
-    if (checked == false) {
-        buttons[0].checked = true
     }
 }
 

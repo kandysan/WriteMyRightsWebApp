@@ -99,8 +99,8 @@ Re: Formal Response to Termination Without Cause
 
 Dear {ans['company_name']} Superior,
 
-I’m shocked and disappointed to be laid off by {ans['company_name']}. I have been a key member of the {ans['job_title']} team for {ans['time_worked']['years']} years 
-and {ans['time_worked']['months']} months now. 
+I’m shocked and disappointed to be laid off by {ans['company_name']}. I have been a key member of the {ans['job_title']} team for {ans['years_worked']} years 
+and {ans['months_worked']} months now. 
 
 The company’s vision aligns with my values and aspirations, and I anticipated a long and fruitful relationship with {ans['company_name']}. 
 I have been a committed and dedicated employee since day 1 - being let go like this is unjustified and wrong. My layoff was an 
@@ -114,9 +114,9 @@ At this point, I would like to be able to come to an agreement without resorting
 {ans['company_name']} and what it is trying to accomplish. But given a number of factors mentioned above (including my level of seniority, 
 reputation, and career prospects), I need to look out for my interests given the situation. 
 
-Given the circumstances, and in the interest of putting this behind us, I would be willing to accept"""
+Given the circumstances, and in the interest of putting this behind us, I would be willing to accept""")
 
-    if ans['severance_demand'] != 'none' and ans['vacation'] != 'none' and ans['apology'] == 'yes':
+    if ans['severance_demand'] != 'none' and ans['vacation'] != 'none':
         #B, C and D
         letter += f""" {ans['severance_demand']} weeks of pay plus all unpaid vacation time that has accrued up until my termination which is {ans['vacation']} weeks. I also want a written apology for all of the hardship that I suffered. """
     elif ans['severance_demand'] != 'none' and ans['vacation'] != 'none':

@@ -21,7 +21,7 @@
 
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
-        <p class="questionText">What was the date that you were laid off?</p>
+        <p class="questionText">What was the last day of your employment?</p>
         <input type="date" class="questionInput" value="{{request.form.answer}}" name="answer" required maxlength="50">
         <input type="hidden" value="fireDate" name="key">
         <input type="hidden" value="/employment" name="letter_type">

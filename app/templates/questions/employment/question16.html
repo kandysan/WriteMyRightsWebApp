@@ -25,6 +25,7 @@
         <input type="email" class="questionInput" placeholder="ex. email@domain.com" value="{{request.form.answer}}" name="answer1"  required>
         <input type="email"  class="questionInput" placeholder="Please type your email again to confirm" value="{{request.form.answer}}" name="answer2" required>
         <input type="hidden" value="email" name="key">
+        <input type="hidden" value="/employment" name="letter_type">
         <input type="hidden" value="/getAnswers" name="next_page">
 <!--        <input type="hidden" value="/questionTwo" name="next_page">-->
     </div>

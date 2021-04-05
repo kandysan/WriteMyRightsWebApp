@@ -28,12 +28,11 @@
             Write My Rights helps you prepare a professionally written letter that you can send to the other side 
             to help you get what you deserve. </br></br>
 
-            It’s fast, free, easy. Let’s get started
+            It’s fast, free, easy. Let’s get started.
             </h2>
     </br>
         <div id="homeButtonsDiv">
             <button class="homeButtons" id="wrmButton1">WRITE MY RIGHTS</button>
-            <p id="homeInBetweenButtons">or</p>
             <button class="homeButtons" id="scroll" onclick="faqScrollFunction()">TELL ME MORE</button>
         </div>
 
@@ -42,13 +41,11 @@
         -->
     <div id="faqTopDivs">
         <div class="faqDiv" id="faqScroll">
-            <h1 class="faqHeader">Get a demand letter.</br> Quickly.</h1>
-            <h2 class="faqDescription"><b>Have you been laid off? Write my rights will help you get the severance payment you deserve.</b>
-                Get a customized letter — written by us, but sent by you — to notify your ex-employer about the compensation they 
-                owe you. It’s fast and easy. </br></br>
-
-                Just fill out the form below and you’ll be on your way to a professionally written letter in your inbox. </h2>
-            </br>
+            <h1 class="faqHeader">Who is behind these letters?</h1>
+            <h2 class="faqDescription">A small team of start-up lawyers. We’ve been helping our clients, 
+                friends and families with legal issues for years,
+                 and want to expand this service to the general public.</br></br></br></br></br></br>
+            </h2>
             <button class="faqButtons" id="wrmButton2">LET'S GET WRITING</button>
         </div>
 
@@ -88,12 +85,6 @@
     </div>
     
         <div id="faqThirdDiv">
-            <h1 class="faqHeader2">Who is behind these letters?</h1>
-            <h2 class="faqDescription2">A small team of start-up lawyers. We’ve been helping our clients, 
-                friends and families with legal issues for years,
-                 and want to expand this service to the general public.</h2>
-            </br></br>
-            <button class="faqButtons" id="wrmButton6">HAND ME A PEN, PLEASE</button>
             <button class="faqButtons" id="faqQuestionsButton">GOT ANY QUESTIONS?</button>
         </div>
     
@@ -108,7 +99,8 @@
                 <img src="./static/images/Typewriter.jpg" id="questionsModalImage"/>
               </div>
               <h2 id="questionsModalDescription">Have comments, questions, or feedback to share? We'd love to hear from you. 
-                Send us an email and we'll get back to you within 24 hours: <p class="tosAndPp">david@practicewrks.com</p></h2>
+                Send us an email and we'll get back to you soon: 
+                <p class="tosAndPp"><a href="mailto:hello@writemyrights.com?subject=Questions/Feedback">hello@writemyrights.com</a></p></h2>
             </div>    
         </div>  
 
@@ -290,7 +282,7 @@
             <!-- Modal content -->
             <div class="modal-content">
               <span class="close4">&times;</span>
-              <h1 id="ppModalTitle">Please review our Terms of Service and Privacy Policy.</h1>
+              <h1 id="ppModalTitle">Privacy Policy - Write My Rights</h1>
               <h2 id="ppModalDescription">This privacy policy (the “Privacy Policy”) describes how [Strongly Worded Letters]
                 (“Letters”, “us”, or “we”) collects, uses and discloses information and data relating to your access and 
                 use of the Platform and what rights you have with respect to such information and data. 
@@ -570,7 +562,6 @@
         var wrmBtn3 = document.getElementById("wrmButton3");
         var wrmBtn4 = document.getElementById("wrmButton4");
         var wrmBtn5 = document.getElementById("wrmButton5");
-        var wrmBtn6 = document.getElementById("wrmButton6");
 
          // Get the <span> element that closes the modal
         var span2 = document.getElementsByClassName("close2")[0];
@@ -601,12 +592,6 @@
         }
 
         wrmBtn5.onclick = function() {
-            wrmModal.style.display = "block";
-            body.style.overflow = "hidden";
-            unfocusButtons()
-        }
-
-        wrmBtn6.onclick = function() {
             wrmModal.style.display = "block";
             body.style.overflow = "hidden";
             unfocusButtons()

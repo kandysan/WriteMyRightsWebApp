@@ -183,6 +183,7 @@ def month_delta(start_date, end_date):
 
 @app.route('/questions/employment/getAnswers')
 def getAnswers():
+    print("start")
     ans = {}
     # client name
     ans['name'] = request.cookies.get('name')
