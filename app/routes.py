@@ -164,6 +164,20 @@ def answer():
                         res = make_response(redirect('/questions/question16'))
                         res.set_cookie(key, 'Emails do not match', max_age=1)
                         return res
+                if key == 'severance':
+                    try:
+                        if attempted_value['a2'] == 'on' or attempted_value['a1'] == '':
+                            attempted_value = '0'
+                        else:
+                            attempted_value = attempted_value['a1']
+                    except:
+                        try:
+                            if attempted_value['a1'] == '':
+                                attempted_value = '0'
+                            else:
+                                attempted_value = attempted_value['a1']
+                        except:
+                            attempted_value = '0'
 
                 res.set_cookie(key, attempted_value, max_age=3600)
                 return res

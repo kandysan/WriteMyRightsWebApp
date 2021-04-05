@@ -23,9 +23,10 @@
     <div class="questionDiv">
         <p class="questionText">Did they offer you severance? If so, how much?</p>
         <p class="dropdownHeader">Weeks:</p>
-        <select name="answer" class="dropdown" required>
+        <select name="answer1" class="dropdown">
             <option value=""></option>
-        </select> &nbsp;&nbsp;
+        </select> &nbsp;&nbsp;<br><br>
+        <input type="checkbox" name="answer2" onclick="disable()" class="checkbox"><p class="checkboxText">I was offerred no severance </p>
         <input type="hidden" value="severance" name="key">
         <input type="hidden" value="/employment" name="letter_type">
         <input type="hidden" value="/question13" name="next_page">
@@ -39,7 +40,58 @@
     </div>
     </form>
 
-    <script src="{{url_for('static', filename='questionInputDropdownFill.js')}}">
+    <script>
+        window.onload = function() {
+            let key = document.getElementsByName("key")
+            let value = getCookie(key[0].value)
+
+            let dropdown = document.getElementsByClassName("dropdown"); 
+            let checkbox = document.getElementsByClassName("checkbox");
+            for (k = 0; k < dropdown.length; k++) {
+                for (i = 0; i < 101; i++) {
+                    let number = document.createElement("option")
+                    number.text = i;
+                    number.value = i;
+                    dropdown[k].options[i + 1] = number;
+                    if (i == value && value != "") {
+                        dropdown[k].options[i + 1].selected = true
+                    }
+                }
+            }
+            for (j = 0; j < checkbox.length; j++) {
+                if (dropdown[j].value == 0) {
+                    checkbox[j].checked = true
+                    dropdown[j].disabled = true
+                }
+            }
+        }
+        function disable() {
+            let dropdown = document.getElementsByClassName("dropdown"); 
+            for (k = 0; k < dropdown.length; k++) {
+                if (dropdown[k].disabled == false) {
+                    dropdown[k].disabled = true
+                }
+                else {
+                    dropdown[k].disabled = false
+                }
+            }
+        }
+
+        function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+        }
     </script>
 
 </body>
