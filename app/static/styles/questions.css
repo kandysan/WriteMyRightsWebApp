@@ -307,4 +307,5 @@ body {
     font-size: 20px;
     padding-left: 2%;
     display: inline-block;
+    cursor: default;
 }

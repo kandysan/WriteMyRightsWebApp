@@ -26,7 +26,7 @@
         <select name="answer1" class="dropdown">
             <option value=""></option>
         </select> &nbsp;&nbsp;<br><br>
-        <input type="checkbox" name="answer2" onclick="disable()" class="checkbox"><p class="checkboxText">I was offerred no severance </p>
+        <input type="checkbox" name="answer2" onclick="disable()" class="checkbox"><p class="checkboxText" onclick="textDisable()">I was offerred no severance </p>
         <input type="hidden" value="severance" name="key">
         <input type="hidden" value="/employment" name="letter_type">
         <input type="hidden" value="/question13" name="next_page">
@@ -73,6 +73,27 @@
                 }
                 else {
                     dropdown[k].disabled = false
+                }
+            }
+        }
+
+        function textDisable() {
+            let dropdown = document.getElementsByClassName("dropdown");
+            let checkbox = document.getElementsByClassName("checkbox"); 
+            for (k = 0; k < dropdown.length; k++) {
+                if (dropdown[k].disabled == false) {
+                    dropdown[k].disabled = true
+                }
+                else {
+                    dropdown[k].disabled = false
+                }
+            }
+            for (j = 0; j < checkbox.length; j++) {
+                if (checkbox[j].checked == true) {
+                    checkbox[j].checked = false
+                }
+                else {
+                    checkbox[j].checked = true
                 }
             }
         }
