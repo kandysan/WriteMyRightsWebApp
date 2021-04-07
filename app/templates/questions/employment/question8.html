@@ -11,22 +11,21 @@
 <body>
 
     <a href="/index"><img class="greylogo" src="{{ url_for('static',filename='images/Write my Rights.PNG') }}"/></a>
-
+    
     <div class="progressDiv">
     <svg class="progressBarOne" width="1100 px" height="20 px">
         <rect width="1000px" height="10px" style="fill: #dddddd;" rx="8" ry="8" />
-        <rect width="750px" height="10px" style="fill: #303852;" rx="8" ry="8" />
+        <rect width="471px" height="10px" style="fill: #303852;" rx="8" ry="8" />
     </svg>
     </div>
 
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
-        <p class="questionText">What was your job title?</p>
-        <input type="text" class="questionInput" placeholder="ex. Software Engineer" value="{{request.form.answer}}" name="answer" required maxlength="50">
-        <input type="hidden" value="jobTitle" name="key">
+        <p class="questionText">What was the date you were hired?</p>
+        <input type="date" class="questionInput" value="{{request.form.answer}}" name="answer" required maxlength="50">
+        <input type="hidden" value="hire_date" name="key">
         <input type="hidden" value="/employment" name="letter_type">
         <input type="hidden" value="/question9" name="next_page">
-<!--        <input type="hidden" value="/questionTwo" name="next_page">-->
     </div>
 
     <br>

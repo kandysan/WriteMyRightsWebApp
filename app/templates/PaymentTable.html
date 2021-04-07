@@ -29,24 +29,18 @@
         </div>
 
         <div id="wrmDescriptionAlign">
-            <h2 id="wrmDescription">Payment Option.</b>
-            </br></br>
+            <h2 id="wrmDescription">Want an upgraded letter?</b>
+            
             <div class="float_center">
-                <ul class="child">
-                  <li><div id="property">
-                    <a href="/create-checkout-session"><input type="image" src="{{url_for('static', filename='images/card.png')}}" name="payButton"
-                                      id="payBtn" class="button is-primary" width="50" height="50"/></a>
-                    <p style="font-size:11px; color:black">Payment</p>
-                    </div></li>
-                </ul>
-                <div class="clear"></div>
+                <img class="paymentTableImage"src="{{url_for('static', filename='images/PaymentTable.PNG')}}"/>
             </div>
-
             </h2>
         </div>
     </br></br>
-        <div id="wrmButtonsDiv">
-            <a href="/paymentTable"><button class="buttons">Back</button></a>
+        <div id="paymentTableButtonsDiv">
+            <a href="/questions/getAnswers"><button class="buttons2">Back</button></a>
+            <a href="/questions/fetchLetter"><button class="buttons2">No</button></a>
+            <a href="/paymentOption"><button class="buttons2">Yes</button></a>
         </div>
     </body>
 </html>

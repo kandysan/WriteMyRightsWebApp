@@ -15,20 +15,18 @@
     <div class="progressDiv">
     <svg class="progressBarOne" width="1100 px" height="20 px">
         <rect width="1000px" height="10px" style="fill: #dddddd;" rx="8" ry="8" />
-        <rect width="750px" height="10px" style="fill: #303852;" rx="8" ry="8" />
+        <rect width="882px" height="10px" style="fill: #303852;" rx="8" ry="8" />
     </svg>
     </div>
 
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
-        <p class="questionText">How much unpaid vacation are you owed?</p>
-        <p class="dropdownHeader">Weeks:</p>
-        <select name="answer" class="dropdown" required>
-            <option value=""></option>
-        </select> &nbsp;&nbsp; 
-        <input type="hidden" value="vacation" name="key">
+        <p class="questionText">What deadline do you want to give to them to respond?</p>
+        <input type="date" class="questionInput" value="{{request.form.answer}}" name="answer" required maxlength="50">
+        <input type="hidden" value="deadline" name="key">
         <input type="hidden" value="/employment" name="letter_type">
         <input type="hidden" value="/question16" name="next_page">
+<!--        <input type="hidden" value="/questionTwo" name="next_page">-->
     </div>
 
     <br>
@@ -39,7 +37,7 @@
     </div>
     </form>
 
-    <script src="{{url_for('static', filename='questionInputDropdownFill.js')}}">
+    <script src="{{url_for('static', filename='questionInputTextFill.js')}}">
     </script>
 
 </body>

@@ -30,29 +30,22 @@
             </br></br>
             <div class="float_center">
                 <ul class="child">
-                  <li><div id="property">
-                    <a href="./questions/cellphone/question1"><img src="{{url_for('static', filename='images/neighbour2.png')}}" width="50" height="50"/></a>
-                    <p style="font-size:11px; color:black">Cellphone</p>
-                    </div></li>
                   <li><div id="employee">
                     <a href="./questions/employment/question1"><img src="{{url_for('static', filename='images/employees.jpg')}}" width="50" height="50"/></a>
                     <p style="font-size:11px; color:black">Employment</p>
                     </div></li>
-                  <li><div id="consumer">
-                    <a href=""><img src="{{url_for('static', filename='images/consumer.jpg')}}" width="50" height="50"/></a>
-                    <p style="font-size:11px; color:black">Consumer</p>
-                </div></li>
                 </ul>
                 <div class="clear"></div>
             </div>
-
             </h2>
+            <h3 id="letterBottomMessage">There is currently only 1 letter template, but more is on the way!</h3>
         </div>
     </br></br>
         <div id="wrmButtonsDiv">
-            <a href="./index"><button class="back">Tell Me More</button></a>
+            <a href="./index"><button class="buttons">Back to Home</button></a>
 
 
         </div>
+        <script src = "{{url_for('static', filename='deleteCookies.js')}}"></script>
     </body>
 </html>
