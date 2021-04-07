@@ -230,6 +230,8 @@ def getAnswers():
     # client's mood (determines the letter template)
     ans['mood'] = unquote(request.cookies.get('mood'))
 
+    # written apology
+    ans['apology'] = unquote(request.cookies.get('apology'))
     # time worked at the company
     date_hired = datetime.strptime(request.cookies.get('hire_date'), '%Y-%m-%d')
     date_fired = datetime.strptime(request.cookies.get('fireDate'), '%Y-%m-%d')

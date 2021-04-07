@@ -22,13 +22,13 @@
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv questionRadioDiv" >
         <p class="questionText">Right now, I feel:*</p>
-        <input type="radio" class="radioButtons" id="A"  name="answer" value="A">
+        <input type="radio" class="radioButtons" id="A"  name="answer" value="A" required>
         <label for ="A"><b>A</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Annoyed; but I want to assert my rights</label>
 
-        <input type="radio" class="radioButtons" id="B" name="answer" value="B">
+        <input type="radio" class="radioButtons" id="B" name="answer" value="B" required>
         <label for ="B"><b>B</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Strongly worded; I feel pretty wronged here</label>
 
-        <input type="radio" class="radioButtons" id="C" name="answer" value="C">
+        <input type="radio" class="radioButtons" id="C" name="answer" value="C" required>
         <label for = "C"><b>C</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Just sad really; let’s work something out</label>
 
         <input type="hidden" value="mood" name="key">

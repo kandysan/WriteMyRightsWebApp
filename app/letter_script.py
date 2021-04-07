@@ -148,7 +148,7 @@ def create_sad_letter(ans):
 
 Re: Layoff
 
-When I joined {ans['company_address']} {ans['time_worked']['years']} years ago, it was an exciting time. I was truly looking forward to helping our team to succeed. But 
+When I joined {ans['company_address']} {ans['years_worked']} years ago, it was an exciting time. I was truly looking forward to helping our team to succeed. But 
 now, I'm incredibly shocked and disappointed to have been laid off. 
 
 The company’s vision aligns so well with my values. I have been a committed and dedicated employee since day 1 - being let 
@@ -171,7 +171,7 @@ Under the circumstances, and in the interest of putting this behind us, I would 
     elif ans['apology'] == 'yes':
         letter += f"""a written apology for all of the hardship that I suffered."""
 
-    letter += f"""Despite the shortcomings, I've really enjoyed the last {ans['time_worked']['months']} months and getting to know the {ans['company_name']} family. I was truly excited 
+    letter += f"""Despite the shortcomings, I've really enjoyed the last {ans['months_worked']} months and getting to know the {ans['company_name']} family. I was truly excited 
 to build something great  - and I have gotten the sense that {ans['company_name']} cares about its employees. Please don't make me feel misled. 
 
 Please let me know your intentions by {ans['response_date']}.
