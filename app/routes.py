@@ -19,6 +19,7 @@ load_dotenv(path.join(basedir, '.flaskenv'))
 stripe_keys = {
     "secret_key": environ.get("STRIPE_SECRET_KEY"),
     "publishable_key": environ.get("STRIPE_PUBLISHABLE_KEY"),
+    "endpoint_secret": environ.get("STRIPE_ENDPOINT_SECRET"),
 }
 
 stripe.api_key = stripe_keys["secret_key"]
@@ -95,17 +96,16 @@ def create_checkout_session():
             mode="payment",
             line_items=[
                 {
-                    "name": "EmploymentLetter",
+                    "name": "lettertest",
                     "quantity": 1,
                     "currency": "cad",
-                    "amount": "5000",
+                    "amount": "100",
                 }
             ]
         )
         return jsonify({"sessionId": checkout_session["id"]})
     except Exception as e:
         return jsonify(error=str(e)), 403
-
 
 
 @app.route("/webhook", methods=["POST"])

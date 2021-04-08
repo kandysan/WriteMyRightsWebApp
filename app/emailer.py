@@ -1,7 +1,7 @@
 # Python code to illustrate Sending mail with attachments
-# from your Gmail account  
+# from your Gmail account
 
-# libraries to be imported 
+# libraries to be imported
 import smtplib
 import os
 import docx
@@ -13,7 +13,7 @@ from email import encoders
 
 class Email:
 
-    def __init__(self, to_addr: str = "anthonyqraymundo@gmail.com", file_name: str = "email1.docx"):
+    def __init__(self, to_addr: str = "letters@writemyrights.com", file_name: str = "email1.docx"):
         self.from_addr = "letters@writemyrights.com"
         self.to_addr = to_addr
         self.file_name = file_name
@@ -34,7 +34,7 @@ class Email:
         # string to store the body of the mail
         body = "Thanks for using Write my Rights. Our mission is to help you to " \
                "communicate so you can start solving an everyday legal problem. Your " \
-               "(free)(premium) letter is attached. Keep fighting the good fight. " \
+               " letter is attached. Keep fighting the good fight. " \
                "Like what you see? Get 10% off your next premium letter by using the promo code 10OFF."
 
         # attach the body with the msg instance
@@ -63,7 +63,7 @@ class Email:
         msg.attach(p)
 
         # creates SMTP session
-        s = smtplib.SMTP('smtp.gmail.com', 587)
+        s = smtplib.SMTP('smtp.hostinger.com', 587)
 
         # start TLS for security
         s.starttls()
