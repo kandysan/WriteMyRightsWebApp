@@ -105,7 +105,7 @@ body {
 .faqHeader {
     text-align: left;
     font-family: 'Philosopher';
-    color: #0041A4;
+    color: black;
     font-size: 2.75em;
     font-weight: 400;
     letter-spacing: 0.05em;
@@ -200,7 +200,7 @@ body {
 .faqHeader2 {
     text-align: center;
     font-family: 'Philosopher';
-    color: #0041A4;
+    color: black;
     font-size: 2.75em;
     font-weight: 400;
     letter-spacing: 0.05em;
@@ -244,6 +244,8 @@ body {
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
     border-radius: 2em;
+    height: 75%;
+    overflow: hidden;
   }
   
   /* The Close Button */
@@ -327,8 +329,8 @@ body {
 
 #wrmModalTitle {
     text-align: left;
-    font-family: 'Philosopher';
-    color: #0041A4;
+    font-family: 'Montserrat', sans-serif;
+    color: black;
     font-size: 2.5em;
     font-weight: 700;
     margin-top: 0.5em;
@@ -336,7 +338,7 @@ body {
 
 #wrmModalDescription {
     text-align: left;
-    font-family: 'Philosopher';
+    font-family: 'Montserrat', sans-serif;
     color: #979BA8;
     font-size: 2em;
     font-weight: 400;
@@ -357,7 +359,7 @@ body {
     margin-right: 0.5em;
     margin-top: 3em;
     font-size: 2em;
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     outline:none;
     cursor: pointer;
@@ -380,7 +382,7 @@ body {
 #tosModalTitle {
     text-align: center;
     font-family: 'Philosopher';
-    color: #0041A4;
+    color: black;
     font-size: 2.5em;
     font-weight: 700;
     margin-top: 0.5em;
@@ -401,7 +403,7 @@ body {
 #ppModalTitle {
     text-align: center;
     font-family: 'Philosopher';
-    color: #0041A4;
+    color: black;
     font-size: 2.5em;
     font-weight: 700;
     margin-top: 0.5em;
@@ -423,4 +425,11 @@ body {
 .tosAndPp {
     color: blue;
     cursor: pointer;
+}
+
+iframe {
+  border: none;
+  width: 100%;
+  height: 100%;
+  margin-top: -2%;
 }

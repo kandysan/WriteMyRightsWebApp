@@ -18,7 +18,7 @@ function frame() {
         document.getElementById("writingLetterText").innerHTML = "Cracking our knuckles ..."
       }
       else if (width == 60) {
-        document.getElementById("writingLetterText").innerHTML = "Typing your letter ..."
+        document.getElementById("writingLetterText").innerHTML = "Editing your letter ..."
       }
       else if (width == 90) {
         document.getElementById("writingLetterText").innerHTML = "Finishing touches ..."

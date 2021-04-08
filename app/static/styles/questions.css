@@ -299,3 +299,15 @@ body {
 .hiddenInputs {
     display: none;
 }
+
+.checkbox {
+    transform: scale(2);
+}
+
+.checkboxText {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    padding-left: 2%;
+    display: inline-block;
+    cursor: default;
+}

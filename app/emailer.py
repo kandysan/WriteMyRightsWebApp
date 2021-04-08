@@ -14,7 +14,7 @@ from email import encoders
 class Email:
 
     def __init__(self, to_addr: str = "anthonyqraymundo@gmail.com", file_name: str = "email1.docx"):
-        self.from_addr = "noreply.writemyrights@gmail.com"
+        self.from_addr = "letters@writemyrights.com"
         self.to_addr = to_addr
         self.file_name = file_name
 
@@ -69,7 +69,7 @@ class Email:
         s.starttls()
 
         # Authentication
-        s.login(self.from_addr, "writemyrights!")
+        s.login(self.from_addr, "Totempole85%")
 
         # Converts the Multipart msg into a string
         text = msg.as_string()

@@ -154,7 +154,7 @@ At this point, I would like to be able to come to an agreement without resorting
     
 Given the circumstances, and in the interest of putting this behind us, I would be willing to accept"""
 
-    if ans['severance_demand'] != 'none' and ans['vacation'] != 'none' and ans['apology'] == 'yes':
+    if ans['severance_demand'] != 'none' and ans['vacation'] != 'none':
         #B, C and D
         letter += f""" {ans['severance_demand']} weeks of pay plus all unpaid vacation time that has accrued up until my termination which is {ans['vacation']} weeks. I also want a written apology for all of the hardship that I suffered. """
     elif ans['severance_demand'] != 'none' and ans['vacation'] != 'none':

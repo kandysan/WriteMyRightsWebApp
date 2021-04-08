@@ -1,4 +1,5 @@
 import urllib.parse
+from urllib.parse import unquote
 import stripe
 import os
 from os import path, environ
@@ -28,6 +29,13 @@ stripe.api_key = stripe_keys["secret_key"]
 def index():
     return render_template("index.html", title='Write My Rights')
 
+@app.route('/termsOfService')
+def termsOfService():
+    return render_template("termsOfService.html")
+
+@app.route('/privacyPolicy')
+def privacyPolicy():
+    return render_template("privacyPolicy.html")
 
 @app.route('/letterType')
 def write_my_rights_info():
@@ -164,7 +172,22 @@ def answer():
                         res = make_response(redirect('/questions/question16'))
                         res.set_cookie(key, 'Emails do not match', max_age=1)
                         return res
-
+                if key == 'severance':
+                    try:
+                        if attempted_value['a2'] == 'on' or attempted_value['a1'] == '':
+                            attempted_value = '0'
+                        else:
+                            attempted_value = attempted_value['a1']
+                    except:
+                        try:
+                            if attempted_value['a1'] == '':
+                                attempted_value = '0'
+                            else:
+                                attempted_value = attempted_value['a1']
+                        except:
+                            attempted_value = '0'
+                print(urllib.parse.quote(attempted_value))
+                attempted_value = urllib.parse.quote(attempted_value)
                 res.set_cookie(key, attempted_value, max_age=3600)
                 return res
             else:
@@ -183,36 +206,39 @@ def month_delta(start_date, end_date):
 
 @app.route('/questions/employment/getAnswers')
 def getAnswers():
+    print("start")
     ans = {}
     # client name
-    ans['name'] = request.cookies.get('name')
+    ans['name'] = unquote(request.cookies.get('name'))
     # client home address
-    ans['personal_address'] = request.cookies.get('personalAddress')
+    ans['personal_address'] = unquote(request.cookies.get('personalAddress'))
     # client email
-    ans['email'] = request.cookies.get('email')
+    ans['email'] = unquote(request.cookies.get('email'))
     # company name
-    ans['company_name'] = request.cookies.get('company')
+    ans['company_name'] = unquote(request.cookies.get('company'))
     # company's address
-    ans['company_address'] = request.cookies.get('employerAddress')
+    ans['company_address'] = unquote(request.cookies.get('employerAddress'))
     # client job title
-    ans['job_title'] = request.cookies.get('jobTitle')
+    ans['job_title'] = unquote(request.cookies.get('jobTitle'))
     # length of time to find a job
-    ans['findJobLength'] = request.cookies.get('findJobLength')
+    ans['findJobLength'] = unquote(request.cookies.get('findJobLength'))
     # Amount of job experience
-    ans['experience'] = request.cookies.get('experience')
+    ans['experience'] = unquote(request.cookies.get('experience'))
     # company boss' name
-    ans['boss_name'] = request.cookies.get('bossName')
+    ans['boss_name'] = unquote(request.cookies.get('bossName'))
     # reason for layoff
-    ans['reason'] = request.cookies.get('reason')
+    # ans['reason'] = unquote(request.cookies.get('reason'))
     # severance paid (in weeks/months)
-    ans['severance_paid'] = request.cookies.get('severance')
+    ans['severance_paid'] = unquote(request.cookies.get('severance'))
     # severance Demand
-    ans['severance_demand'] = request.cookies.get('severanceDemand')
+    ans['severance_demand'] = unquote(request.cookies.get('severanceDemand'))
     # vacation pay
-    ans['vacation'] = request.cookies.get('vacation')
+    ans['vacation'] = unquote(request.cookies.get('vacation'))
     # client's mood (determines the letter template)
-    ans['mood'] = request.cookies.get('mood')
+    ans['mood'] = unquote(request.cookies.get('mood'))
 
+    # written apology
+    ans['apology'] = unquote(request.cookies.get('apology'))
     # time worked at the company
     date_hired = datetime.strptime(request.cookies.get('hire_date'), '%Y-%m-%d')
     date_fired = datetime.strptime(request.cookies.get('fireDate'), '%Y-%m-%d')
