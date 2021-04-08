@@ -9,7 +9,7 @@ from app.worder import WordDoc
 from app import letter_script
 from dotenv import load_dotenv
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 
 basedir = path.abspath(path.dirname(__file__))
@@ -35,9 +35,13 @@ def write_my_rights_info():
     return render_template("/letterType.html", title="Write My Rights Letter Type")
 
 
-@app.route('/questions/<question>')
-def question(question):
-    return render_template("questions/"+question+".html", title=question)
+@app.route('/questions/<template>/<question>')
+def question(template, question):
+    return render_template("questions/"+template+"/"+question+".html", title=question)
+
+@app.route('/questions/letterPreview')
+def letterPreview():
+    return render_template("questions/letterPreview.html", title="letterPreview")
 
 @app.route('/questions/fetchLetter')
 def fetchLetter():
@@ -45,12 +49,16 @@ def fetchLetter():
 
 @app.route('/paymentDone')
 def paymentDone():
+    Email(request.cookies.get('email'), request.cookies.get('name') + ".docx").send()
     return render_template("/paymentDone.html", title="Payment Done")
 
 @app.route('/paymentOption')
 def paymentOption():
     return render_template("/paymentOption.html", title="Payment Option")
 
+@app.route('/paymentTable')
+def paymentTable():
+    return render_template("/paymentTable.html", title="Payment Table")
 
 @app.route("/config")
 def get_publishable_key():
@@ -74,7 +82,7 @@ def create_checkout_session():
 
         # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
         checkout_session = stripe.checkout.Session.create(
-            success_url=domain_url + "paymentDone",
+            success_url=domain_url + "questions/fetchLetter",
             cancel_url=domain_url + "paymentOption",
             payment_method_types=["card"],
             mode="payment",
@@ -130,25 +138,34 @@ def answer():
                 attempted_value = request.form['answer']
 
             # multi answers up to 10
-            # else:
-                # attempted_value = dict()
-                # # if name for input = answer(1 - 10) this will store it all within a json object string before setting as a cookie
-                # for i in range(9):
-                #     if 'answer' + str(1 + i) not in request.form:
-                #         break
-                #     else:
-                #         print(request.form['answer' + str(1+i)])
-                #         attempted_value['a' + str(1+i)] = request.form['answer' + str(1+i)]
+            else:
+                attempted_value = dict()
+                # if name for input = answer(1 - 10) this will store it all within a json object string before setting as a cookie
+                for i in range(9):
+                    if 'answer' + str(1 + i) not in request.form:
+                        break
+                    else:
+                        print(request.form['answer' + str(1+i)])
+                        attempted_value['a' + str(1+i)] = request.form['answer' + str(1+i)]
                 # attempted_value = json.dumps(attempted_value)
 
             next_page = request.form['next_page']
-            res = make_response(redirect('/questions' + next_page))
+            letter_type = request.form['letter_type']
+            res = make_response(redirect('/questions' + letter_type + next_page))
 
             if type(attempted_value) == str or type(attempted_value) == dict:
                 if key == 'bossName':
                     if attempted_value == '':
                         attempted_value = 'Sir or Madam'
-                res.set_cookie(key, attempted_value)
+                if key == 'email':
+                    if attempted_value['a1'] == attempted_value['a2']:
+                        attempted_value = attempted_value['a1']
+                    else:
+                        res = make_response(redirect('/questions/question16'))
+                        res.set_cookie(key, 'Emails do not match', max_age=1)
+                        return res
+
+                res.set_cookie(key, attempted_value, max_age=3600)
                 return res
             else:
                 error = "Invalid Answer"
@@ -164,7 +181,7 @@ def month_delta(start_date, end_date):
     return 12 * delta.years + delta.months
 
 
-@app.route('/questions/getAnswers')
+@app.route('/questions/employment/getAnswers')
 def getAnswers():
     ans = {}
     # client name
@@ -211,10 +228,12 @@ def getAnswers():
     ans['fire_date'] = date_fired.strftime("%B %d, %Y")
     # response date
     ans['response_date'] = datetime.strptime(request.cookies.get('deadline'), '%Y-%m-%d').strftime("%B %d, %Y")
+    # written apology
+    ans['apology'] = request.cookies.get('apology')
 
     letter = letter_script.create_employment_letter_preview(ans)
-    WordDoc(letter, ans).create()
-    #Email(ans['email'], ans['name'] + ".docx").send()
+    sent_letter = letter_script.create_employment_letter(ans)
+    WordDoc(sent_letter, ans).create()
     res = make_response(redirect('/questions/letterPreview'))
     letter = urllib.parse.quote(letter)
     res.set_cookie('written_letter', letter)

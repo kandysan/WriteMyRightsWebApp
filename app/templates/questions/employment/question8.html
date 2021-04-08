@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/questions.css') }}">
     <title>Write My Rights</title>
@@ -9,37 +8,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-    <a href="/index"><img class="greylogo" src="{{ url_for('static',filename='images/Write my Rights.PNG') }}" /></a>
-
+    <a href="/index"><img class="greylogo" src="{{ url_for('static',filename='images/Write my Rights.PNG') }}"/></a>
+    
     <div class="progressDiv">
-        <svg class="progressBarOne" width="1100 px" height="20 px">
-            <rect width="1000px" height="10px" style="fill: #dddddd;" rx="8" ry="8" />
-            <rect width="200px" height="10px" style="fill: #303852;" rx="8" ry="8" />
-        </svg>
+    <svg class="progressBarOne" width="1100 px" height="20 px">
+        <rect width="1000px" height="10px" style="fill: #dddddd;" rx="8" ry="8" />
+        <rect width="471px" height="10px" style="fill: #303852;" rx="8" ry="8" />
+    </svg>
     </div>
 
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
-        <p class="questionText">What is the name of the company you worked for?</p>
-        <input type="text" class="questionInput" placeholder="ex. Write My Rights" name="answer" value="{{request.form.answer}}" required maxlength="50">
-        <input type="hidden" value="company" name="key">
-        <input type="hidden" value="/question4" name="next_page">
+        <p class="questionText">What was the date you were hired?</p>
+        <input type="date" class="questionInput" placeholder="yyyy-mm-dd" value="{{request.form.answer}}" name="answer" required maxlength="50">
+        <input type="hidden" value="hire_date" name="key">
+        <input type="hidden" value="/employment" name="letter_type">
+        <input type="hidden" value="/question9" name="next_page">
     </div>
 
     <br>
 
     <div class="buttonDiv">
-        <a href="/questions/question2"><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"></a>
+        <a href='/questions/employment/question7'><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"/></a>
         <input type="image" name="submit" src="{{url_for('static', filename='images/black arrow.png')}}" alt="Next" class="frontArrow"/>
     </div>
     </form>
 
     <script src="{{url_for('static', filename='questionInputTextFill.js')}}">
     </script>
-    
-</body>
 
+</body>
 </html>

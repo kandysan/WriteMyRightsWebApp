@@ -1,9 +1,10 @@
 # Python code to illustrate Sending mail with attachments
-# from your Gmail account  
+# from your Gmail account
 
-# libraries to be imported 
+# libraries to be imported
 import smtplib
 import os
+import docx
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
@@ -41,8 +42,10 @@ class Email:
 
         # open the file to be sent
         main_dir = os.path.dirname(__file__)
-        rel_path = "temporary_emails/" + self.file_name
+        print(main_dir)
+        rel_path = "temporary_emails\\" + self.file_name
         abs_file_path = os.path.join(main_dir, rel_path)
+        print(abs_file_path)
         attachment = open(abs_file_path, "rb")
 
         # instance of MIMEBase and named as p
