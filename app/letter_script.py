@@ -1,6 +1,9 @@
+#letter template scripts
+
 PAYMENT = True
 
 def create_employment_letter(ans):
+    ''' letter choice based on mood '''
     if ans['mood'] == 'a' or ans['mood'] == 'A':
         letter = create_annoyed_letter(ans)
     elif ans['mood'] == 'b' or ans['mood'] == 'B':
@@ -11,6 +14,7 @@ def create_employment_letter(ans):
 
 
 def create_employment_letter_preview(ans):
+    ''' letter preview based on mood '''
     if ans['mood'] == 'a' or ans['mood'] == 'A':
         letter_preview = create_annoyed_letter_preview(ans)
     elif ans['mood'] == 'b' or ans['mood'] == 'B':
@@ -21,6 +25,7 @@ def create_employment_letter_preview(ans):
 
 
 def create_annoyed_letter(ans):
+    ''' template of annoyed letter for word doc '''
     letter = f"""{ans['name']}
 {ans['personal_address']}
 
@@ -91,6 +96,7 @@ Sincerely,
 
 
 def create_angry_letter(ans):
+    ''' template of angry letter for word doc '''
     letter = f"""{ans['name']}
 {ans['personal_address']}
 
@@ -170,6 +176,7 @@ Sincerely,
 
 
 def create_sad_letter(ans):
+    ''' template of sad letter for word doc '''
     letter = f"""{ans['name']}
 {ans['personal_address']}
 
@@ -328,6 +335,7 @@ Sincerely,
 
 
 def create_angry_letter_preview(ans):
+    ''' template of annoyed letter preview (unpaid) for word doc '''
     letter = f"""{ans['name']}<br>
     {ans['personal_address']}
 <br><br>
@@ -392,6 +400,7 @@ def create_angry_letter_preview(ans):
 
 
 def create_sad_letter_preview(ans):
+    ''' template of sad letter preview (unpaid) for word doc '''
     letter = f"""{ans['name']}<br>
     {ans['personal_address']}
 <br><br>
