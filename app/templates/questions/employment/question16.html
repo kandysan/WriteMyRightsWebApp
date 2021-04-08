@@ -13,32 +13,36 @@
     <a href="/index"><img class="greylogo" src="{{ url_for('static',filename='images/Write my Rights.PNG') }}"/></a>
 
     <div class="progressDiv">
-    <svg class="progressBarOne" width="1100 px" height="20 px">
-        <rect width="1000px" height="10px" style="fill: #dddddd;" rx="8" ry="8" />
-        <rect width="941px" height="10px" style="fill: #303852;" rx="8" ry="8" />
-    </svg>
+        <svg class="progressBarOne" width="1100 px" height="20 px">
+            <rect width="1000px" height="10px" style="fill: #dddddd;" rx="8" ry="8" />
+            <rect width="920px" height="10px" style="fill: #303852;" rx="8" ry="8" />
+        </svg>
     </div>
 
     <form action="{{url_for('answer')}}" method="post">
-    <div class="questionDiv">
-        <p class="questionText">Tell us your email address where we can send you your letter.</p>
-        <input type="email" class="questionInput" placeholder="ex. email@domain.com" value="{{request.form.answer}}" name="answer1"  required>
-        <input type="email"  class="questionInput" placeholder="Please type your email again to confirm" value="{{request.form.answer}}" name="answer2" required>
-        <input type="hidden" value="email" name="key">
-        <input type="hidden" value="/getAnswers" name="next_page">
-<!--        <input type="hidden" value="/questionTwo" name="next_page">-->
+    <div class="questionDiv questionRadioDiv" >
+        <p class="questionText">Do you want a written apology?</p>
+        <input type="radio" id="A" class="radioButtons"  name="answer" value="yes">
+        <label for ="A"><b>A</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Yes</label>
+
+        <input type="radio" id="B" class="radioButtons" name="answer" value="no">
+        <label for ="B"><b>B</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No</label>
+
+        <input type="hidden" value="apology" name="key">
+        <input type="hidden" value="/employment" name="letter_type">
+        <input type="hidden" value="/question17" name="next_page">
     </div>
 
     <br>
 
     <div class="buttonDiv">
-        <a href='/questions/employment/question15'><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"/></a>
+        <a href="/questions/employment/question15"><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"></a>
         <input type="image" name="submit" src="{{url_for('static', filename='images/black arrow.png')}}" alt="Next" class="frontArrow"/>
     </div>
     </form>
-
-    <script src="{{url_for('static', filename='questionInputTextFill.js')}}">
+    <script src="{{url_for('static', filename='questionInputRadioFill.js')}}">
     </script>
+
 
 </body>
 </html>

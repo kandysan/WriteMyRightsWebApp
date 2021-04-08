@@ -228,6 +228,8 @@ def getAnswers():
     ans['fire_date'] = date_fired.strftime("%B %d, %Y")
     # response date
     ans['response_date'] = datetime.strptime(request.cookies.get('deadline'), '%Y-%m-%d').strftime("%B %d, %Y")
+    # written apology
+    ans['apology'] = request.cookies.get('apology')
 
     letter = letter_script.create_employment_letter_preview(ans)
     sent_letter = letter_script.create_employment_letter(ans)
