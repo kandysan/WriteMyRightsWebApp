@@ -1,3 +1,4 @@
+# creating letter template in a form of a word document
 import docx
 import os
 
