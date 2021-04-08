@@ -29,6 +29,13 @@ stripe.api_key = stripe_keys["secret_key"]
 def index():
     return render_template("index.html", title='Write My Rights')
 
+@app.route('/termsOfService')
+def termsOfService():
+    return render_template("termsOfService.html")
+
+@app.route('/privacyPolicy')
+def privacyPolicy():
+    return render_template("privacyPolicy.html")
 
 @app.route('/letterType')
 def write_my_rights_info():
