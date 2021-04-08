@@ -1,0 +1,6 @@
+Flask==1.1.2
+stripe==2.56.0
+python_docx==0.8.10
+docx==0.2.4
+python-dotenv==0.17.0
+python_dateutil==2.8.1
