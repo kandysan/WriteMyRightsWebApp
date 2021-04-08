@@ -22,7 +22,7 @@
     <form action="{{url_for('answer')}}" method="post">
     <div class="questionDiv">
         <p class="questionText">What was the date you were hired?</p>
-        <input type="date" class="questionInput" value="{{request.form.answer}}" name="answer" required maxlength="50">
+        <input type="date" class="questionInput" placeholder="yyyy-mm-dd" value="{{request.form.answer}}" name="answer" required maxlength="50">
         <input type="hidden" value="hire_date" name="key">
         <input type="hidden" value="/employment" name="letter_type">
         <input type="hidden" value="/question9" name="next_page">
