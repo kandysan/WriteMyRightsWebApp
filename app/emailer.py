@@ -10,6 +10,9 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 
+import urllib.parse
+from urllib.parse import unquote
+
 
 class Email:
 
@@ -26,7 +29,7 @@ class Email:
         msg['From'] = self.from_addr
 
         # storing the receivers email address
-        msg['To'] = self.to_addr
+        msg['To'] = unquote(self.to_addr)
 
         # storing the subject
         msg['Subject'] = "Here's your letter"
