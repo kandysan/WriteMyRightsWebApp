@@ -29,7 +29,7 @@ class Email:
         msg['From'] = self.from_addr
 
         # storing the receivers email address
-        msg['To'] = unquote(self.to_addr)
+        msg['To'] = self.to_addr
 
         # storing the subject
         msg['Subject'] = "Here's your letter"
@@ -78,7 +78,7 @@ class Email:
         text = msg.as_string()
 
         # sending the mail
-        s.sendmail(self.from_addr, self.to_addr, text)
+        s.sendmail(self.from_addr, unquote(self.to_addr), text)
 
         # terminating the session
         s.quit()
