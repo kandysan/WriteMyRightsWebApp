@@ -14,4 +14,4 @@ class WordDoc:
         main_dir = os.path.dirname(__file__)
         rel_path = "temporary_emails/" + self.input_dict['name']
         abs_file_path = os.path.join(main_dir, rel_path)
-        mydoc.save(abs_file_path + ".docx")
+        mydoc.save("/tmp/" + self.input_dict['name'] + ".docx")
