@@ -29,7 +29,7 @@ class Email:
         msg['From'] = self.from_addr
 
         # storing the receivers email address
-        msg['To'] = self.to_addr
+        msg['To'] = unquote(self.to_addr)
 
         # storing the subject
         msg['Subject'] = "Here's your letter"
