@@ -43,7 +43,7 @@ class Email:
         # open the file to be sent
         main_dir = os.path.dirname(__file__)
         print(main_dir)
-        rel_path = "temporary_emails\\" + self.file_name
+        rel_path = "temporary_emails/" + self.file_name
         abs_file_path = os.path.join(main_dir, rel_path)
         print(abs_file_path)
         attachment = open(abs_file_path, "rb")
