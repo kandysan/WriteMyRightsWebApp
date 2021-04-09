@@ -1,1 +1,1 @@
-web: gunicorn WriteMyRights:WriteMyRights
+web: gunicorn WriteMyRights:app
