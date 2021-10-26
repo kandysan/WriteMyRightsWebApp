@@ -30,6 +30,16 @@ stripe.api_key = stripe_keys["secret_key"]
 def index():
     return render_template("index.html", title='Write My Rights')
 
+# add the json router 
+@app.route('/examplequestions')
+def hello_world():
+    # set path o read the local files, but we should upload files though web instead.
+    SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+    json_url = os.path.join(SITE_ROOT, "static/", "form-simple.json")
+    data = json.load(open(json_url))
+    # connecting to the temporate folder
+    return render_template("questionExample.html", data=data)
+
 @app.route('/termsOfService')
 def termsOfService():
     return render_template("termsOfService.html")
@@ -265,3 +275,6 @@ def getAnswers():
     res.set_cookie('written_letter', letter)
 
     return res
+
+
+

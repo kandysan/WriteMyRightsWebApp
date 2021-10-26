@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/questions.css') }}">
+    <title>Write My Rights</title>
+    <!-- Montserrat Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <p>Hello, <span id="username"></span></p>
+    <script>
+        // reading the json file
+        var data = JSON.parse('{{ data | tojson | safe}}');
+        document.getElementById('username').innerHTML = data.id + " " + data.name;
+    </script>
+</body>
+</html>
