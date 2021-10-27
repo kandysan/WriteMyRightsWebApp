@@ -9,11 +9,46 @@
     <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <p>Hello, <span id="username"></span></p>
+    <div id="question"></div>
+
     <script>
         // reading the json file
         var data = JSON.parse('{{ data | tojson | safe}}');
-        document.getElementById('username').innerHTML = data.id + " " + data.name;
+        for (let each in data.document.content){
+            // displaying questions that are type select
+            if (data.document.content[each].input.type === "select"){
+                let question = document.createElement("P");
+                let q = document.createTextNode(each + ")  " + data.document.content[each].label);
+                question.appendChild(q);
+                document.getElementById('question').appendChild(question);
+
+                // displaying radio buttons + options for each "select" type question
+                for (let eachOption in data.document.content[each].input.options){
+                    let option = document.createElement("P");
+                    let op = document.createElement("input");
+                    op.setAttribute("type", "radio");
+                    op.setAttribute("name", data.document.content[each].input.options[eachOption].value)
+                    op.setAttribute("id", data.document.content[each].input.options[eachOption].label);
+                    op.setAttribute("value", data.document.content[each].input.options[eachOption].value);
+                    option.appendChild(op);
+                    let label = document.createElement('label');
+                    label.setAttribute('for', 'town');
+                    label.innerHTML = data.document.content[each].input.options[eachOption].label;
+                    option.appendChild(label);
+                    document.getElementById('question').appendChild(option);
+                }
+            }
+            // diplaying questions that are type text
+            else if (data.document.content[each].input.type === "text"){
+                let question = document.createElement("P");
+                let q = document.createTextNode(each + ")  " + data.document.content[each].label);
+                question.appendChild(q);
+                document.getElementById('question').appendChild(question);
+                // displaying textareas for each "text" type question
+                let textbox = document.createElement("textarea");
+                document.getElementById('question').appendChild(textbox);
+            }
+        }
     </script>
 </body>
 </html>
