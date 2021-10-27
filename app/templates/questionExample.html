@@ -9,21 +9,64 @@
     <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="question"></div>
+    
+    <a href="/index"><img class="greylogo" src="{{ url_for('static',filename='images/Write my Rights.PNG') }}"/></a>
+    
+    <div class="progressDiv">
+    <svg class="progressBarOne">
+        <rect width="1000px" height="10px" style="fill: #dddddd;" rx="8" ry="8" />
+        <rect width="59px" height="10px" style="fill: #303852;" rx="8" ry="8" />
+    </svg>
+    </div>
+
+    <form action="{{url_for('answer')}}" method="post">
+    <!-- <div class="questionDiv">
+        <p class="questionText">What is your full name?</p>
+        <input type="text" class="questionInput" placeholder="ex. John Smith" name="answer" required maxlength="150">
+        <input type="hidden" value="name" name="key">
+        <input type="hidden" value="/employment" name="letter_type">
+        <input type="hidden" value="/question2" name="next_page">
+    </div> -->
+    
+    <div id="question" class="questionDiv"></div>
+
+    <br>
+
+    <div class="buttonDiv">
+        <img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="frontArrow" id="backArrow"/>
+        <!-- <a href="/letterType"><img src="{{url_for('static', filename='images/black back arrow.png')}}" alt="Back" class="backArrow"/></a> -->
+        <img src="{{url_for('static', filename='images/black arrow.png')}}" alt="Next" class="frontArrow" id="frontArrow"/>
+        <!-- <input type="image" name="submit" src="{{url_for('static', filename='images/black arrow.png')}}" alt="Next" class="frontArrow"/> -->
+    </div>
+    </form>
 
     <script>
+        let questionIndex = 0;
+
         // reading the json file
         var data = JSON.parse('{{ data | tojson | safe}}');
+        console.log(data);
+        let count = 0;
         for (let each in data.document.content){
             // displaying questions that are type select
             if (data.document.content[each].input.type === "select"){
+                document.getElementById('question').className = "questionRadioDiv questionDiv";
+
+                let questionContainer = document.createElement("div");
+                questionContainer.style.display = "none";
+                questionContainer.id = count;
+
                 let question = document.createElement("P");
                 let q = document.createTextNode(each + ")  " + data.document.content[each].label);
+                question.className = "questionText";   // Class for styling
                 question.appendChild(q);
-                document.getElementById('question').appendChild(question);
+                // document.getElementById('question').appendChild(question);
+                questionContainer.appendChild(question);
 
                 // displaying radio buttons + options for each "select" type question
                 for (let eachOption in data.document.content[each].input.options){
+                    console.log("Hello", eachOption);
+                    console.log("Stuff", data.document.content[each].input.options[eachOption]);
                     let option = document.createElement("P");
                     let op = document.createElement("input");
                     op.setAttribute("type", "radio");
@@ -31,24 +74,77 @@
                     op.setAttribute("id", data.document.content[each].input.options[eachOption].label);
                     op.setAttribute("value", data.document.content[each].input.options[eachOption].value);
                     option.appendChild(op);
+                    op.className = "radioButtons";
                     let label = document.createElement('label');
                     label.setAttribute('for', 'town');
                     label.innerHTML = data.document.content[each].input.options[eachOption].label;
                     option.appendChild(label);
-                    document.getElementById('question').appendChild(option);
+                    // document.getElementById('question').appendChild(option);
+                    questionContainer.appendChild(option);
                 }
+                document.getElementById('question').appendChild(questionContainer);
             }
             // diplaying questions that are type text
             else if (data.document.content[each].input.type === "text"){
+                
+                let questionContainer = document.createElement("div");
+                questionContainer.style.display = "none";
+                questionContainer.id = count;
+
                 let question = document.createElement("P");
                 let q = document.createTextNode(each + ")  " + data.document.content[each].label);
                 question.appendChild(q);
-                document.getElementById('question').appendChild(question);
+                question.className = "questionText";   // Class for styling
+                // document.getElementById('question').appendChild(question);
+                questionContainer.appendChild(question);
                 // displaying textareas for each "text" type question
                 let textbox = document.createElement("textarea");
-                document.getElementById('question').appendChild(textbox);
+                textbox.className = "questionInput";
+                // document.getElementById('question').appendChild(textbox);
+                questionContainer.appendChild(textbox);
+                document.getElementById('question').appendChild(questionContainer);
+            }
+            count++;
+        }
+
+        showIndexedQuestion();
+
+        function showIndexedQuestion() {
+            console.log("Tried to show index " + questionIndex);
+            document.getElementById(questionIndex).style.display = "block"; // Show question div.
+        }
+
+        function hideIndexedQuestion() {
+            document.getElementById(questionIndex).style.display = "none"; // Hides question div.
+        }
+
+        
+        function back() {
+            // console.log("Go Back");
+            if (questionIndex == 0) {
+                console.log("Can't go back");
+            } else {
+                hideIndexedQuestion();
+                questionIndex--;
+                showIndexedQuestion();
             }
         }
+        
+        function forward() {
+            // console.log("Go Forward");
+            if (questionIndex == data.document.content.length - 1) {
+                console.log("Can't go Forward");
+            } else {
+                hideIndexedQuestion();
+                questionIndex++;
+                showIndexedQuestion();
+            }
+        }
+
+        let backArrow = document.getElementById("backArrow");
+        let frontArrow = document.getElementById("frontArrow");
+        backArrow.onclick = back;
+        frontArrow.onclick = forward;
     </script>
 </body>
 </html>

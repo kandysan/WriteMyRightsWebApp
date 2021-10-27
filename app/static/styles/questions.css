@@ -95,8 +95,8 @@ body {
 } */
 
 .backArrow {
-    width: 6.4em;
-    height: 5.4em;
+    width: 8.5em;
+    height: 7.5em;
     transition: transform .2s;
     cursor: pointer;
 }
@@ -106,6 +106,8 @@ body {
 }
 
 .frontArrow {
+    /* width: 6.4em; */
+    /* height: 5.4em; */
     width: 7.5em;
     height: 6.5em;
     padding-left: 3em;
