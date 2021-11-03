@@ -61,18 +61,21 @@
                 question.className += " questionRadioDiv";
 
                 // displaying radio buttons + options for each "select" type question
+                let optionCount = 0;
                 for (let eachOption in data.document.content[each].input.options){
                     let optionInput = document.createElement("input");
                     optionInput.setAttribute("type", "radio");
                     optionInput.setAttribute("name", "question" + String(count))
-                    optionInput.setAttribute("id", data.document.content[each].input.options[eachOption].label);
+                    optionInput.setAttribute("id", "question" + String(count) + "option" + String(optionCount));
                     optionInput.setAttribute("value", data.document.content[each].input.options[eachOption].value);
                     optionInput.className = "radioButtons";
                     let optionLabel = document.createElement('label');
-                    optionLabel.setAttribute('for', data.document.content[each].input.options[eachOption].label);
+                    optionLabel.setAttribute('for', "question" + String(count) + "option" + String(optionCount));
                     optionLabel.innerHTML = data.document.content[each].input.options[eachOption].label;
                     question.appendChild(optionInput);
                     question.appendChild(optionLabel);
+
+                    optionCount++;
                 }
             }
             else if (data.document.content[each].input.type === "text"){  // diplaying questions that are type text
