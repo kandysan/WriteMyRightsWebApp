@@ -25,7 +25,7 @@
         <input type="text" class="questionInput" placeholder="ex. John Smith" name="answer" required maxlength="150">
     </div> -->
     
-    <div id="question" class="questionDiv"></div>
+    <div id="questionsContainer" class="questionDiv"></div>
 
     <br>
 
@@ -44,59 +44,46 @@
         var data = JSON.parse('{{ data | tojson | safe}}');
         console.log(data);
         let count = 0;
+        let questionsContainer = document.getElementById('questionsContainer');
         for (let each in data.document.content){
-            // displaying questions that are type select
-            if (data.document.content[each].input.type === "select"){
-                document.getElementById('question').className = "questionRadioDiv questionDiv";
+            let question = document.createElement("div");
+            question.className = "questionDiv";
+            question.style.display = "none";
+            question.id = "question" + String(count);
+            
+            let questionHeader = document.createElement("P");
+            let questionHeaderContent = document.createTextNode(each + ")  " + data.document.content[each].label);
+            questionHeader.className = "questionText";   // Class for styling
+            questionHeader.appendChild(questionHeaderContent);
+            question.appendChild(questionHeader);
 
-                let questionContainer = document.createElement("div");
-                questionContainer.style.display = "none";
-                questionContainer.id = count;
-
-                let question = document.createElement("P");
-                let q = document.createTextNode(each + ")  " + data.document.content[each].label);
-                question.className = "questionText";   // Class for styling
-                question.appendChild(q);
-                questionContainer.appendChild(question);
+            if (data.document.content[each].input.type === "select"){  // displaying questions that are type select
+                question.className += " questionRadioDiv";
 
                 // displaying radio buttons + options for each "select" type question
                 for (let eachOption in data.document.content[each].input.options){
-                    let option = document.createElement("P");
-                    let op = document.createElement("input");
-                    op.setAttribute("type", "radio");
-                    op.setAttribute("name", data.document.content[each].input.options[eachOption].value)
-                    op.setAttribute("id", data.document.content[each].input.options[eachOption].label);
-                    op.setAttribute("value", data.document.content[each].input.options[eachOption].value);
-                    option.appendChild(op);
-                    op.className = "radioButtons";
-                    let label = document.createElement('label');
-                    label.setAttribute('for', 'town');
-                    label.innerHTML = data.document.content[each].input.options[eachOption].label;
-                    option.appendChild(label);
-                    questionContainer.appendChild(option);
+                    let optionInput = document.createElement("input");
+                    optionInput.setAttribute("type", "radio");
+                    optionInput.setAttribute("name", "question" + String(count))
+                    optionInput.setAttribute("id", data.document.content[each].input.options[eachOption].label);
+                    optionInput.setAttribute("value", data.document.content[each].input.options[eachOption].value);
+                    optionInput.className = "radioButtons";
+                    let optionLabel = document.createElement('label');
+                    optionLabel.setAttribute('for', data.document.content[each].input.options[eachOption].label);
+                    optionLabel.innerHTML = data.document.content[each].input.options[eachOption].label;
+                    question.appendChild(optionInput);
+                    question.appendChild(optionLabel);
                 }
-                document.getElementById('question').appendChild(questionContainer);
             }
-            // diplaying questions that are type text
-            else if (data.document.content[each].input.type === "text"){
-                
-                let questionContainer = document.createElement("div");
-                questionContainer.style.display = "none";
-                questionContainer.id = count;
-
-                let question = document.createElement("P");
-                let q = document.createTextNode(each + ")  " + data.document.content[each].label);
-                question.appendChild(q);
-                question.className = "questionText";   // class for styling
-                // document.getElementById('question').appendChild(question);
-                questionContainer.appendChild(question);
-                // displaying textareas for each "text" type question
+            else if (data.document.content[each].input.type === "text"){  // diplaying questions that are type text
+                // currently using textareas for each "text" type question
                 let textbox = document.createElement("textarea");
                 textbox.className = "questionInput";
-                // document.getElementById('question').appendChild(textbox);
-                questionContainer.appendChild(textbox);
-                document.getElementById('question').appendChild(questionContainer);
+                question.appendChild(textbox);
             }
+
+            questionsContainer.appendChild(question);
+
             count++;
         }
 
@@ -104,11 +91,11 @@
 
         function showIndexedQuestion() {
             console.log("Tried to show index " + questionIndex);
-            document.getElementById(questionIndex).style.display = "block"; // Show question div.
+            document.getElementById("question" + String(questionIndex)).style.display = "block"; // Show question div.
         }
 
         function hideIndexedQuestion() {
-            document.getElementById(questionIndex).style.display = "none"; // Hides question div.
+            document.getElementById("question" + String(questionIndex)).style.display = "none"; // Hides question div.
         }
 
         
