@@ -35,7 +35,8 @@ def index():
 def hello_world():
     # set path o read the local files, but we should upload files though web instead.
     SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
-    json_url = os.path.join(SITE_ROOT, "static/", "form-simple.json")
+    # json_url = os.path.join(SITE_ROOT, "static/", "form-simple.json")
+    json_url = os.path.join(SITE_ROOT, "static/", "employmentLayoffTemplate.json")
     data = json.load(open(json_url))
     # connecting to the temporate folder
     return render_template("questionExample.html", data=data)
