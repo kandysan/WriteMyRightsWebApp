@@ -39,6 +39,8 @@
 
     <script>
         let questionIndex = 0;
+        let answerControlElements = []; // Collection of object identifiers for answer cookie storage.
+        let answers = {};
 
         // reading the json file
         var data = JSON.parse('{{ data | tojson | safe}}');
@@ -49,7 +51,7 @@
             let question = document.createElement("div");
             question.className = "questionDiv";
             question.style.display = "none";
-            question.id = "question" + String(count);
+            question.id = "question" + String(count) + "display";
             
             let questionHeader = document.createElement("P");
             let questionHeaderContent = document.createTextNode(each + ")  " + data.document.content[each].label);
@@ -60,12 +62,15 @@
             if (data.document.content[each].input.type === "select"){  // displaying questions that are type select
                 question.className += " questionRadioDiv";
 
+                answerControlElements.push({'type': 'input', 'name': "question" + String(count), 'id': "question" + String(count)})
                 // displaying radio buttons + options for each "select" type question
                 let optionCount = 0;
                 for (let eachOption in data.document.content[each].input.options){
                     let optionInput = document.createElement("input");
                     optionInput.setAttribute("type", "radio");
                     optionInput.setAttribute("name", "question" + String(count))
+
+
                     optionInput.setAttribute("id", "question" + String(count) + "option" + String(optionCount));
                     optionInput.setAttribute("value", data.document.content[each].input.options[eachOption].value);
                     optionInput.className = "radioButtons";
@@ -80,9 +85,17 @@
             }
             else if (data.document.content[each].input.type === "text"){  // diplaying questions that are type text
                 // currently using textareas for each "text" type question
-                let textbox = document.createElement("textarea");
+                let textbox = document.createElement("input");
+                // let textbox = document.createElement("textarea");
+                textbox.type = 'text';
                 textbox.className = "questionInput";
+                textbox.id = "question" + String(count);
+                
+                answerControlElements.push({'type': 'id', 'id': "question" + String(count)})
+
                 question.appendChild(textbox);
+            } else if (data.document.content[each].input.type === "date") {
+                answerControlElements.push({'type': null, 'name': "question" + String(count), 'id': "question" + String(count)})
             }
 
             questionsContainer.appendChild(question);
@@ -92,6 +105,7 @@
 
         showIndexedQuestion();
         updateProgressBar();
+        document.cookie = "";   // Clear cookies.
 
         function updateProgressBar() {
             document.getElementById("progressBarFill").setAttribute("width", String(60 * (questionIndex + 1) / count) + "%");
@@ -99,11 +113,11 @@
 
         function showIndexedQuestion() {
             console.log("Tried to show index " + questionIndex);
-            document.getElementById("question" + String(questionIndex)).style.display = "block"; // Show question div.
+            document.getElementById("question" + String(questionIndex) + "display").style.display = "block"; // Show question div.
         }
 
         function hideIndexedQuestion() {
-            document.getElementById("question" + String(questionIndex)).style.display = "none"; // Hides question div.
+            document.getElementById("question" + String(questionIndex) + "display").style.display = "none"; // Hides question div.
         }
 
         
@@ -121,14 +135,50 @@
         
         function forward() {
             if (questionIndex == data.document.content.length - 1) {
-                console.log("Can't go Forward");
+                console.log("Simulate submission");
+                pushCookies();
             } else {
+                processAnswerCookie();
                 hideIndexedQuestion();
                 questionIndex++;
                 showIndexedQuestion();
 
                 updateProgressBar();
             }
+        }
+
+        function pushCookies() {
+            cookieString = "";
+            for (let key in answers) {
+                cookieString += key + "=" + answers[key] + "; ";
+            }
+            console.log(cookieString);
+            document.cookie = cookieString;
+        }
+
+        function processAnswerCookie() {
+            if (!isValidAnswer()) {
+                console.log("Invalid Answer");
+                return;
+            }
+            console.log("Question info:", data.document.content[questionIndex]);
+            let ans;
+            if (answerControlElements[questionIndex]['type'] == 'input') {
+                console.log("Looking for input name:", answerControlElements[questionIndex]['name']);
+                ans = document.querySelector('input[name="' + answerControlElements[questionIndex]['name'] + '"]:checked').value;
+            } else if (answerControlElements[questionIndex]['type'] == 'id') {
+                ans = document.getElementById(answerControlElements[questionIndex]['id']).value;
+                // console.log(document.getElementById(answerControlElements[questionIndex]['id']));
+                // console.log("Looking for :", answerControlElements[questionIndex]['id']);
+            } else if (answerControlElements[questionIndex]['type'] == null) {
+                ans = "NULL TYPE";
+            }
+            answers[answerControlElements[questionIndex]['id']] = ans;
+            console.log("Answers:", answers);
+        }
+
+        function isValidAnswer() {
+            return answerControlElements[questionIndex]['name'] == null;
         }
 
         let backArrow = document.getElementById("backArrow");

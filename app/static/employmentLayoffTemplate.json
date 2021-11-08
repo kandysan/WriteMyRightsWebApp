@@ -42,7 +42,7 @@
       },
       {
         "id": "employerName",
-        "label": "What is your employer’s name?",
+        "label": "What is your employer's name?",
         "resultLabel": "Employer Name",
         "autoSubmit": true,
         "validation": {
@@ -54,7 +54,7 @@
       },
       {
         "id": "employerAddress",
-        "label": "What is your employer’s address?",
+        "label": "What is your employer's address?",
         "resultLabel": "Employer Address",
         "autoSubmit": true,
         "validation": {
