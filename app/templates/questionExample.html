@@ -39,8 +39,13 @@
 
     <script>
         let questionIndex = 0;
-        let answerControlElements = []; // Collection of object identifiers for answer cookie storage.
-        let answers = {};
+
+        // Collection of object identifiers for answer cookie storage.
+        // {questionID: {"method": funcToRetrieveAnswerFromQuestion()}}
+        let answerControlElements = {}; 
+
+        let answers = {};   // Collection of answers. {questionID: ans}
+        let questionIDs = [];   // QuestionID mapped to indexes.
 
         // reading the json file
         var data = JSON.parse('{{ data | tojson | safe}}');
@@ -62,14 +67,15 @@
             if (data.document.content[each].input.type === "select"){  // displaying questions that are type select
                 question.className += " questionRadioDiv";
 
-                answerControlElements.push({'type': 'input', 'name': "question" + String(count), 'id': "question" + String(count)})
+                // Add control element to answerControlElements.
+                answerControlElements[data.document.content[each].id] = {id: data.document.content[each].id, method: () => { return getValueByInputElementName(data.document.content[each].id); }};
+
                 // displaying radio buttons + options for each "select" type question
                 let optionCount = 0;
                 for (let eachOption in data.document.content[each].input.options){
                     let optionInput = document.createElement("input");
                     optionInput.setAttribute("type", "radio");
-                    optionInput.setAttribute("name", "question" + String(count))
-
+                    optionInput.setAttribute("name", data.document.content[each].id)
 
                     optionInput.setAttribute("id", "question" + String(count) + "option" + String(optionCount));
                     optionInput.setAttribute("value", data.document.content[each].input.options[eachOption].value);
@@ -84,23 +90,51 @@
                 }
             }
             else if (data.document.content[each].input.type === "text"){  // diplaying questions that are type text
-                // currently using textareas for each "text" type question
                 let textbox = document.createElement("input");
-                // let textbox = document.createElement("textarea");
                 textbox.type = 'text';
                 textbox.className = "questionInput";
-                textbox.id = "question" + String(count);
-                
-                answerControlElements.push({'type': 'id', 'id': "question" + String(count)})
+                textbox.id = data.document.content[each].id;
+
+                // Add control element to answerControlElements.
+                answerControlElements[data.document.content[each].id] = {id: data.document.content[each].id, method: () => { return getValueByElementID(data.document.content[each].id); }};
 
                 question.appendChild(textbox);
-            } else if (data.document.content[each].input.type === "date") {
-                answerControlElements.push({'type': null, 'name': "question" + String(count), 'id': "question" + String(count)})
-            }
 
+            } else if (data.document.content[each].input.type === "date") {
+                // Add control element to answerControlElements.
+                answerControlElements[data.document.content[each].id] = {id: data.document.content[each].id, method: () => { return getValueNotImplemented(data.document.content[each].id); }};
+            }
+            questionIDs.push(data.document.content[each].id);
             questionsContainer.appendChild(question);
 
             count++;
+        }
+
+        // Debugging
+        console.log(answerControlElements);
+        console.log("questionID's", questionIDs);
+
+        function getValueByElementID(id) {
+            console.log("Element ID:", id);
+            ans = document.getElementById(id).value; 
+            if (ans == "") {
+                return null;
+            }
+            return ans;
+        }
+
+        function getValueByInputElementName(name) {
+            console.log("Element name:", name);
+            if (document.querySelector('input[name="' + name + '"]:checked')) {
+                ans = document.querySelector('input[name="' + name + '"]:checked').value;
+                return ans;
+            } else {
+                return null;
+            }
+        }
+
+        function getValueNotImplemented(pass) {
+            return "Not implemented";
         }
 
         showIndexedQuestion();
@@ -113,6 +147,7 @@
 
         function showIndexedQuestion() {
             console.log("Tried to show index " + questionIndex);
+            // console.log(answers);
             document.getElementById("question" + String(questionIndex) + "display").style.display = "block"; // Show question div.
         }
 
@@ -138,6 +173,10 @@
                 console.log("Simulate submission");
                 pushCookies();
             } else {
+                if (!isValidAnswer()) {
+                    console.log("Invalid Answer");
+                    return;
+                }
                 processAnswerCookie();
                 hideIndexedQuestion();
                 questionIndex++;
@@ -157,28 +196,25 @@
         }
 
         function processAnswerCookie() {
-            if (!isValidAnswer()) {
-                console.log("Invalid Answer");
-                return;
-            }
+            
             console.log("Question info:", data.document.content[questionIndex]);
             let ans;
-            if (answerControlElements[questionIndex]['type'] == 'input') {
-                console.log("Looking for input name:", answerControlElements[questionIndex]['name']);
-                ans = document.querySelector('input[name="' + answerControlElements[questionIndex]['name'] + '"]:checked').value;
-            } else if (answerControlElements[questionIndex]['type'] == 'id') {
-                ans = document.getElementById(answerControlElements[questionIndex]['id']).value;
-                // console.log(document.getElementById(answerControlElements[questionIndex]['id']));
-                // console.log("Looking for :", answerControlElements[questionIndex]['id']);
-            } else if (answerControlElements[questionIndex]['type'] == null) {
-                ans = "NULL TYPE";
-            }
-            answers[answerControlElements[questionIndex]['id']] = ans;
+            ans = getAnswerControlElementByQuestionIndex().method();
+            answers[questionIDs[questionIndex]] = ans;
             console.log("Answers:", answers);
         }
 
+        function getAnswerControlElementByQuestionIndex() {
+            // console.log("Getting questionID:", questionIDs[questionIndex]);
+            // console.log("Retrieved Element:", answerControlElements[questionIDs[questionIndex]]);
+            return answerControlElements[questionIDs[questionIndex]];
+        }
+
         function isValidAnswer() {
-            return answerControlElements[questionIndex]['name'] == null;
+            // console.log("Element:", questionIDs[questionIndex]);
+            // console.log("Element returns:", answerControlElements[questionIDs[questionIndex]].method());
+            // return answerControlElements[questionIDs[questionIndex]].method() != null;
+            return true;
         }
 
         let backArrow = document.getElementById("backArrow");
