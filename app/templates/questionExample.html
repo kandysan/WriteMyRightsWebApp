@@ -68,7 +68,7 @@
                 question.className += " questionRadioDiv";
 
                 // Add control element to answerControlElements.
-                answerControlElements[data.document.content[each].id] = {id: data.document.content[each].id, method: () => { return getValueByInputElementName(data.document.content[each].id); }};
+                answerControlElements[data.document.content[each].id] = {id: data.document.content[each].id, method: () => { return getValueByInputElementNameRadio(data.document.content[each].id); }};
 
                 // displaying radio buttons + options for each "select" type question
                 let optionCount = 0;
@@ -102,7 +102,46 @@
 
             } else if (data.document.content[each].input.type === "date") {
                 // Add control element to answerControlElements.
+                answerControlElements[data.document.content[each].id] = {id: data.document.content[each].id, method: () => { return getValueByInputElementNameDate(data.document.content[each].id); }};
+
+                let markupDate = `
+                    <p class="questionText">${data.document.content[each].label}</p>
+                    <input type="date" class="questionInput" placeholder="yyyy-mm-dd" value="" name="${data.document.content[each].id}" required="" maxlength="50">
+                                
+                    <input type="hidden" value="hire_date" name="key">
+                    <input type="hidden" value="/employment" name="letter_type">
+                    <input type="hidden" value="/question9" name="next_page">
+                `;
+                question.innerHTML = markupDate;
+            } else if (data.document.content[each].input.type === "checkbox") {
+                // Add control element to answerControlElements.
+                answerControlElements[data.document.content[each].id] = {id: data.document.content[each].id, method: () => { return getValueByInputElementNameDate(data.document.content[each].id); }};
+
+                let markup = `
+                    <p class="questionText">${data.document.content[each].label}</p>
+                `;
+                let optionCount = 0;
+                for (let eachOption in data.document.content[each].input.options){
+                    // markup += `<input type="checkbox" name="${data.document.content[each].id + data.document.content[eachOption].value}" value="${data.document.content[eachOption].value}" onclick="disable()" class="checkbox">
+                    //             <p class="checkboxText" onclick="toggleCheckBoxByName(${data.document.content[each].id + data.document.content[each].value})">${data.document.content[each].input.options[eachOption].label} </p>
+                    //             <br>
+                    //             `
+                    markup += `<input type="checkbox" name="${data.document.content[each].id}" id="${data.document.content[each].input.options[eachOption].value}" value="${data.document.content[each].input.options[eachOption].value}" class="checkbox">
+                                <label for="${data.document.content[each].input.options[eachOption].value}" class="checkboxText">${data.document.content[each].input.options[eachOption].label} </label>
+                                <br><br>
+                                `
+
+                    optionCount++;
+                }
+                question.innerHTML = markup;
+            } else {
+                
                 answerControlElements[data.document.content[each].id] = {id: data.document.content[each].id, method: () => { return getValueNotImplemented(data.document.content[each].id); }};
+                let markup = `
+                <p class="questionText">${data.document.content[each].label}</p>
+                Questions type has not been implemented
+                `
+                question.innerHTML = markup;
             }
             questionIDs.push(data.document.content[each].id);
             questionsContainer.appendChild(question);
@@ -123,10 +162,20 @@
             return ans;
         }
 
-        function getValueByInputElementName(name) {
+        function getValueByInputElementNameRadio(name) {
             console.log("Element name:", name);
             if (document.querySelector('input[name="' + name + '"]:checked')) {
                 ans = document.querySelector('input[name="' + name + '"]:checked').value;
+                return ans;
+            } else {
+                return null;
+            }
+        }
+
+        function getValueByInputElementNameDate(name) {
+            console.log("Element name:", name);
+            if (document.querySelector('input[name="' + name + '"]')) {
+                ans = document.querySelector('input[name="' + name + '"]').value;
                 return ans;
             } else {
                 return null;
@@ -137,9 +186,20 @@
             return "Not implemented";
         }
 
+        function toggleCheckBoxByName(name) {
+            // data.document.content[each].id + data.document.content[eachOption].value
+            console.log("Element name:", name);
+            if (document.querySelector('input[name="' + name + '"]')) {
+                checkBox = document.querySelector('input[name="' + name + '"]').value;
+                checkBox.checked = !checkBox.checked;
+            } else {
+                return null;
+            }
+        }
+
         showIndexedQuestion();
         updateProgressBar();
-        document.cookie = "";   // Clear cookies.
+        document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });   // Clear cookies.
 
         function updateProgressBar() {
             document.getElementById("progressBarFill").setAttribute("width", String(60 * (questionIndex + 1) / count) + "%");

@@ -186,6 +186,118 @@
             }
           ]
         }
+      },
+      {
+        "id": "severence",
+        "subquestion": false,
+        "label": "Have you been offered any severance?",
+        "resultLabel": "severence",
+        "autoSubmit": true,
+        "required": true,
+        "input": {
+          "type": "select",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "Yes",
+              "subquestionReferenceId": "severenceYes"
+            },
+            {
+              "label": "No",
+              "value": "No"
+            }
+          ]
+        }
+      },
+      {
+        "id": "severenceYes",
+        "subquestion": true,
+        "label": "If so, how much?",
+        "resultLabel": "severenceAmt",
+        "autoSubmit": true,
+        "required": true,
+        "input": {
+          "type": "text"
+        }
+      },
+      {
+        "id": "deserve",
+        "subquestion": false,
+        "label": "What do you feel like you deserve in the circumstances?",
+        "resultLabel": "deserve",
+        "autoSubmit": true,
+        "required": true,
+        "input": {
+          "type": "checkbox",
+          "options": [
+            {
+              "label": "Additional severance payment",
+              "value": "Additional severance payment",
+              "subquestionReferenceId": "additionalSeverance"
+            },
+            {
+              "label": "Unpaid vacation time",
+              "value": "Unpaid vacation time",
+              "subquestionReferenceId": "unpaidVacation"
+            },
+            {
+              "label": "A written apology",
+              "value": "A written apology"
+            }
+          ]
+        }
+      },
+      {
+        "id": "additionalSeverance",
+        "subquestion": true,
+        "label": "How much severance do you want to demand (in weeks)?",
+        "resultLabel": "additionalSeverance",
+        "autoSubmit": true,
+        "required": true,
+        "input": {
+          "type": "text"
+        }
+      },
+      {
+        "id": "unpaidVacation",
+        "subquestion": true,
+        "label": "How much unpaid vacation are you owed (in weeks)?",
+        "resultLabel": "unpaidVacation",
+        "autoSubmit": true,
+        "required": true,
+        "input": {
+          "type": "text"
+        }
+      },
+      
+      {
+        "id": "deadline",
+        "subquestion": false,
+        "label": "What deadline do you want to give for them to respond?",
+        "resultLabel": "deadline",
+        "autoSubmit": true,
+        "required": true,
+        "input": {
+          "type": "select",
+          "options": [
+            {
+              "label": "3 days",
+              "value": "3 days"
+            },
+            {
+              "label": "5 days",
+              "value": "5 days"
+            },
+            {
+              "label": "1 week",
+              "value": "1 week"
+            },
+            {
+              "label": "2 weeks",
+              "value": "2 weeks"
+            }
+          ]
+        }
       }
     ]
   }
