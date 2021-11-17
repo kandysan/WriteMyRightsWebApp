@@ -39,8 +39,9 @@
         </div>
 
     </form>
-
+    <!-- <script src="{{ url_for('static',filename='dynamicQuestions.js')}}"></script> -->
     <script>
+        var data = JSON.parse('{{ data | tojson | safe}}');
         document.getElementById("submit").style.visibility = "hidden";
         const questionSet = new Set();
         questionSet.add("select");
@@ -51,7 +52,7 @@
         function Question(options, question) {
             this.options = options;
             this.question = question;
-            this.textbox = document.createElement("textarea");
+            this.textbox = document.createElement("input");
             this.date = document.createElement("input");
             this.optionInput = null;
             this.optionLabel = null;
@@ -80,25 +81,23 @@
         Question.prototype.createText = function() {
             // currently using textareas for each "text" type question
             this.textbox.className = "questionInput";
+            this.textbox.setAttribute("type", "text");
+            this.textbox.setAttribute("name", "answer");
             this.question.appendChild(this.textbox);
         }
 
         // prototype of textarea questions
         Question.prototype.createDate = function() {
             // currently using textareas for each "text" type question
-            this.date.className = "dateInput";
+            this.date.className = "questionInput";
             this.date.setAttribute("type", "date");
-            this.date.setAttribute("value", "2014-02-09");
+            this.date.setAttribute("placeholder", "yyyy-mm-dd");
+            this.date.setAttribute("name", "answer");
             this.question.appendChild(this.date);
         }
 
 
-
         let questionIndex = 0;
-
-        // reading the json file
-        var data = JSON.parse('{{ data | tojson | safe}}');
-        console.log(data);
         let count = 0;
         let questionsContainer = document.getElementById('questionsContainer');
         for (let each in data.document.content){
@@ -147,7 +146,7 @@
             document.getElementById("question" + String(questionIndex)).style.display = "none"; // Hides question div.
         }
 
-        
+
         function back() {
             let submit = document.getElementById("submit");
             submit.style.visibility="hidden";
@@ -161,7 +160,7 @@
                 updateProgressBar();
             }
         }
-        
+
         function forward() {
             if (questionIndex == data.document.content.length - 1) {
                 let submit = document.getElementById("submit");
@@ -181,5 +180,6 @@
         backArrow.onclick = back;
         frontArrow.onclick = forward;
     </script>
+
 </body>
 </html>
