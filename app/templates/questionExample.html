@@ -46,6 +46,7 @@
 
         let answers = {};   // Collection of answers. {questionID: ans}
         let questionIDs = [];   // QuestionID mapped to indexes.
+        let questionHistory = [];   // History of question ID's for back navigation. TODO!!!
 
         // reading the json file
         var data = JSON.parse('{{ data | tojson | safe}}');
@@ -68,6 +69,7 @@
                 question.className += " questionRadioDiv";
 
                 // Add control element to answerControlElements.
+                console.log("Select:", data.document.content[each].id);
                 answerControlElements[data.document.content[each].id] = {id: data.document.content[each].id, method: () => { return getValueByInputElementNameRadio(data.document.content[each].id); }};
 
                 // displaying radio buttons + options for each "select" type question
@@ -115,7 +117,7 @@
                 question.innerHTML = markupDate;
             } else if (data.document.content[each].input.type === "checkbox") {
                 // Add control element to answerControlElements.
-                answerControlElements[data.document.content[each].id] = {id: data.document.content[each].id, method: () => { return getValueByInputElementNameDate(data.document.content[each].id); }};
+                answerControlElements[data.document.content[each].id] = {id: data.document.content[each].id, method: () => { return getValueByInputElementNameCheckbox(data.document.content[each].id, data.document.content[each].input.options.length); }};
 
                 let markup = `
                     <p class="questionText">${data.document.content[each].label}</p>
@@ -143,7 +145,7 @@
                 `
                 question.innerHTML = markup;
             }
-            questionIDs.push(data.document.content[each].id);
+            questionIDs.push(data.document.content[each].id);   // Add question IDs to array if not subquestion.
             questionsContainer.appendChild(question);
 
             count++;
@@ -167,6 +169,27 @@
             if (document.querySelector('input[name="' + name + '"]:checked')) {
                 ans = document.querySelector('input[name="' + name + '"]:checked').value;
                 return ans;
+            } else {
+                return null;
+            }
+        }
+
+        function getValueByInputElementNameCheckbox(name, numOfOptions) {
+            console.log("Element name:", name);
+            console.log("Num of options:", numOfOptions);
+            let ans = []
+            console.log(document.querySelectorAll('input[name="' + name + '"]').value);
+            console.log(document.querySelectorAll('input[name="' + name + '"]'));
+            console.log(document.querySelectorAll('input[name="' + name + '"]:checked'));
+            
+            if (document.querySelectorAll('input[name="' + name + '"]')) {
+                // let ans = document.querySelectorAll('input[name="' + name + '"]').value;
+                // return ans;
+                for (let i = 0; i < document.querySelectorAll('input[name="' + name + '"]:checked').length; i++) {
+                    ans.push(document.querySelectorAll('input[name="' + name + '"]:checked')[i].value);
+                }
+                return ans;
+
             } else {
                 return null;
             }
@@ -259,6 +282,7 @@
             
             console.log("Question info:", data.document.content[questionIndex]);
             let ans;
+            console.log("answerControlElements", answerControlElements);
             ans = getAnswerControlElementByQuestionIndex().method();
             answers[questionIDs[questionIndex]] = ans;
             console.log("Answers:", answers);
