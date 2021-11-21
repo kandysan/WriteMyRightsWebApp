@@ -40,6 +40,14 @@
     <script>
         let questionIndex = 0;
 
+        // Collection of object identifiers for answer cookie storage.
+        // {questionID: {"method": funcToRetrieveAnswerFromQuestion()}}
+        let answerControlElements = {}; 
+
+        let answers = {};   // Collection of answers. {questionID: ans}
+        let questionIDs = [];   // QuestionID mapped to indexes.
+        let questionHistory = [];   // History of question ID's for back navigation. TODO!!!
+
         // reading the json file
         var data = JSON.parse('{{ data | tojson | safe}}');
         console.log(data);
@@ -49,7 +57,7 @@
             let question = document.createElement("div");
             question.className = "questionDiv";
             question.style.display = "none";
-            question.id = "question" + String(count);
+            question.id = "question" + String(count) + "display";
             
             let questionHeader = document.createElement("P");
             let questionHeaderContent = document.createTextNode(each + ")  " + data.document.content[each].label);
@@ -60,12 +68,17 @@
             if (data.document.content[each].input.type === "select"){  // displaying questions that are type select
                 question.className += " questionRadioDiv";
 
+                // Add control element to answerControlElements.
+                console.log("Select:", data.document.content[each].id);
+                answerControlElements[data.document.content[each].id] = {id: data.document.content[each].id, method: () => { return getValueByInputElementNameRadio(data.document.content[each].id); }};
+
                 // displaying radio buttons + options for each "select" type question
                 let optionCount = 0;
                 for (let eachOption in data.document.content[each].input.options){
                     let optionInput = document.createElement("input");
                     optionInput.setAttribute("type", "radio");
-                    optionInput.setAttribute("name", "question" + String(count))
+                    optionInput.setAttribute("name", data.document.content[each].id)
+
                     optionInput.setAttribute("id", "question" + String(count) + "option" + String(optionCount));
                     optionInput.setAttribute("value", data.document.content[each].input.options[eachOption].value);
                     optionInput.className = "radioButtons";
@@ -79,19 +92,137 @@
                 }
             }
             else if (data.document.content[each].input.type === "text"){  // diplaying questions that are type text
-                // currently using textareas for each "text" type question
-                let textbox = document.createElement("textarea");
+                let textbox = document.createElement("input");
+                textbox.type = 'text';
                 textbox.className = "questionInput";
-                question.appendChild(textbox);
-            }
+                textbox.id = data.document.content[each].id;
 
+                // Add control element to answerControlElements.
+                answerControlElements[data.document.content[each].id] = {id: data.document.content[each].id, method: () => { return getValueByElementID(data.document.content[each].id); }};
+
+                question.appendChild(textbox);
+
+            } else if (data.document.content[each].input.type === "date") {
+                // Add control element to answerControlElements.
+                answerControlElements[data.document.content[each].id] = {id: data.document.content[each].id, method: () => { return getValueByInputElementNameDate(data.document.content[each].id); }};
+
+                let markupDate = `
+                    <p class="questionText">${data.document.content[each].label}</p>
+                    <input type="date" class="questionInput" placeholder="yyyy-mm-dd" value="" name="${data.document.content[each].id}" required="" maxlength="50">
+                                
+                    <input type="hidden" value="hire_date" name="key">
+                    <input type="hidden" value="/employment" name="letter_type">
+                    <input type="hidden" value="/question9" name="next_page">
+                `;
+                question.innerHTML = markupDate;
+            } else if (data.document.content[each].input.type === "checkbox") {
+                // Add control element to answerControlElements.
+                answerControlElements[data.document.content[each].id] = {id: data.document.content[each].id, method: () => { return getValueByInputElementNameCheckbox(data.document.content[each].id, data.document.content[each].input.options.length); }};
+
+                let markup = `
+                    <p class="questionText">${data.document.content[each].label}</p>
+                `;
+                let optionCount = 0;
+                for (let eachOption in data.document.content[each].input.options){
+                    // markup += `<input type="checkbox" name="${data.document.content[each].id + data.document.content[eachOption].value}" value="${data.document.content[eachOption].value}" onclick="disable()" class="checkbox">
+                    //             <p class="checkboxText" onclick="toggleCheckBoxByName(${data.document.content[each].id + data.document.content[each].value})">${data.document.content[each].input.options[eachOption].label} </p>
+                    //             <br>
+                    //             `
+                    markup += `<input type="checkbox" name="${data.document.content[each].id}" id="${data.document.content[each].input.options[eachOption].value}" value="${data.document.content[each].input.options[eachOption].value}" class="checkbox">
+                                <label for="${data.document.content[each].input.options[eachOption].value}" class="checkboxText">${data.document.content[each].input.options[eachOption].label} </label>
+                                <br><br>
+                                `
+
+                    optionCount++;
+                }
+                question.innerHTML = markup;
+            } else {
+                
+                answerControlElements[data.document.content[each].id] = {id: data.document.content[each].id, method: () => { return getValueNotImplemented(data.document.content[each].id); }};
+                let markup = `
+                <p class="questionText">${data.document.content[each].label}</p>
+                Questions type has not been implemented
+                `
+                question.innerHTML = markup;
+            }
+            questionIDs.push(data.document.content[each].id);   // Add question IDs to array if not subquestion.
             questionsContainer.appendChild(question);
 
             count++;
         }
 
+        // Debugging
+        console.log(answerControlElements);
+        console.log("questionID's", questionIDs);
+
+        function getValueByElementID(id) {
+            console.log("Element ID:", id);
+            ans = document.getElementById(id).value; 
+            if (ans == "") {
+                return null;
+            }
+            return ans;
+        }
+
+        function getValueByInputElementNameRadio(name) {
+            console.log("Element name:", name);
+            if (document.querySelector('input[name="' + name + '"]:checked')) {
+                ans = document.querySelector('input[name="' + name + '"]:checked').value;
+                return ans;
+            } else {
+                return null;
+            }
+        }
+
+        function getValueByInputElementNameCheckbox(name, numOfOptions) {
+            console.log("Element name:", name);
+            console.log("Num of options:", numOfOptions);
+            let ans = []
+            console.log(document.querySelectorAll('input[name="' + name + '"]').value);
+            console.log(document.querySelectorAll('input[name="' + name + '"]'));
+            console.log(document.querySelectorAll('input[name="' + name + '"]:checked'));
+            
+            if (document.querySelectorAll('input[name="' + name + '"]')) {
+                // let ans = document.querySelectorAll('input[name="' + name + '"]').value;
+                // return ans;
+                for (let i = 0; i < document.querySelectorAll('input[name="' + name + '"]:checked').length; i++) {
+                    ans.push(document.querySelectorAll('input[name="' + name + '"]:checked')[i].value);
+                }
+                return ans;
+
+            } else {
+                return null;
+            }
+        }
+
+        function getValueByInputElementNameDate(name) {
+            console.log("Element name:", name);
+            if (document.querySelector('input[name="' + name + '"]')) {
+                ans = document.querySelector('input[name="' + name + '"]').value;
+                return ans;
+            } else {
+                return null;
+            }
+        }
+
+        function getValueNotImplemented(pass) {
+            return "Not implemented";
+        }
+
+        function toggleCheckBoxByName(name) {
+            // data.document.content[each].id + data.document.content[eachOption].value
+            console.log("Element name:", name);
+            if (document.querySelector('input[name="' + name + '"]')) {
+                checkBox = document.querySelector('input[name="' + name + '"]').value;
+                checkBox.checked = !checkBox.checked;
+            } else {
+                return null;
+            }
+        }
+
         showIndexedQuestion();
         updateProgressBar();
+        document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });   // Clear cookies.
 
         function updateProgressBar() {
             document.getElementById("progressBarFill").setAttribute("width", String(60 * (questionIndex + 1) / count) + "%");
@@ -99,11 +230,12 @@
 
         function showIndexedQuestion() {
             console.log("Tried to show index " + questionIndex);
-            document.getElementById("question" + String(questionIndex)).style.display = "block"; // Show question div.
+            // console.log(answers);
+            document.getElementById("question" + String(questionIndex) + "display").style.display = "block"; // Show question div.
         }
 
         function hideIndexedQuestion() {
-            document.getElementById("question" + String(questionIndex)).style.display = "none"; // Hides question div.
+            document.getElementById("question" + String(questionIndex) + "display").style.display = "none"; // Hides question div.
         }
 
         
@@ -121,14 +253,52 @@
         
         function forward() {
             if (questionIndex == data.document.content.length - 1) {
-                console.log("Can't go Forward");
+                console.log("Simulate submission");
+                pushCookies();
             } else {
+                if (!isValidAnswer()) {
+                    console.log("Invalid Answer");
+                    return;
+                }
+                processAnswerCookie();
                 hideIndexedQuestion();
                 questionIndex++;
                 showIndexedQuestion();
 
                 updateProgressBar();
             }
+        }
+
+        function pushCookies() {
+            cookieString = "";
+            for (let key in answers) {
+                cookieString += key + "=" + answers[key] + "; ";
+            }
+            console.log(cookieString);
+            document.cookie = cookieString;
+        }
+
+        function processAnswerCookie() {
+            
+            console.log("Question info:", data.document.content[questionIndex]);
+            let ans;
+            console.log("answerControlElements", answerControlElements);
+            ans = getAnswerControlElementByQuestionIndex().method();
+            answers[questionIDs[questionIndex]] = ans;
+            console.log("Answers:", answers);
+        }
+
+        function getAnswerControlElementByQuestionIndex() {
+            // console.log("Getting questionID:", questionIDs[questionIndex]);
+            // console.log("Retrieved Element:", answerControlElements[questionIDs[questionIndex]]);
+            return answerControlElements[questionIDs[questionIndex]];
+        }
+
+        function isValidAnswer() {
+            // console.log("Element:", questionIDs[questionIndex]);
+            // console.log("Element returns:", answerControlElements[questionIDs[questionIndex]].method());
+            // return answerControlElements[questionIDs[questionIndex]].method() != null;
+            return true;
         }
 
         let backArrow = document.getElementById("backArrow");
