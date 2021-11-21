@@ -2,7 +2,7 @@
 
 JSON stands for JavaScript Object Notation. This means we'll be dealing with "objects" as we write this code. Objects are comprised of properties, expressed as **key/value pairs** (a.k.a. name/value pairs), formatted like this:
 
-```json
+```js
 {
     "key": "value",
     "anotherKey": "another value",
@@ -33,7 +33,7 @@ Each value can be any valid JSON data type.
 ---
 
 Here's an example showing all of the data types in use:
-```json
+```js
 {
     "itemType": "backpack",              // string
     "id": 12,                            // number
@@ -66,7 +66,7 @@ Here's an example showing all of the data types in use:
 
 At a high level, templates are formatted as such:
 
-```json
+```js
 {
     "id": "dash-separated-template-id",
     "name": "Full Template Name",
@@ -84,7 +84,7 @@ At a high level, templates are formatted as such:
 
 Individual questions are formatted as such:
 
-```json
+```js
 {
     "id": "questionId",
     "subquestion": false,
@@ -117,19 +117,19 @@ Individual questions are formatted as such:
 Each question has an "input" object. Here are our current options, with example options where applicable:
 
 Text:
-```json
+```js
 {
     "type": "text"
 }
 ```
 Date:
-```json
+```js
 {
     "type": "date"
 }
 ```
 Select (pick one):
-```json
+```js
 {
     "type": "select",
     "options": [
@@ -146,7 +146,7 @@ Select (pick one):
 }
 ```
 Checkbox (pick one or more):
-```json
+```js
 {
     "type": "checkbox",
     "options": [
