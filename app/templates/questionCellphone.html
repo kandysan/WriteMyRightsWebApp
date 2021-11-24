@@ -83,7 +83,7 @@
     </form>
     <!-- <script src="{{ url_for('static',filename='dynamicQuestions.js')}}"></script> -->
     <script>
-      var data = JSON.parse("{{ data | tojson | safe}}");
+      var data = JSON.parse('{{ data | tojson | safe}}');
       document.getElementById("submit").style.visibility = "hidden";
       const questionSet = new Set();
       questionSet.add("select");
@@ -163,6 +163,11 @@
         questionHeader.className = "questionText"; // Class for styling
         questionHeader.appendChild(questionHeaderContent);
         question.appendChild(questionHeader);
+        let sub_bool = data.document.content[each].subquestion;
+        if (sub_bool) {
+          question.className = "sub";
+        }
+
         let option = new Question(
           data.document.content[each].input.options,
           question
@@ -218,6 +223,10 @@
         } else {
           hideIndexedQuestion();
           questionIndex--;
+          let tmp_quest = document.getElementById("question" + String(questionIndex));
+          if (tmp_quest.className == "sub") {
+            questionIndex--;
+          }
           showIndexedQuestion();
 
           updateProgressBar();
@@ -232,6 +241,10 @@
         } else {
           hideIndexedQuestion();
           questionIndex++;
+          let tmp_quest = document.getElementById("question" + String(questionIndex));
+          if (tmp_quest.className == "sub") {
+            questionIndex++;
+          }
           showIndexedQuestion();
 
           updateProgressBar();
