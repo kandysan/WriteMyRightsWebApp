@@ -45,7 +45,7 @@ def example1():
 @app.route('/examplequestionsobject', methods=['GET', 'POST'])
 def example2():
     SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
-    json_url = os.path.join(SITE_ROOT, "static/", "form-simple-2.json")
+    json_url = os.path.join(SITE_ROOT, "static/", "employmentLayoffTemplate.json")
     data = json.load(open(json_url))
 
     return render_template("questionExampleObjectTest.html", data=data)
