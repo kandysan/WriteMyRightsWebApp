@@ -93,6 +93,20 @@
             }
         };
 
+        Question.prototype.createCheckboxes = function () {
+            let markup = ``;
+            let optionCount = 0;
+            for (let eachOption in this.options) {
+              markup += `<input type="checkbox" name="${"question" + String(count)}" id="${"question" + String(count) + "option" + String(optionCount)}" value="${this.options[eachOption].value}" class="checkbox">
+                                <label for="${"question" + String(count) + "option" + String(optionCount)}" class="checkboxText">${this.options[eachOption].label} </label>
+                                <br><br>
+                                `;
+
+              optionCount++;
+            }
+            this.question.innerHTML += markup;
+        }
+
         // prototype of textarea questions
         Question.prototype.createText = function () {
             // currently using textareas for each "text" type question
@@ -147,6 +161,9 @@
                 // displaying questions that are type select
                 question.className += " questionRadioDiv";
                 option.createRadios();
+                all_questions.push(question);
+            } else if (data.document.content[each].input.type === "checkbox") {
+                option.createCheckboxes();
                 all_questions.push(question);
             } else if (data.document.content[each].input.type === "text") {
                 // diplaying questions that are type text
