@@ -181,51 +181,25 @@
         } else if (data.document.content[each].input.type === "checkbox") {
           option.createCheckboxes();
         }
+        showIndexedQuestion();
+        updateProgressBar();
 
-        questionsContainer.appendChild(question);
+        let question_order = ["question0"];
 
-        count++;
-      }
+        function updateProgressBar() {
+            document
+                .getElementById("progressBarFill")
+                .setAttribute(
+                    "width",
+                    String((60 * (questionIndex + 1)) / count) + "%"
+                );
+        }
 
-      showIndexedQuestion();
-      updateProgressBar();
-
-      function updateProgressBar() {
-        document
-          .getElementById("progressBarFill")
-          .setAttribute(
-            "width",
-            String((60 * (questionIndex + 1)) / count) + "%"
-          );
-      }
-
-      function showIndexedQuestion() {
-        console.log("Tried to show index " + questionIndex);
-        document.getElementById(
-          "question" + String(questionIndex)
-        ).style.display = "block"; // Show question div.
-      }
-
-      function hideIndexedQuestion() {
-        document.getElementById(
-          "question" + String(questionIndex)
-        ).style.display = "none"; // Hides question div.
-      }
-
-      function back() {
-        let submit = document.getElementById("submit");
-        submit.style.visibility = "hidden";
-        if (questionIndex == 0) {
-          console.log("Can't go back");
-        } else {
-          hideIndexedQuestion();
-          questionIndex--;
-          let tmp_quest = document.getElementById("question" + String(questionIndex));
-          // if (tmp_quest.className == "sub") {
-          //   questionIndex--;
-          // }
-          showIndexedQuestion();
-          updateProgressBar();
+        function showIndexedQuestion() {
+            console.log("Tried to show index " + questionIndex);
+            document.getElementById(
+                "question" + String(questionIndex)
+            ).style.display = "block"; // Show question div.
         }
       }
 
@@ -268,6 +242,110 @@
               }
               if(required[i].value == '') {
 
+        function hideIndexedQuestion() {
+            document.getElementById(
+                "question" + String(questionIndex)
+            ).style.display = "none"; // Hides question div.
+        }
+
+        function hideIndexedQuestion2(questionId) {
+            document.getElementById(questionId).style.display = "none"; // Hides question div.
+        }
+
+        function back() {
+            let submit = document.getElementById("submit");
+            submit.style.visibility = "hidden";
+            if (questionIndex == 0) {
+                console.log("Can't go back");
+            } else {
+                hideIndexedQuestion();
+                console.log(question_order);
+
+                //showIndexedQuestion2(all_questions[questionIndex - 1].id);
+                let current_question_id = "question" + String(questionIndex);
+                console.log("current question", current_question_id);
+
+                questionIndex--;
+
+                let prev_question_id = "question0";
+
+                
+                    if (question_order.includes(current_question_id) == true) {
+                        let current_index = question_order.indexOf(current_question_id);
+                        prev_question_id = question_order[current_index - 1];
+                        //if (q == question_order.length - 1){
+                            //console.log("back - in last question");
+                            //prev_question_id = question_order[q - 1];
+                        //} else {
+                            //console.log("back - in pop")
+                            //prev_question_id = question_order.pop();
+                        //}
+                        showIndexedQuestion2(prev_question_id);
+                    } 
+                    //else {
+                        //console.log("back - in else")
+                        //let tmp_quest = document.getElementById("question" + String(questionIndex));
+                        //if (tmp_quest.className == "sub") {
+                            //console.log("back - in sub else")
+                            //questionIndex--;
+                        //}
+                        //showIndexedQuestion2(questionIndex);
+                    //}
+                
+
+                updateProgressBar();
+            }
+        }
+
+        function forward() {
+            if (questionIndex == data.document.content.length - 1) {
+                let submit = document.getElementById("submit");
+                submit.style.visibility = "visible";
+                console.log("Can't go Forward");
+            } else {
+                hideIndexedQuestion();
+
+                let current_question = document.getElementById("question" + String(questionIndex));
+                //console.log(current_question); 
+
+
+                if (current_question.className == "questionDiv questionRadioDiv") {
+                    let ele = document.getElementsByName("question" + String(questionIndex));
+
+                    for (i = 0; i < ele.length; i++) {
+                        if (ele[i].checked) {
+                            if (ele[i].getAttribute("data-sqid")) {
+                                for (q in all_questions) {
+                                    if (all_questions[q].getAttribute("data-ref-id") == ele[i].getAttribute(
+                                            "data-sqid")) {
+                                                console.log("next - in data-squid if statement");
+                                        showIndexedQuestion2(all_questions[q].id);
+                                        questionIndex++;
+                                        if (question_order.includes(all_questions[q].id) == false) {
+                                            question_order.push(all_questions[q].id);
+                                        }
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                questionIndex++;
+                console.log("normal next");
+                let tmp_quest = document.getElementById("question" + String(questionIndex));
+                if (tmp_quest.className == "sub") {
+                    console.log("next - skip sub");
+                    questionIndex++;
+                }
+                showIndexedQuestion();
+                let cur_id = "question" + String(questionIndex);
+
+                if (question_order.includes(cur_id) == false) {
+                    question_order.push(cur_id);
+
+                }
+                console.log(question_order);
                 alert(required[i].id + " is required!");
                 return false;
               }
