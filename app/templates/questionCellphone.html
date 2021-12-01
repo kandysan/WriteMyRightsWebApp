@@ -166,7 +166,7 @@
         showIndexedQuestion();
         updateProgressBar();
 
-        let question_order = [];
+        let question_order = ["question0"];
 
         function updateProgressBar() {
             document
@@ -211,26 +211,35 @@
 
                 //showIndexedQuestion2(all_questions[questionIndex - 1].id);
                 let current_question_id = "question" + String(questionIndex);
+                console.log("current question", current_question_id);
 
                 questionIndex--;
 
                 let prev_question_id = "question0";
 
-                for (q in all_questions) {
-                    if (current_question_id == all_questions[q].id) {
-                        console.log('cqid', all_questions[q].id);
-                        prev_question_id = question_order.pop();
+                
+                    if (question_order.includes(current_question_id) == true) {
+                        let current_index = question_order.indexOf(current_question_id);
+                        prev_question_id = question_order[current_index - 1];
+                        //if (q == question_order.length - 1){
+                            //console.log("back - in last question");
+                            //prev_question_id = question_order[q - 1];
+                        //} else {
+                            //console.log("back - in pop")
+                            //prev_question_id = question_order.pop();
+                        //}
                         showIndexedQuestion2(prev_question_id);
                     } 
                     //else {
+                        //console.log("back - in else")
                         //let tmp_quest = document.getElementById("question" + String(questionIndex));
                         //if (tmp_quest.className == "sub") {
+                            //console.log("back - in sub else")
                             //questionIndex--;
                         //}
-                        //showIndexedQuestion2(all_questions[q].id);
-
+                        //showIndexedQuestion2(questionIndex);
                     //}
-                }
+                
 
                 updateProgressBar();
             }
@@ -247,13 +256,6 @@
                 let current_question = document.getElementById("question" + String(questionIndex));
                 //console.log(current_question); 
 
-                let cur_id = "question" + String(questionIndex);
-
-                if (question_order.includes(cur_id) == false) {
-                    question_order.push("question" + String(questionIndex));
-
-                }
-                console.log(question_order);
 
                 if (current_question.className == "questionDiv questionRadioDiv") {
                     let ele = document.getElementsByName("question" + String(questionIndex));
@@ -264,9 +266,12 @@
                                 for (q in all_questions) {
                                     if (all_questions[q].getAttribute("data-ref-id") == ele[i].getAttribute(
                                             "data-sqid")) {
+                                                console.log("next - in data-squid if statement");
                                         showIndexedQuestion2(all_questions[q].id);
                                         questionIndex++;
-                                        // question_order.push(all_questions[q].id);
+                                        if (question_order.includes(all_questions[q].id) == false) {
+                                            question_order.push(all_questions[q].id);
+                                        }
                                         return;
                                     }
                                 }
@@ -275,11 +280,21 @@
                     }
                 }
                 questionIndex++;
+                console.log("normal next");
                 let tmp_quest = document.getElementById("question" + String(questionIndex));
                 if (tmp_quest.className == "sub") {
+                    console.log("next - skip sub");
                     questionIndex++;
                 }
                 showIndexedQuestion();
+                let cur_id = "question" + String(questionIndex);
+
+                if (question_order.includes(cur_id) == false) {
+                    question_order.push(cur_id);
+
+                }
+                console.log(question_order);
+                
 
                 updateProgressBar();
             }
