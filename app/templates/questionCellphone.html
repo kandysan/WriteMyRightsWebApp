@@ -178,6 +178,8 @@
           option.createText();
         } else if (data.document.content[each].input.type === "date") {
           option.createDate();
+        } else if (data.document.content[each].input.type === "checkbox") {
+          option.createCheckboxes();
         }
 
         questionsContainer.appendChild(question);
@@ -223,7 +225,6 @@
           //   questionIndex--;
           // }
           showIndexedQuestion();
-
           updateProgressBar();
         }
       }
@@ -243,42 +244,8 @@
           showIndexedQuestion();
           updateProgressBar();
         }
+      }
 
-        function back() {
-            let submit = document.getElementById("submit");
-            submit.style.visibility = "hidden";
-            if (questionIndex == 0) {
-                console.log("Can't go back");
-            } else {
-                hideIndexedQuestion();
-                console.log(question_order);
-
-                //showIndexedQuestion2(all_questions[questionIndex - 1].id);
-                let current_question_id = "question" + String(questionIndex);
-
-                questionIndex--;
-
-                let prev_question_id = "question0";
-
-                for (q in all_questions) {
-                    if (current_question_id == all_questions[q].id) {
-                        console.log('cqid', all_questions[q].id);
-                        prev_question_id = question_order.pop();
-                        showIndexedQuestion2(prev_question_id);
-                    } 
-                    //else {
-                        //let tmp_quest = document.getElementById("question" + String(questionIndex));
-                        //if (tmp_quest.className == "sub") {
-                            //questionIndex--;
-                        //}
-                        //showIndexedQuestion2(all_questions[q].id);
-
-                    //}
-                }
-
-                updateProgressBar();
-            }
-        }
       let backArrow = document.getElementById("backArrow");
       let frontArrow = document.getElementById("frontArrow");
       backArrow.onclick = back;
@@ -306,7 +273,7 @@
               }
             }
           }
-      }      
+        }
     </script>
 </body>
 

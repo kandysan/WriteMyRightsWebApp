@@ -252,7 +252,7 @@
         "autoSubmit": true,
         "required": true,
         "input": {
-          "type": "select",
+          "type": "checkbox",
           "options": [
             {
               "label": "Contact the local regulator",
