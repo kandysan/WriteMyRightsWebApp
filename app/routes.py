@@ -41,18 +41,28 @@ app.config['MAIL_MAX_EMAILS'] = None
 app.config['MAIL_ASCCI_ATTACHMENTS'] = False
 
 mail = Mail(app)
-
+content_list = []
 @app.route('/mail', methods=['GET', 'POST'])
-def send_mail():
-    # if request.method == 'POST':
-    msg = Message("Generated Letter from WriteMyRights.com", recipients=['rojimed452@sinagalore.com'])
-    msg.body = "Thanks for using Write my Rights. Our mission is to help you to " \
+
+
+@app.route('/paymentDoneCellphone')
+def paymentDoneCellphone():
+    if len(content_list) != 0:
+        msg = Message("Generated Letter from WriteMyRights.com", recipients=[content_list[0].email])
+        msg.body = "Thanks for using Write my Rights. Our mission is to help you to " \
             "communicate so you can start solving an everyday legal problem. Your " \
             " letter is attached. Keep fighting the good fight. " \
             "Like what you see? Get 10% off your next premium letter by using the promo code 10OFF."
-    with app.open_resource("temporary_emails/14061992.docx") as fp:  
-        msg.attach("14061992.docx", "application/docx", fp.read()) 
-    mail.send(msg)
+        with app.open_resource(f"temporary_emails/{content_list[0].file_name}.docx") as fp:  
+            msg.attach(f"{content_list[0].file_name}.docx", "application/docx", fp.read()) 
+        mail.send(msg)
+        return render_template("/paymentDone.html", title="Payment Done")
+    else:
+        print("ERROR: No files can be sent.")    
+        return render_template("/paymentDone.html", title="Payment Done")
+
+
+def send_mail():
     return 'msg has been sent file be sent as well!'
 
 @app.route('/')
@@ -102,7 +112,12 @@ def employmentRouteRoute():
 def success():
     if request.method == 'POST':
         print(request.form)
-        CellphoneGenerator(request.form)
+        cellphone_content = CellphoneGenerator(request.form)
+        content_list.append(cellphone_content)
+        name_dict = dict()
+        name_dict["name"] = cellphone_content.file_name
+        sent_letter = cellphone_content.generate_letter()
+        WordDoc(sent_letter, name_dict).create()
         return render_template("/questions/letterPreviewCellPhone.html", data=request.form)
 
 

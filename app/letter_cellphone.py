@@ -3,10 +3,11 @@ from werkzeug.datastructures import ImmutableMultiDict
 class CellphoneGenerator:
     def __init__(self, ans):
         self.ans = ans.to_dict(flat=False)
-        print("dictionary", ans)
-        print(self.ans)
         self.letter_content = ""
-        self.generate_letter()
+        self.file_name = self.ans['question' + '1'][0].replace(" ", "_")
+        self.email = self.ans['question' + '15'][0].strip()
+        # self.generate_letter()
+        
 
     def generate_letter(self):
         self.letter_content = f"""
@@ -35,7 +36,7 @@ Please contact me by email at {self.ans['question' + '16'][0]}{" or by telephone
 Sincerely,
 {self.ans['question' + '1'][0]}
         """
-        print(self.letter_content)
+        return self.letter_content
 
     def checkbox_output(self):
         if self.ans['question' + str(14)] == ['Contact the local regulator', 'File a lawsuit in small claims', 'Air my concern over social media or in the local news']:

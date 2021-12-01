@@ -259,24 +259,8 @@
                   if (question_order.includes(current_question_id) == true) {
                       let current_index = question_order.indexOf(current_question_id);
                       prev_question_id = question_order[current_index - 1];
-                      //if (q == question_order.length - 1){
-                          //console.log("back - in last question");
-                          //prev_question_id = question_order[q - 1];
-                      //} else {
-                          //console.log("back - in pop")
-                          //prev_question_id = question_order.pop();
-                      //}
                       showIndexedQuestion2(prev_question_id);
                   } 
-                  //else {
-                      //console.log("back - in else")
-                      //let tmp_quest = document.getElementById("question" + String(questionIndex));
-                      //if (tmp_quest.className == "sub") {
-                          //console.log("back - in sub else")
-                          //questionIndex--;
-                      //}
-                      //showIndexedQuestion2(questionIndex);
-                  //}
               
 
               updateProgressBar();
