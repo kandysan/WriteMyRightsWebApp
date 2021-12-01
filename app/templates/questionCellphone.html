@@ -47,7 +47,7 @@
       </svg>
     </div>
 
-    <form id="form" action="{{url_for('success')}}" method="post">
+    <form id="form" action="{{url_for('success')}}" method="post" onsubmit="return ValidationEvent()">
       <div id="questionsContainer" class="questionDiv"></div>
       <br />
       <div class="buttonDiv">
@@ -90,13 +90,16 @@
       questionSet.add("text");
 
       // generate a question object constructor (created the type of question below)
-      function Question(options, question) {
+      function Question(options, question, id, require) {
         this.options = options;
         this.question = question;
         this.textbox = document.createElement("input");
         this.date = document.createElement("input");
         this.optionInput = null;
         this.optionLabel = null;
+        this.id = id;
+        this.require = require;
+        console.log(this.id);
       }
       // prototype of radio questions
       Question.prototype.createRadios = function () {
@@ -132,15 +135,19 @@
       Question.prototype.createText = function () {
         // currently using textareas for each "text" type question
         this.textbox.className = "questionInput";
+        this.textbox.classList.add(this.require);
+        this.textbox.id = this.id;
         this.textbox.setAttribute("type", "text");
         this.textbox.setAttribute("name",  "question" + String(count));
         this.question.appendChild(this.textbox);
       };
 
-      // prototype of textarea questions
+      // prototype of date questions
       Question.prototype.createDate = function () {
-        // currently using textareas for each "text" type question
+        // currently using date for each "date" type question
         this.date.className = "questionInput";
+        this.date.classList.add(this.require);
+        this.date.id = this.id;
         this.date.setAttribute("type", "date");
         this.date.setAttribute("placeholder", "yyyy-mm-dd");
         this.date.setAttribute("name",  "question" + String(count));
@@ -170,7 +177,9 @@
 
         let option = new Question(
           data.document.content[each].input.options,
-          question
+          question,
+          data.document.content[each].id,
+          data.document.content[each].required
         );
 
         if (data.document.content[each].input.type === "select") {
@@ -224,9 +233,9 @@
           hideIndexedQuestion();
           questionIndex--;
           let tmp_quest = document.getElementById("question" + String(questionIndex));
-          if (tmp_quest.className == "sub") {
-            questionIndex--;
-          }
+          // if (tmp_quest.className == "sub") {
+          //   questionIndex--;
+          // }
           showIndexedQuestion();
 
           updateProgressBar();
@@ -242,9 +251,9 @@
           hideIndexedQuestion();
           questionIndex++;
           let tmp_quest = document.getElementById("question" + String(questionIndex));
-          if (tmp_quest.className == "sub") {
-            questionIndex++;
-          }
+          // if (tmp_quest.className == "sub") {
+          //   questionIndex++;
+          // }
           showIndexedQuestion();
 
           updateProgressBar();
@@ -259,6 +268,30 @@
       let frontArrow = document.getElementById("frontArrow");
       backArrow.onclick = back;
       frontArrow.onclick = forward;
+
+
+      function ValidationEvent() {
+          let required = document.getElementsByClassName("true");
+          let orginalEmail;
+          let doubleCheckEmail;
+          if (required.length > 0) {
+            for (let i=0;i< required.length;i++){
+              if (required[i].id == "emailAddress" || required[i].id == "verifyEmailAddress"){
+                // let emailReg = "/^([w-.]+@([w-]+.)+[w-]{2,4})?$/";
+                console.log(required[i].value);
+                if (! required[i].value.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+                  alert(required[i].id + " is not email format!");
+                  return false;
+                }
+              }
+              if(required[i].value == '') {
+
+                alert(required[i].id + " is required!");
+                return false;
+              }
+            }
+          }
+      }      
     </script>
   </body>
 </html>
