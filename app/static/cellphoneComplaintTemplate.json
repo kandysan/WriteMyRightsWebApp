@@ -252,7 +252,7 @@
         "autoSubmit": true,
         "required": true,
         "input": {
-          "type": "select",
+          "type": "checkbox",
           "options": [
             {
               "label": "Contact the local regulator",
@@ -272,7 +272,7 @@
       {
         "id": "emailAddress",
         "subquestion": false,
-        "label": "What’s your email address (where we can send you your letter)?",
+        "label": "What is your email address (where we can send you your letter)?",
         "resultLabel": "Email Address",
         "autoSubmit": true,
         "required": true,
