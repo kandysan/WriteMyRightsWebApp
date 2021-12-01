@@ -83,7 +83,7 @@
     </form>
     <!-- <script src="{{ url_for('static',filename='dynamicQuestions.js')}}"></script> -->
     <script>
-      var data = JSON.parse('{{ data | tojson | safe}}');
+      let data = JSON.parse('{{ data | tojson | safe}}');
       document.getElementById("submit").style.visibility = "hidden";
       const questionSet = new Set();
       questionSet.add("select");
@@ -133,7 +133,7 @@
         // currently using textareas for each "text" type question
         this.textbox.className = "questionInput";
         this.textbox.setAttribute("type", "text");
-        this.textbox.setAttribute("name", "answer");
+        this.textbox.setAttribute("name",  "question" + String(count));
         this.question.appendChild(this.textbox);
       };
 
@@ -143,7 +143,7 @@
         this.date.className = "questionInput";
         this.date.setAttribute("type", "date");
         this.date.setAttribute("placeholder", "yyyy-mm-dd");
-        this.date.setAttribute("name", "answer");
+        this.date.setAttribute("name",  "question" + String(count));
         this.question.appendChild(this.date);
       };
 
