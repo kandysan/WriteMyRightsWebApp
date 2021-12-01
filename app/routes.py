@@ -7,6 +7,7 @@ from app import app
 from flask import render_template, request, redirect, make_response, jsonify
 from app.emailer import Email
 from app.worder import WordDoc
+from app.letter_cellphone import *
 from app import letter_script
 from dotenv import load_dotenv
 import json
@@ -49,7 +50,6 @@ def send_mail():
                 "communicate so you can start solving an everyday legal problem. Your " \
                 " letter is attached. Keep fighting the good fight. " \
                 "Like what you see? Get 10% off your next premium letter by using the promo code 10OFF."
-        
         mail.send(msg)
         return 'msg has been sent!'
 
@@ -92,6 +92,7 @@ def cellphoneRoute():
 def success():
     if request.method == 'POST':
         print(request.form)
+        CellphoneGenerator(request.form)
         return render_template("/questions/letterPreviewCellPhone.html", data=request.form)
 
 
