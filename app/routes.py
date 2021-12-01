@@ -7,11 +7,14 @@ from app import app
 from flask import render_template, request, redirect, make_response, jsonify
 from app.emailer import Email
 from app.worder import WordDoc
+from app.letter_cellphone import *
 from app import letter_script
 from dotenv import load_dotenv
 import json
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
+from flask_mail import Mail, Message
+import re
 
 basedir = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(basedir, '.flaskenv'))
@@ -24,6 +27,31 @@ stripe_keys = {
 
 stripe.api_key = stripe_keys["secret_key"]
 
+
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+# put the email name you deisire
+app.config['MAIL_USERNAME'] = 'millionbbt@gmail.com'
+# put the corresponding password
+app.config['MAIL_PASSWORD'] ="{+5D]7.(E'h\\4U<h"
+app.config['MAIL_DEFAULT_SENDER'] = 'millionbbt@gmail.com'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_MAX_EMAILS'] = None
+app.config['MAIL_ASCCI_ATTACHMENTS'] = False
+
+mail = Mail(app)
+
+@app.route('/mail', methods=['GET', 'POST'])
+def send_mail():
+    if request.method == 'POST':
+        msg = Message("Generated Letter from WriteMyRights.com", recipients=['rojimed452@sinagalore.com'])
+        msg.body = "Thanks for using Write my Rights. Our mission is to help you to " \
+                "communicate so you can start solving an everyday legal problem. Your " \
+                " letter is attached. Keep fighting the good fight. " \
+                "Like what you see? Get 10% off your next premium letter by using the promo code 10OFF."
+        mail.send(msg)
+        return 'msg has been sent!'
 
 @app.route('/')
 @app.route('/index')
@@ -68,11 +96,22 @@ def employmentRouteRoute():
 
 
 # success submit the form
-@app.route("/success", methods=['GET', 'POST'])
+@app.route("/letterPreviewCellphone", methods=['GET', 'POST'])
 def success():
     if request.method == 'POST':
         print(request.form)
-        return "recieved the data"
+        CellphoneGenerator(request.form)
+        return render_template("/questions/letterPreviewCellPhone.html", data=request.form)
+
+
+@app.route('/paymentTableCellphone')
+def paymentTableCellPhone():
+    return render_template("/paymentTableCellPhone.html", title="Payment Table")
+
+
+@app.route('/questions/fetchLetterCellphone')
+def fetchLetterCellphone():
+    return render_template("/questions/fetchLetterCellphone.html", title="fetchLetter")
 
 @app.route('/termsOfService')
 def termsOfService():
