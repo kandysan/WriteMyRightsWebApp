@@ -58,6 +58,14 @@ def cellphoneRoute():
     data = json.load(open(json_url))
     return render_template("questionCellphone.html", data=data)
 
+# add the json router with object constructor have not done the post yet
+@app.route('/employment', methods=['GET', 'POST'])
+def employmentRouteRoute():
+    SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+    json_url = os.path.join(SITE_ROOT, "static/", "employmentLayoffTemplate.json")
+    data = json.load(open(json_url))
+    return render_template("questionEmployeeLayoff.html", data=data)
+
 
 # success submit the form
 @app.route("/success", methods=['GET', 'POST'])

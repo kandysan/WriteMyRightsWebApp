@@ -96,6 +96,7 @@
         Question.prototype.createCheckboxes = function () {
             let markup = ``;
             let optionCount = 0;
+            console.log("CHECKS:", this.options);
             for (let eachOption in this.options) {
               markup += `<input type="checkbox" name="${"question" + String(count)}" id="${"question" + String(count) + "option" + String(optionCount)}" value="${this.options[eachOption].value}" class="checkbox">
                                 <label for="${"question" + String(count) + "option" + String(optionCount)}" class="checkboxText">${this.options[eachOption].label} </label>
@@ -163,6 +164,8 @@
                 option.createRadios();
                 all_questions.push(question);
             } else if (data.document.content[each].input.type === "checkbox") {
+                // diplaying questions that are type text
+                // currently using textareas for each "text" type question
                 option.createCheckboxes();
                 all_questions.push(question);
             } else if (data.document.content[each].input.type === "text") {
