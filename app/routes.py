@@ -47,14 +47,16 @@ content_list = []
 
 @app.route('/paymentDoneCellphone')
 def paymentDoneCellphone():
+    print("showing result:")
+    print(content_list[-1].email, content_list[-1].file_name)
     if len(content_list) != 0:
-        msg = Message("Generated Letter from WriteMyRights.com", recipients=[content_list[0].email])
+        msg = Message("Generated Letter from WriteMyRights.com", recipients=[content_list[-1].email])
         msg.body = "Thanks for using Write my Rights. Our mission is to help you to " \
             "communicate so you can start solving an everyday legal problem. Your " \
             " letter is attached. Keep fighting the good fight. " \
             "Like what you see? Get 10% off your next premium letter by using the promo code 10OFF."
-        with app.open_resource(f"temporary_emails/{content_list[0].file_name}.docx") as fp:  
-            msg.attach(f"{content_list[0].file_name}.docx", "application/docx", fp.read()) 
+        with app.open_resource(f"temporary_emails/{content_list[-1].file_name}.docx") as fp:  
+            msg.attach(f"{content_list[-1].file_name}.docx", "application/docx", fp.read()) 
         mail.send(msg)
         return render_template("/paymentDone.html", title="Payment Done")
     else:

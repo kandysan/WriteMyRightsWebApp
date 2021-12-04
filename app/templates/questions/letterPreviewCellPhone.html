@@ -31,7 +31,6 @@
 
     <div id="letterPreviewDiv2">
         <a href="/paymentTableCellphone"><button id="sendMeMyLetter" ">Send Me My Letter</button></a>
-        <button id="sendMeMyLetter" onclick="Export2Doc('contentOutput');">Export Word</button>
     </div>
 
     <script>
@@ -86,7 +85,7 @@
                         <br>
                         <br>
 
-                        I look forward to your reply and to resolving the problem, and will wait ${answers.question13} before taking my next step[.], which may include a complaint to the local ombudsperson, filing a claim in small claims court, or voicing my concerns over social media or through local news outlets. I’d rather not let it come to that, though.
+                        I look forward to your reply and to resolving the problem, and will wait ${answers.question13} before taking my next step, which may include a complaint to the local ombudsperson, filing a claim in small claims court, or voicing my concerns over social media or through local news outlets. I’d rather not let it come to that, though.
                         <br>
                         <br>
                         Please contact me by email at ${answers.question15} or by telephone at ${answers.question17}.
@@ -126,27 +125,6 @@
             document.body.removeChild(fileDownload);
         }
 
-        // function download(data, filename, type) {
-        //     var file = new Blob([data], {type: type});
-        //     if (window.navigator.msSaveOrOpenBlob) // IE10+
-        //         window.navigator.msSaveOrOpenBlob(file, filename);
-        //     else { // Others
-        //         var a = document.createElement("a"),
-        //                 url = URL.createObjectURL(file);
-        //         a.href = url;
-        //         a.download = filename;
-        //         document.body.appendChild(a);
-        //         a.click();
-        //         setTimeout(function() {
-        //             document.body.removeChild(a);
-        //             window.URL.revokeObjectURL(url);  
-        //         }, 0); 
-        // }
-    // }
-
-
-
-        // return ourLocation;// http://google.com/search
     </script>
     
 </body>
