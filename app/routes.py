@@ -41,22 +41,23 @@ app.config['MAIL_MAX_EMAILS'] = None
 app.config['MAIL_ASCCI_ATTACHMENTS'] = False
 
 mail = Mail(app)
-content_list = []
-@app.route('/mail', methods=['GET', 'POST'])
 
+# save emaila name and content as a list
+email_list = []
 
+# Send email and redirect to the payment done page
 @app.route('/paymentDoneCellphone')
 def paymentDoneCellphone():
-    print("showing result:")
-    print(content_list[-1].email, content_list[-1].file_name)
-    if len(content_list) != 0:
-        msg = Message("Generated Letter from WriteMyRights.com", recipients=[content_list[-1].email])
+    # show the email and its owner
+    print(email_list[-1].email, email_list[-1].file_name)
+    if len(email_list) != 0:
+        msg = Message("Generated Letter from WriteMyRights.com", recipients=[email_list[-1].email])
         msg.body = "Thanks for using Write my Rights. Our mission is to help you to " \
             "communicate so you can start solving an everyday legal problem. Your " \
             " letter is attached. Keep fighting the good fight. " \
             "Like what you see? Get 10% off your next premium letter by using the promo code 10OFF."
-        with app.open_resource(f"temporary_emails/{content_list[-1].file_name}.docx") as fp:  
-            msg.attach(f"{content_list[-1].file_name}.docx", "application/docx", fp.read()) 
+        with app.open_resource(f"temporary_emails/{email_list[-1].file_name}.docx") as fp:  
+            msg.attach(f"{email_list[-1].file_name}.docx", "application/docx", fp.read()) 
         mail.send(msg)
         return render_template("/paymentDone.html", title="Payment Done")
     else:
@@ -72,27 +73,8 @@ def send_mail():
 def index():
     return render_template("index.html", title='Write My Rights')
 
-# add the json router 
-@app.route('/examplequestions')
-def example1():
-    # set path o read the local files, but we should upload files though web instead.
-    SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
-    # json_url = os.path.join(SITE_ROOT, "static/", "form-simple.json")
-    json_url = os.path.join(SITE_ROOT, "static/", "employmentLayoffTemplate.json")
-    data = json.load(open(json_url))
-    # connecting to the temporate folder
-    return render_template("questionExample.html", data=data)
 
-# add the json router with object constructor have not done the post yet
-@app.route('/examplequestionsobject', methods=['GET', 'POST'])
-def example2():
-    SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
-    json_url = os.path.join(SITE_ROOT, "static/", "employmentLayoffTemplate.json")
-    data = json.load(open(json_url))
-
-    return render_template("questionExampleObjectTest.html", data=data)
-
-# add the json router with object constructor have not done the post yet
+# add the json router read in the questionCellphone html
 @app.route('/cellphone', methods=['GET', 'POST'])
 def cellphoneRoute():
     SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
@@ -115,19 +97,19 @@ def success():
     if request.method == 'POST':
         print(request.form)
         cellphone_content = CellphoneGenerator(request.form)
-        content_list.append(cellphone_content)
+        email_list.append(cellphone_content)
         name_dict = dict()
         name_dict["name"] = cellphone_content.file_name
         sent_letter = cellphone_content.generate_letter()
         WordDoc(sent_letter, name_dict).create()
         return render_template("/questions/letterPreviewCellPhone.html", data=request.form)
 
-
+# payment by cellphone type
 @app.route('/paymentTableCellphone')
 def paymentTableCellPhone():
     return render_template("/paymentTableCellPhone.html", title="Payment Table")
 
-
+# send email by cellphone type for fetching cellphone
 @app.route('/questions/fetchLetterCellphone')
 def fetchLetterCellphone():
     return render_template("/questions/fetchLetterCellphone.html", title="fetchLetter")
