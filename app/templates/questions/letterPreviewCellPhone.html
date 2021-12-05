@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset = "UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/questions.css') }}">
+    <title>Write My Rights</title>
+    <!-- Montserrat Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+        <a href="/index"><img class="greylogo" src="{{url_for('static', filename='images/Write my Rights.PNG')}}"/></a>
+    
+    <div class="progressDiv">
+    <svg class="progressBarOne" width="1100 px" height="20 px">
+            <rect width="1000px" height="10px" style="fill: #303852;" rx="8" ry="8" />
+    </svg>
+    </div>
+
+    <div id="letterPreviewDiv">
+        <p id="titleDiv"><i>Here's a preview of your free letter. The greyed out section is part of our premium letter features. 
+            Click below to get your letter!</i></p><br><br>
+        <p class="letterPreviewText" id="contentOutput">
+        </p>
+        
+    </div>
+
+    <!-- <br> -->
+
+    <div id="letterPreviewDiv2">
+        <a href="/paymentTableCellphone"><button id="sendMeMyLetter" ">Send Me My Letter</button></a>
+    </div>
+
+    <script>
+        let answers = JSON.parse('{{ data | tojson | safe}}');
+        writeLetter = document.getElementsByClassName("letterPreviewText");
+        // writeLetter.
+        console.log(answers);
+        let date = new Date().toISOString().replace('-', '/').split('T')[0].replace('-', '/');
+        let content = ` 
+                        ${answers.question1}
+                        <br>
+                        <br>
+
+                        ${answers.question2}
+                        
+                        <br>
+                        <br>
+
+                        ${answers.question15}
+                        <br>
+                        <br>
+
+                        ${date}
+                        <br>
+                        <br>
+
+                        ${answers.question3}
+                        <br>
+                        <br>
+                        ${answers.question4}
+                        <br>
+                        <br>
+
+                        Dear ${answers.question3},
+                        
+                        <br>
+                        <br>
+
+                        Re: Complaint about cell phone charges
+                        <br>
+                        <br>
+
+
+                        I’m complaining because I have been overcharged. I’ve attempted to resolve this matter through your customer service department but have either been left on hold for an unreasonable amount of time, or haven’t gotten the response I’ve been looking for. 
+                        <br>
+                        <br>
+                        You’ve overcharged my for ${answers.question7}. I believe I am entitled to a refund of $${answers.question6}.
+                        <br>
+                        <br>
+                        Hopefully this written letter can get this resolved. I’ve been a loyal customer ${answers.question5} and want to keep giving ${answers.question3} my business. I’ll highlight here that I’m on a month to month contract. I can take my business to any cell phone provider I want. I’d rather not have to do that though, so hopefully you can make this right.
+                        <br>
+                        <br>
+                        <br>
+
+                        I look forward to your reply and to resolving the problem, and will wait ${answers.question13} before taking my next step, which may include a complaint to the local ombudsperson, filing a claim in small claims court, or voicing my concerns over social media or through local news outlets. I’d rather not let it come to that, though.
+                        <br>
+                        <br>
+                        Please contact me by email at ${answers.question15} or by telephone at ${answers.question17}.
+                        <br>
+                        <br>
+                        Sincerely,
+                        <br>
+                        <br>
+                        ${answers.question1}
+                        `;
+        
+        writeLetter[0].innerHTML = content;
+
+        let url,foldersAndFile,folders,folderpath,protocol,host,ourLocation;
+        url = window.location;
+        
+        foldersAndFile = url.pathname.split("/");
+        folders = foldersAndFile.slice(0,foldersAndFile.length-1);
+        folderpath = folders.join("/");
+        protocol = url.protocol+"//";
+        host = url.host;
+        ourLocation=protocol+host+folderpath;
+        console.log(ourLocation);
+        function Export2Doc(element, filename = ''){
+            let header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
+            "xmlns:w='urn:schemas-microsoft-com:office:word' "+
+            "xmlns='http://www.w3.org/TR/REC-html40'>"+
+            "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
+            let footer = "</body></html>";
+            let sourceHTML = header+document.getElementById(element).innerHTML+footer;
+            let source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+            let fileDownload = document.createElement("a");
+            document.body.appendChild(fileDownload);
+            fileDownload.href = source;
+            fileDownload.download = 'Complaint_about_cell_phone_charges.doc';
+            fileDownload.click();
+            document.body.removeChild(fileDownload);
+        }
+
+    </script>
+    
+</body>
+</html>

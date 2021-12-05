@@ -7,11 +7,14 @@ from app import app
 from flask import render_template, request, redirect, make_response, jsonify
 from app.emailer import Email
 from app.worder import WordDoc
+from app.letter_cellphone import *
 from app import letter_script
 from dotenv import load_dotenv
 import json
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
+from flask_mail import Mail, Message
+import re
 
 basedir = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(basedir, '.flaskenv'))
@@ -25,10 +28,91 @@ stripe_keys = {
 stripe.api_key = stripe_keys["secret_key"]
 
 
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+# put the email name you deisire
+app.config['MAIL_USERNAME'] = 'millionbbt@gmail.com'
+# put the corresponding password
+app.config['MAIL_PASSWORD'] ="{+5D]7.(E'h\\4U<h"
+app.config['MAIL_DEFAULT_SENDER'] = 'millionbbt@gmail.com'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_MAX_EMAILS'] = None
+app.config['MAIL_ASCCI_ATTACHMENTS'] = False
+
+mail = Mail(app)
+
+# save emaila name and content as a list
+email_list = []
+
+# Send email and redirect to the payment done page
+@app.route('/paymentDoneCellphone')
+def paymentDoneCellphone():
+    # show the email and its owner
+    print(email_list[-1].email, email_list[-1].file_name)
+    if len(email_list) != 0:
+        msg = Message("Generated Letter from WriteMyRights.com", recipients=[email_list[-1].email])
+        msg.body = "Thanks for using Write my Rights. Our mission is to help you to " \
+            "communicate so you can start solving an everyday legal problem. Your " \
+            " letter is attached. Keep fighting the good fight. " \
+            "Like what you see? Get 10% off your next premium letter by using the promo code 10OFF."
+        with app.open_resource(f"temporary_emails/{email_list[-1].file_name}.docx") as fp:  
+            msg.attach(f"{email_list[-1].file_name}.docx", "application/docx", fp.read()) 
+        mail.send(msg)
+        return render_template("/paymentDone.html", title="Payment Done")
+    else:
+        print("ERROR: No files can be sent.")    
+        return render_template("/paymentDone.html", title="Payment Done")
+
+
+def send_mail():
+    return 'msg has been sent file be sent as well!'
+
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template("index.html", title='Write My Rights')
+
+
+# add the json router read in the questionCellphone html
+@app.route('/cellphone', methods=['GET', 'POST'])
+def cellphoneRoute():
+    SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+    json_url = os.path.join(SITE_ROOT, "static/", "cellphoneComplaintTemplate.json")
+    data = json.load(open(json_url))
+    return render_template("questionCellphone.html", data=data)
+
+# add the json router with object constructor have not done the post yet
+@app.route('/employment', methods=['GET', 'POST'])
+def employmentRouteRoute():
+    SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+    json_url = os.path.join(SITE_ROOT, "static/", "employmentLayoffTemplate.json")
+    data = json.load(open(json_url))
+    return render_template("questionEmployeeLayoff.html", data=data)
+
+
+# success submit the form
+@app.route("/letterPreviewCellphone", methods=['GET', 'POST'])
+def success():
+    if request.method == 'POST':
+        print(request.form)
+        cellphone_content = CellphoneGenerator(request.form)
+        email_list.append(cellphone_content)
+        name_dict = dict()
+        name_dict["name"] = cellphone_content.file_name
+        sent_letter = cellphone_content.generate_letter()
+        WordDoc(sent_letter, name_dict).create()
+        return render_template("/questions/letterPreviewCellPhone.html", data=request.form)
+
+# payment by cellphone type
+@app.route('/paymentTableCellphone')
+def paymentTableCellPhone():
+    return render_template("/paymentTableCellPhone.html", title="Payment Table")
+
+# send email by cellphone type for fetching cellphone
+@app.route('/questions/fetchLetterCellphone')
+def fetchLetterCellphone():
+    return render_template("/questions/fetchLetterCellphone.html", title="fetchLetter")
 
 @app.route('/termsOfService')
 def termsOfService():
@@ -265,3 +349,6 @@ def getAnswers():
     res.set_cookie('written_letter', letter)
 
     return res
+
+
+
